@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
   const meta = messages.metadata;
 
   return {
-    metadataBase: new URL('https://arifinfn9.vercel.app'),
+    metadataBase: new URL('https://njenz.vercel.app'),
     title: meta.title,
     description: meta.description,
     openGraph: {
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
       description: meta.ogDescription,
       type: 'website',
       locale: locale === 'id' ? 'id_ID' : 'en_US',
-      url: 'https://arifinfn9.vercel.app',
+      url: locale === 'id' ? 'https://njenz.vercel.app/id' : 'https://njenz.vercel.app/en',
       siteName: locale === 'id' ? 'Portofolio Arifin' : 'Arifin Portfolio',
     },
     twitter: {

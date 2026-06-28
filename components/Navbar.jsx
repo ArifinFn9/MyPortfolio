@@ -48,12 +48,16 @@ export default function Navbar() {
 
       const sections = navItems.map((item) => item.path.replace("#", ""));
       let current = "home";
+      let minDistance = Infinity;
 
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 150 && rect.bottom >= 150) {
+          // Find the section that is closest to y = 120px (just below the navbar)
+          const distance = Math.abs(rect.top - 120);
+          if (distance < minDistance) {
+            minDistance = distance;
             current = section;
           }
         }
@@ -75,7 +79,7 @@ export default function Navbar() {
   return (
     <>
       {/* Mobile Top Bar */}
-      <div key={`top-${locale}`} className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] flex items-center justify-between py-2 px-4 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-lg">
+      <div key={`top-${locale}`} className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] flex items-center justify-between py-2 px-4 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-lg select-none">
         <Link href="/" className="font-bold text-white tracking-wide text-sm">
           {t("brand")}
         </Link>
@@ -89,7 +93,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Floating Bottom Glassmorphism Tab Bar */}
-      <div key={`bottom-${locale}`} className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm p-2 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl flex items-center justify-around">
+      <div key={`bottom-${locale}`} className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm p-2 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl flex items-center justify-around select-none">
         {mobileNavItems.map((item) => {
           const isHomePage = pathname === "/";
           const isActive = isHomePage && activeSection === item.path.replace("#", "");

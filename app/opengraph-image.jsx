@@ -154,7 +154,7 @@ export default async function Image() {
             fontFamily: "system-ui, sans-serif",
           }}
         >
-          arifinfn9.vercel.app
+          njenz.vercel.app
         </div>
       </div>
 
