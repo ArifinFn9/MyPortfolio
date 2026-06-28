@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "title": "Muhammad Arifin | Portfolio",
+    "description": "Portfolio of Muhammad Arifin Fadhil Nughroho, a Finance Management graduate from Muhammadiyah University of Surakarta. Specialized in Financial Data Analysis, Data Entry, and Administration.",
+    "ogTitle": "Muhammad Arifin | Portfolio",
+    "ogDescription": "Portfolio of Muhammad Arifin Fadhil Nughroho."
+  },
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "brand": "Arifin"
+  },
+  "footer": {
+    "brand": "Muhammad Arifin",
+    "desc": "Finance Management graduate from Muhammadiyah University of Surakarta. Possesses knowledge of Financial Statement Analysis, Data Entry, and Office Administration",
+    "navTitle": "Navigation",
+    "connTitle": "Connect",
+    "rights": "© {year} Muhammad Arifin. All rights reserved.",
+    "builtWith": "Built with <heart></heart> using Next.js & Tailwind"
+  },
+  "hero": {
+    "available": "Open for Opportunities",
+    "title": "Analyzing Financial and <gradient>Administrative Data</gradient> <br></br>",
+    "desc": "Finance Management graduate from Muhammadiyah University of Surakarta. Passionate about financial analysis, database cleaning, and administrative accuracy.",
+    "viewWork": "View Projects",
+    "resume": "Resume",
+    "devWindow": {
+      "role": "Financial Management",
+      "education": "Bachelor's Degree in Management, UMS",
+      "passion1": "Financial Statement Analysis",
+      "passion2": "Database Management & Entry",
+      "passion3": "Business Administration"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
+    "viewResume": "View CV / Resume",
+    "desc": "Hi! I'm a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
+    "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
+    "hello": "Hello There! 👋",
+    "bullet1": "Data Accuracy",
+    "bullet2": "Financial Analysis",
+    "bullet3": "Office Administration",
+    "bullet4": "Detail Oriented",
+    "based": "Klaten, Central Java",
+    "available": "Open for Work",
+    "backgroundTitle": "Background",
+    "backgroundDesc": "Equipped with an academic background in finance and banking, combined with practical internship training in processing customer profiles and managing financial databases.",
+    "philosophyTitle": "Work Ethic",
+    "philosophyDesc": "I believe that precision in financial data entry and analysis is the foundation of sound business decisions and compliant operations.",
+    "educationTitle": "Education",
+    "degree": "Bachelor's Degree in Management (GPA: 3.48)",
+    "university": "Muhammadiyah University of Surakarta",
+    "period": "Sep 2022 — Apr 2026",
+    "eduDesc": "Relevant Courses: Financial Management, Financial Technology (Fintech), Financial Statement Analysis, International Finance, Management of Financial Institutions.",
+    "tags": {
+      "se": "Financial Management",
+      "sd": "Data Analysis",
+      "wt": "Database Entry",
+      "db": "Office Administration"
+    },
+    "techStackTitle": "Core Competencies"
+  },
+  "skills": {
+    "title": "Skills & Tools",
+    "subtitle": "Leveraging spreadsheet and analytical tools to optimize financial administration"
+  },
+  "experience": {
+    "title": "Experience & Training",
+    "viewCert": "View Certificate",
+    "cta": {
+      "title": "Looking for an Admin or Data Analyst?",
+      "desc": "I am ready to join your team as a junior data analyst, data entry, or office administrator. Let's build efficient systems together.",
+      "button": "Contact Me"
+    },
+    "items": {
+      "bsi": {
+        "title": "Data Entry & Data Administration (Internship)",
+        "company": "Bank Syariah Indonesia KCP Sukoharjo Kartasura",
+        "period": "Aug 2025 — Sep 2025 (1 Month)",
+        "tasks": [
+          "Inputted and updated customer database into the webform system with high accuracy.",
+          "Managed and archived physical and digital customer records to ensure secure and easy access.",
+          "Verified official customer documents to minimize administrative discrepancies and errors."
+        ]
+      },
+      "udemy": {
+        "title": "Data Analysis with Microsoft Excel & Power BI (Certification)",
+        "company": "Udemy",
+        "period": "Dec 2025 (32.5 Hours)",
+        "tasks": [
+          "Mastered data processing and analysis using Microsoft Excel and Power BI.",
+          "Created interactive financial dashboards and charts for data visualization.",
+          "Learned data preparation, database cleaning, and modeling techniques."
+        ]
+      },
+      "myskill": {
+        "title": "Analyzing Financial Report (Short Class)",
+        "company": "MySkill",
+        "period": "2 Hours Short Course",
+        "tasks": [
+          "Summarize the functions, structure, and key components of financial statements.",
+          "Apply horizontal analysis to evaluate trends in revenue and profit.",
+          "Apply vertical analysis to assess the efficiency of Cost of Goods Sold (COGS) relative to Total Sales."
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Portfolio Projects",
+    "all_projects_title": "All Projects",
+    "all_projects_desc": "A compilation of finance and data analysis case studies, ranging from dashboard creation to auditing pipelines.",
+    "total_projects": "Total Projects",
+    "modal": {
+      "problemTitle": "Problem & Context",
+      "solutionTitle": "Key Features & Implementation",
+      "impactTitle": "Results & Impact",
+      "close": "Close"
+    },
+    "items": {
+      "financial_dashboard": {
+        "title": "Project 1",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Analyzing corporate financial data across multiple years is typically slow and spreadsheet-heavy, making it difficult for management to quickly spot key cash flow bottlenecks and margin shifts.",
+        "solution": "Built a unified data model using Power Query to ingest multi-year corporate financial statements. Programmed custom Power BI DAX formulas to calculate financial ratios (liquidity, profitability, leverage) and designed an interactive dashboard showcasing margins and cash flow trends.",
+        "impact": "Provided executives with instant, visual access to critical financial health indicators, reducing report preparation time and speeding up trend analysis."
+      },
+      "data_cleaning": {
+        "title": "Project 2",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Raw transactional data exported from legacy banking and accounting systems is frequently corrupted with trailing whitespace, duplicate records, incorrect formats, and misaligned cell structures.",
+        "solution": "Designed a robust, automated data auditing template in Microsoft Excel using Power Query. Created automatic data validation routines to isolate anomalies, correct text cases, and align dates without manual editing.",
+        "impact": "Minimized data preparation errors, eliminated manual checking, and prepared 100% clean datasets for reporting and analytics."
+      },
+      "budgeting_tool": {
+        "title": "Project 3",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Traditional budgeting spreadsheets require manual entry for forecasting and lack proactive warnings for budget overruns, increasing the risk of cash shortages.",
+        "solution": "Developed a custom Google Sheets forecasting model using Excel VBA/Google Apps Script. Embedded conditional formulas to trigger alerts when department expenditures exceeded 85% of allocated funds.",
+        "impact": "Enabled real-time budget tracking, resulting in fewer budget overruns and more accurate forecasting of upcoming monthly runway."
+      }
+    }
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "desc": "Have a question or want to work together? I'd love to hear from you.",
+    "directTitle": "Direct Connection",
+    "directEmail": "Email Directly",
+    "directLinkedin": "LinkedIn Profile",
+    "directTelegram": "Telegram Chat",
+    "directInstagram": "Instagram Profile",
+    "successTitle": "Message Sent!",
+    "successDesc": "Thank you for reaching out. I'll get back to you as soon as possible.",
+    "sendAnother": "Send another message",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your Name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@example.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project...",
+    "sending": "Sending...",
+    "sendButton": "Send Message"
+  },
+  "resume": {
+    "title": "My Resume",
+    "downloadPdf": "Download PDF",
+    "downloadResume": "Download Resume",
+    "previewNotAvailable": "Preview not available (File might be missing)",
+    "ensurePdf": "Please ensure <codeRef>public/assets/resume.pdf</codeRef> exists in your project.",
+    "openNewTab": "Open in New Tab"
+  }
+}

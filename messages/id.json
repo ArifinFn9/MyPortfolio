@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "title": "Muhammad Arifin | Portofolio",
+    "description": "Portofolio Muhammad Arifin Fadhil Nughroho, lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Spesialisasi dalam Analisis Data Keuangan, Data Entri, dan Administrasi.",
+    "ogTitle": "Muhammad Arifin | Portofolio",
+    "ogDescription": "Portofolio Muhammad Arifin Fadhil Nughroho."
+  },
+  "navbar": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "skills": "Keahlian",
+    "experience": "Pengalaman",
+    "projects": "Proyek",
+    "contact": "Kontak",
+    "brand": "Arifin"
+  },
+  "footer": {
+    "brand": "Muhammad Arifin",
+    "desc": "Lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Memiliki pengetahuan dalam Analisis Laporan Keuangan, Data Entri, dan Administrasi Kantor.",
+    "navTitle": "Navigasi",
+    "connTitle": "Hubungi",
+    "rights": "© {year} Muhammad Arifin. Hak cipta dilindungi undang-undang.",
+    "builtWith": "Dibuat dengan <heart></heart> menggunakan Next.js & Tailwind"
+  },
+  "hero": {
+    "available": "Terbuka untuk Peluang Kerja",
+    "title": "Menganalisis Data Keuangan dan <gradient>Administrasi</gradient> <br></br>",
+    "desc": "Lulusan Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Bersemangat dalam analisis data keuangan, pembersihan database, dan keakuratan administrasi kantor.",
+    "viewWork": "Lihat Proyek",
+    "resume": "Resume",
+    "devWindow": {
+      "role": "Financial Data Analyst",
+      "education": "S1 Manajemen, UMS",
+      "passion1": "Analisis Laporan Keuangan",
+      "passion2": "Pengelolaan & Entri Data",
+      "passion3": "Administrasi Bisnis"
+    }
+  },
+  "about": {
+    "title": "Tentang Saya",
+    "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
+    "viewResume": "Lihat CV / Resume",
+    "desc": "Halo! Saya seorang lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Saya memiliki pengalaman magang di Bank Syariah Indonesia (BSI) pada bagian data entry dan administrasi data nasabah, di mana saya terbiasa mengelola data nasabah dengan akurasi tinggi dan menjaga kerahasiaan dokumen.",
+    "pageDesc": "Saya adalah lulusan Manajemen Keuangan yang fokus pada analisis data keuangan, operasional administrasi, dan pengelolaan database. Saya memastikan tingkat presisi tinggi di setiap laporan dan pencatatan.",
+    "hello": "Halo! 👋",
+    "bullet1": "Akurasi Data",
+    "bullet2": "Analisis Keuangan",
+    "bullet3": "Administrasi Kantor",
+    "bullet4": "Berorientasi Detail",
+    "based": "Klaten, Jawa Tengah",
+    "available": "Terbuka untuk Bekerja",
+    "backgroundTitle": "Latar Belakang",
+    "backgroundDesc": "Memiliki latar belakang akademis dalam bidang manajemen keuangan dan perbankan, dikombinasikan dengan pelatihan praktis magang dalam memproses profil nasabah dan mengelola basis data keuangan.",
+    "philosophyTitle": "Etos Kerja",
+    "philosophyDesc": "Saya percaya bahwa presisi dalam entri dan analisis data keuangan merupakan pondasi utama bagi keputusan bisnis yang tepat dan kepatuhan operasional.",
+    "educationTitle": "Pendidikan",
+    "degree": "S1 Manajemen (IPK: 3.48)",
+    "university": "Universitas Muhammadiyah Surakarta",
+    "period": "Sep 2022 — Apr 2026",
+    "eduDesc": "Mata kuliah relevan: Manajemen Keuangan, Teknologi Keuangan, Analisis Informasi Keuangan, Manajemen Keuangan Internasional, Manajemen Lembaga Keuangan.",
+    "tags": {
+      "se": "Manajemen Keuangan",
+      "sd": "Analisis Data",
+      "wt": "Entri Database",
+      "db": "Administrasi Kantor"
+    },
+    "techStackTitle": "Kompetensi Utama"
+  },
+  "skills": {
+    "title": "Keahlian & Tools",
+    "subtitle": "Memanfaatkan spreadsheet dan alat analisis untuk mengoptimalkan administrasi keuangan"
+  },
+  "experience": {
+    "title": "Pengalaman & Pelatihan",
+    "viewCert": "Lihat Sertifikat",
+    "cta": {
+      "title": "Mencari Staf Admin atau Analis Data?",
+      "desc": "Saya siap bergabung dengan tim Anda sebagai analis data junior, data entri, atau administrator kantor. Mari kita bangun sistem yang efisien bersama.",
+      "button": "Hubungi Saya"
+    },
+    "items": {
+      "bsi": {
+        "title": "Data Entri & Administrasi Data (Magang)",
+        "company": "Bank Syariah Indonesia KCP Sukoharjo Kartasura",
+        "period": "Agu 2025 — Sep 2025 (1 Bulan)",
+        "tasks": [
+          "Melakukan input dan pembaruan data nasabah ke dalam sistem webform secara akurat.",
+          "Mengelola dan mengarsipkan dokumen fisik serta digital nasabah untuk memastikan kemudahan akses data.",
+          "Memverifikasi kesesuaian dokumen resmi nasabah guna meminimalisir kesalahan administrasi."
+        ]
+      },
+      "udemy": {
+        "title": "Data Analysis with Microsoft Excel & Power BI (Sertifikasi)",
+        "company": "Udemy",
+        "period": "Des 2025 (32,5 Jam)",
+        "tasks": [
+          "Mempelajari pengolahan dan analisis data menggunakan Microsoft Excel dan Power BI.",
+          "Memahami pembuatan dashboard, visualisasi data, serta pengolahan data dasar.",
+          "Mempelajari teknik pembersihan database dan pemodelan data keuangan."
+        ]
+      },
+      "myskill": {
+        "title": "Analyzing Financial Report (Short Class)",
+        "company": "MySkill",
+        "period": "2 Jam Kursus Singkat",
+        "tasks": [
+          "Merangkum fungsi, struktur, dan komponen utama laporan keuangan.",
+          "Menerapkan analisis horizontal untuk mengevaluasi tren pendapatan dan laba.",
+          "Menerapkan Analisis Vertikal untuk mengukur efisiensi Harga Pokok Penjualan terhadap Total Penjualan."
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyek Portofolio",
+    "all_projects_title": "Semua Proyek",
+    "all_projects_desc": "Kumpulan studi kasus analisis data dan keuangan, berkisar dari pembuatan dashboard hingga alur audit data.",
+    "total_projects": "Total Proyek",
+    "modal": {
+      "problemTitle": "Masalah & Konteks",
+      "solutionTitle": "Fitur Utama & Implementasi",
+      "impactTitle": "Hasil & Dampak",
+      "close": "Tutup"
+    },
+    "items": {
+      "financial_dashboard": {
+        "title": "Proyek 1",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Menganalisis data keuangan perusahaan selama beberapa tahun biasanya lambat dan membutuhkan spreadsheet yang rumit, sehingga menyulitkan manajemen untuk mendeteksi hambatan arus kas dan pergeseran profitabilitas secara cepat.",
+        "solution": "Membangun model data terpadu menggunakan Power Query untuk membaca laporan keuangan perusahaan. Membuat formula DAX Power BI khusus untuk menghitung rasio likuiditas, profitabilitas, leverage, serta mendesain visualisasi tren arus kas yang interaktif.",
+        "impact": "Menyediakan akses visual instan bagi eksekutif ke indikator kesehatan keuangan yang kritis, mempercepat proses analisis tren keuangan."
+      },
+      "data_cleaning": {
+        "title": "Proyek 2",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Data transaksi mentah yang diekspor dari sistem akuntansi lama seringkali kotor dengan spasi berlebih, data ganda, format tanggal tidak konsisten, dan struktur sel yang berantakan.",
+        "solution": "Merancang template audit data otomatis di Microsoft Excel dengan Power Query. Membuat rutinitas validasi data untuk memisahkan anomali, merapikan teks, dan menyelaraskan tanggal secara otomatis tanpa intervensi manual.",
+        "impact": "Meminimalisir kesalahan persiapan data, meniadakan proses pemeriksaan manual, dan menghasilkan dataset bersih yang siap pakai 100% untuk laporan keuangan."
+      },
+      "budgeting_tool": {
+        "title": "Proyek 3",
+        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "problem": "Spreadsheet anggaran tradisional memerlukan input manual untuk perkiraan masa depan dan tidak memiliki sistem peringatan dini ketika pengeluaran melebihi batas.",
+        "solution": "Mengembangkan model penganggaran Google Sheets dengan formula logika terstruktur dan script otomatisasi. Memasang formula bersyarat untuk memicu peringatan visual saat pengeluaran divisi menyentuh 85% dari pagu anggaran.",
+        "impact": "Memungkinkan pemantauan anggaran secara real-time, menekan potensi kebocoran anggaran, dan menghasilkan perkiraan arus kas bulanan yang lebih akurat."
+      }
+    }
+  },
+  "contact": {
+    "title": "Hubungi Saya",
+    "desc": "Punya peluang kerja sama atau hanya ingin menyapa? Saya akan sangat senang mendengar kabar dari Anda.",
+    "directTitle": "Koneksi Langsung",
+    "directEmail": "Email Langsung",
+    "directLinkedin": "Profil LinkedIn",
+    "directTelegram": "Chat Telegram",
+    "directInstagram": "Profil Instagram",
+    "successTitle": "Pesan Terkirim!",
+    "successDesc": "Terima kasih telah menghubungi saya. Saya akan segera membalas pesan Anda.",
+    "sendAnother": "Kirim pesan lain",
+    "nameLabel": "Nama",
+    "namePlaceholder": "Nama Anda",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@contoh.com",
+    "messageLabel": "Pesan",
+    "messagePlaceholder": "Ceritakan peluang kerja sama atau pesan Anda...",
+    "sending": "Mengirim...",
+    "sendButton": "Kirim Pesan"
+  },
+  "resume": {
+    "title": "Resume Saya",
+    "downloadPdf": "Unduh PDF",
+    "downloadResume": "Unduh Resume",
+    "previewNotAvailable": "Pratinjau tidak tersedia (File mungkin hilang)",
+    "ensurePdf": "Pastikan file <codeRef>public/assets/resume.pdf</codeRef> ada dalam proyek Anda.",
+    "openNewTab": "Buka di Tab Baru"
+  }
+}
