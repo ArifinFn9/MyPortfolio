@@ -15,7 +15,7 @@ export default function ExperienceSection() {
   return (
     <Section
       id="experience"
-      className="scroll-mt-32 py-20 px-6 max-w-4xl mx-auto"
+      className="scroll-mt-4 py-20 px-6 max-w-4xl mx-auto"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

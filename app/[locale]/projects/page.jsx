@@ -35,7 +35,7 @@ export default function ProjectsPage() {
                   </p>
                 </div>
 
-                <div className="w-full max-w-xs rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 shadow-2xl shadow-cyan-500/5 backdrop-blur md:w-auto md:min-w-44">
+                <div className="w-full max-w-xs rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 shadow-2xl shadow-cyan-500/5 backdrop-blur md:w-auto md:min-w-44 text-center">
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-300/80">
                     {t("total_projects")}
                   </p>

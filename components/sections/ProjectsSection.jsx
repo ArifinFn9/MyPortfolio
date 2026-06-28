@@ -17,7 +17,7 @@ export default function ProjectsSection() {
   return (
     <Section
       id="projects"
-      className="py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-4 py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto relative overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -35,7 +35,7 @@ export default function ProjectsSection() {
           </p>
         </div>
 
-        <div className="mx-auto w-full max-w-xs rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 shadow-2xl shadow-emerald-500/5 backdrop-blur md:mx-0 md:w-auto md:min-w-44">
+        <div className="mx-auto w-full max-w-xs rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 shadow-2xl shadow-emerald-500/5 backdrop-blur md:mx-0 md:w-auto md:min-w-44 text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">
             {t("total_projects")}
           </p>

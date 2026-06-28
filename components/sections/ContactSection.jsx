@@ -51,7 +51,7 @@ export default function ContactSection() {
   return (
     <Section
       id="contact"
-      className="scroll-mt-32 py-20 px-6 max-w-4xl mx-auto w-full"
+      className="scroll-mt-4 py-20 px-6 max-w-4xl mx-auto w-full"
     >
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2">

@@ -32,7 +32,7 @@ export default function SkillsSection() {
   const t = useTranslations("skills");
 
   return (
-    <Section id="skills" className="scroll-mt-32 py-20 px-6 max-w-6xl mx-auto">
+    <Section id="skills" className="scroll-mt-4 py-20 px-6 max-w-6xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}

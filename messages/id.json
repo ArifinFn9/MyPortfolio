@@ -68,7 +68,13 @@
   },
   "skills": {
     "title": "Keahlian & Tools",
-    "subtitle": "Memanfaatkan spreadsheet dan alat analisis untuk mengoptimalkan administrasi keuangan"
+    "subtitle": "Memanfaatkan spreadsheet dan alat analisis untuk mengoptimalkan administrasi keuangan",
+    "pageDesc": "Keahlian terstruktur dalam mengolah data keuangan dan administrasi menggunakan berbagai tools modern untuk menjamin akurasi, kepatuhan, dan efisiensi kerja.",
+    "categories": {
+      "finance": "Analisis Keuangan & Visualisasi",
+      "data": "Pengelolaan & Audit Database",
+      "productivity": "Produktivitas & Administrasi Kantor"
+    }
   },
   "experience": {
     "title": "Pengalaman & Pelatihan",

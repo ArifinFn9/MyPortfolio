@@ -37,7 +37,7 @@ export default function Footer() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
               {[
                 { key: "about", path: "/about" },
-                { key: "skills", path: "/#skills" },
+                { key: "skills", path: "/skills" },
                 { key: "projects", path: "/projects" },
                 { key: "experience", path: "/experience" },
                 { key: "contact", path: "/contact" },

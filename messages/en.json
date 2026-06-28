@@ -68,7 +68,13 @@
   },
   "skills": {
     "title": "Skills & Tools",
-    "subtitle": "Leveraging spreadsheet and analytical tools to optimize financial administration"
+    "subtitle": "Leveraging spreadsheet and analytical tools to optimize financial administration",
+    "pageDesc": "Structured expertise in processing financial and administrative data using modern tools to ensure accuracy, compliance, and efficiency.",
+    "categories": {
+      "finance": "Financial Analysis & Visualization",
+      "data": "Database Management & Auditing",
+      "productivity": "Productivity & Office Administration"
+    }
   },
   "experience": {
     "title": "Experience & Training",

@@ -27,7 +27,7 @@ export default function AboutSection() {
   const t = useTranslations("about");
 
   return (
-    <Section id="about" className="scroll-mt-32 py-20 px-6 max-w-6xl mx-auto">
+    <Section id="about" className="scroll-mt-4 py-20 px-6 max-w-6xl mx-auto">
       {/* Bio & Photo Section */}
       <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
         {/* Photo Column - Enhanced Animation */}
