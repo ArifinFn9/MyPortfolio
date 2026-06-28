@@ -31,6 +31,14 @@
     "devWindow": {
       "role": "Financial Management",
       "education": "Bachelor's Degree in Management, UMS",
+      "skills": [
+        "Administrative Data",
+        "Data Analysis",
+        "Data Entry",
+        "Financial Reporting",
+        "Google Workspace",
+        "Microsoft Office"
+      ],
       "passion1": "Financial Statement Analysis",
       "passion2": "Database Management & Entry",
       "passion3": "Business Administration"
@@ -40,7 +48,7 @@
     "title": "About Me",
     "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
     "viewResume": "View CV / Resume",
-    "desc": "Hi! I'm a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
+    "desc": "Hi! I'm <name>Arifin</name>,a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
     "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
     "hello": "Hello There! 👋",
     "bullet1": "Data Accuracy",

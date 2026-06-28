@@ -12,8 +12,21 @@ export default function Footer() {
   const tNav = useTranslations("navbar");
   const currentYear = new Date().getFullYear();
 
+  const handleNavLinkClick = (e, item) => {
+    if (item.key === "home") {
+      const homeSection = document.getElementById("home");
+      if (homeSection) {
+        e.preventDefault();
+        homeSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
-    <footer className="border-t border-white/10 bg-black/20 backdrop-blur-md mt-20">
+    <footer className="border-t border-white/10 bg-gradient-to-b from-zinc-950 to-black mt-20 relative overflow-hidden">
+      {/* Subtle top glow element */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
+
       <div className="max-w-7xl mx-auto px-6 pt-12 pb-28 md:pb-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
@@ -26,7 +39,7 @@ export default function Footer() {
                 {t("brand")}
               </span>
             </Link>
-            <p className="text-gray-400 max-w-sm leading-relaxed">
+            <p className="text-zinc-400 text-sm max-w-sm leading-relaxed">
               {t("desc")}
             </p>
           </div>
@@ -34,18 +47,20 @@ export default function Footer() {
           {/* Links Column */}
           <div>
             <h3 className="font-bold text-white mb-4">{t("navTitle")}</h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {[
+                { key: "home", path: "/#home" },
                 { key: "about", path: "/about" },
                 { key: "skills", path: "/skills" },
-                { key: "projects", path: "/projects" },
                 { key: "experience", path: "/experience" },
+                { key: "projects", path: "/projects" },
                 { key: "contact", path: "/contact" },
               ].map((item) => (
                 <li key={item.key}>
                   <Link
                     href={item.path}
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    onClick={(e) => handleNavLinkClick(e, item)}
+                    className="text-gray-400 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 inline-block"
                   >
                     {tNav(item.key)}
                   </Link>
@@ -62,7 +77,7 @@ export default function Footer() {
                 href={socials.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-white/10"
                 aria-label="GitHub"
               >
                 <SiGithub className="w-5 h-5" />
@@ -71,7 +86,7 @@ export default function Footer() {
                 href={socials.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-blue-500/10 hover:text-blue-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-blue-500/20"
                 aria-label="LinkedIn"
               >
                 <SiLinkedin className="w-5 h-5" />
@@ -80,7 +95,7 @@ export default function Footer() {
                 href={socials.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-pink-500/10 hover:text-pink-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-pink-500/20"
                 aria-label="Instagram"
               >
                 <SiInstagram className="w-5 h-5" />
@@ -89,7 +104,7 @@ export default function Footer() {
                 href={socials.telegram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-sky-500/10 hover:text-sky-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-sky-500/20"
                 aria-label="Telegram"
               >
                 <SiTelegram className="w-5 h-5" />
@@ -98,14 +113,14 @@ export default function Footer() {
                 href={socials.youtube.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-red-500/10 hover:text-red-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-red-500/20"
                 aria-label="YouTube"
               >
                 <SiYoutube className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${socials.email.url}`}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-emerald-500/20"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />

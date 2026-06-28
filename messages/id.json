@@ -31,6 +31,14 @@
     "devWindow": {
       "role": "Manajemen Keuangan",
       "education": "S1 Manajemen, UMS",
+      "skills": [
+        "Administrasi Data",
+        "Analisis Data",
+        "Entri Data",
+        "Google Workspace",
+        "Microsoft Office",
+        "Pelaporan Keuangan"
+      ],
       "passion1": "Analisis Laporan Keuangan",
       "passion2": "Pengelolaan & Entri Data",
       "passion3": "Administrasi Bisnis"
@@ -40,7 +48,7 @@
     "title": "Tentang Saya",
     "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
     "viewResume": "Lihat CV / Resume",
-    "desc": "Halo! Saya seorang lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Saya memiliki pengalaman magang di Bank Syariah Indonesia (BSI) pada bagian data entry dan administrasi data nasabah, di mana saya terbiasa mengelola data nasabah dengan akurasi tinggi dan menjaga kerahasiaan dokumen.",
+    "desc": "Halo! Saya <name>Arifin</name>, seorang lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Saya memiliki pengalaman magang di Bank Syariah Indonesia (BSI) pada bagian data entry dan administrasi data nasabah, di mana saya terbiasa mengelola data nasabah dengan akurasi tinggi dan menjaga kerahasiaan dokumen.",
     "pageDesc": "Saya adalah lulusan Manajemen Keuangan yang fokus pada analisis data keuangan, operasional administrasi, dan pengelolaan database. Saya memastikan tingkat presisi tinggi di setiap laporan dan pencatatan.",
     "hello": "Halo! 👋",
     "bullet1": "Akurasi Data",

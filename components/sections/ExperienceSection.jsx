@@ -39,7 +39,7 @@ export default function ExperienceSection() {
           return (
             <div key={key} className="relative pl-8 md:pl-12">
               {/* Timeline Dot */}
-              <div className="absolute -left-[5px] top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
+              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
 
               <Card
                 className="p-6 md:p-8 bg-white/5 border-white/5 transition-all duration-300 hover:border-white/20 group"
@@ -49,9 +49,31 @@ export default function ExperienceSection() {
                 viewport={{ once: true }}
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
-                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-zinc-300 transition-colors">
-                    {title}
-                  </h3>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 shrink-0 flex items-center justify-center overflow-hidden p-1.5">
+                      <img
+                        src={
+                          key === 'bsi'
+                            ? '/assets/logo-bsi.svg'
+                            : key === 'udemy'
+                              ? '/assets/logo-udemy.svg'
+                              : '/assets/logo-myskill.svg'
+                        }
+                        alt={company}
+                        className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'block';
+                        }}
+                      />
+                      <div style={{ display: 'none' }} className={key === 'bsi' ? 'text-gray-500 group-hover:text-cyan-400 transition-colors duration-300' : 'text-gray-500 group-hover:text-purple-400 transition-colors duration-300'}>
+                        {key === 'bsi' ? <Briefcase className="w-5 h-5" /> : <Award className="w-5 h-5" />}
+                      </div>
+                    </div>
+                    <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-zinc-300 transition-colors">
+                      {title}
+                    </h3>
+                  </div>
                   <div className="flex items-center gap-2 text-sm font-mono text-zinc-300 bg-white/5 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
                     <Briefcase className="w-3 h-3" />
                     {period}

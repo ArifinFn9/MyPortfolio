@@ -119,17 +119,14 @@ const CodeWindow = ({ t }) => {
           </div>
           <div className="pl-4">
             <span className="text-gray-300">skills</span>:{" "}
-            <span className="text-gray-400">
-              ['Administrative Data',
-                'Data Analysis',
-                'Data Entry',
-                'Excel',
-                'Financial Reporting',
-                'Google Workspace',
-                'Word'
-              ]
-            </span>
-            ,
+            <span className="text-gray-400">{"["}</span>
+            {t.raw("devWindow.skills").map((skill, index, arr) => (
+              <span key={skill}>
+                <span className="text-gray-100">{`'${skill}'`}</span>
+                {index < arr.length - 1 ? <span className="text-gray-400">, </span> : ""}
+              </span>
+            ))}
+            <span className="text-gray-400">{"]"}</span>,
           </div>
           <div className="pl-4">
             <span className="text-gray-300">passion</span>:{" "}

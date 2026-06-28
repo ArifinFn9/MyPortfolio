@@ -2,7 +2,7 @@
 
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
-import { User, Globe, GraduationCap, CheckCircle2, FileText } from "lucide-react";
+import { User, Globe, GraduationCap, CheckCircle2, FileText, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -124,69 +124,73 @@ export default function AboutSection() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-3 justify-center md:justify-start mb-8">
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium flex items-center gap-2">
+          <div className="flex w-full md:w-auto gap-2 md:gap-3 justify-between md:justify-start mb-6 md:mb-8">
+            <span className="flex-1 md:flex-initial justify-center md:justify-start px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2">
+              <MapPin className="w-3 md:w-3.5 h-3 md:h-3.5 text-zinc-400 shrink-0" />
               {t("based")}
             </span>
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-medium flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
+            <span className="flex-1 md:flex-initial justify-center md:justify-start px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2">
+              <span className="relative flex h-1.5 md:h-2 w-1.5 md:w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="relative inline-flex rounded-full h-1.5 md:h-2 w-1.5 md:w-2 bg-green-500"></span>
               </span>
               {t("available")}
             </span>
           </div>
 
           {/* Social Links & CV Button */}
-          <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-center md:justify-start">
             <a
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors shadow-lg shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors shadow-lg shrink-0 w-full justify-center md:w-auto"
             >
               <FileText className="w-4 h-4" />
               <span>{t("viewResume")}</span>
             </a>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               {[
                 {
+                  key: "github",
                   icon: SiGithub,
                   href: socials.github.url,
-                  color: "hover:text-white",
+                  hoverClass: "hover:bg-white/10 hover:text-white hover:border-white/10",
                 },
                 {
+                  key: "linkedin",
                   icon: SiLinkedin,
                   href: socials.linkedin.url,
-                  color: "hover:text-white",
+                  hoverClass: "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/20",
                 },
                 {
+                  key: "instagram",
                   icon: SiInstagram,
                   href: socials.instagram.url,
-                  color: "hover:text-white",
+                  hoverClass: "hover:bg-pink-500/10 hover:text-pink-400 hover:border-pink-500/20",
                 },
                 {
+                  key: "telegram",
                   icon: SiTelegram,
                   href: socials.telegram.url,
-                  color: "hover:text-white",
+                  hoverClass: "hover:bg-sky-500/10 hover:text-sky-400 hover:border-sky-500/20",
                 },
                 {
+                  key: "youtube",
                   icon: SiYoutube,
                   href: socials.youtube.url,
-                  color: "hover:text-white",
+                  hoverClass: "hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20",
                 },
-              ].map((social, idx) => (
+              ].map((social) => (
                 <a
-                  key={idx}
+                  key={social.key}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-black hover:scale-110 transition-all group"
+                  className={`p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 shadow-md ${social.hoverClass}`}
                 >
-                  <social.icon
-                    className={`w-5 h-5 text-gray-400 ${social.color} transition-colors`}
-                  />
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -258,8 +262,19 @@ export default function AboutSection() {
             {/* Header row: Icon, University, and Desktop Period */}
             <div className="flex items-center md:items-start justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-white/10 to-gray-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0">
-                  <GraduationCap className="w-7 h-7 md:w-10 md:h-10 text-white" />
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-white/10 to-gray-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 overflow-hidden p-2">
+                  <img
+                    src="/assets/ums.png"
+                    alt="UMS Logo"
+                    className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'block';
+                    }}
+                  />
+                  <div style={{ display: 'none' }}>
+                    <GraduationCap className="w-7 h-7 md:w-10 md:h-10 text-white" />
+                  </div>
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-white drop-shadow-md">
