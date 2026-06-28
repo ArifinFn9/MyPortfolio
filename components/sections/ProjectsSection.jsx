@@ -17,7 +17,7 @@ export default function ProjectsSection() {
   return (
     <Section
       id="projects"
-      className="scroll-mt-9 py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-13 py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto relative overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
