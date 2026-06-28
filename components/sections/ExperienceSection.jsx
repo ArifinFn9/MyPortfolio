@@ -22,7 +22,7 @@ export default function ExperienceSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-left mb-16"
+        className="text-center md:text-left mb-16"
       >
         <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4">
           {t("title")}

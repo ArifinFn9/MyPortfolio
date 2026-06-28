@@ -14,7 +14,7 @@ export default function ExperiencePage() {
   return (
     <main className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
       <Section className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4">
+        <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4 text-center md:text-left">
           {t("title")}
         </h2>
 

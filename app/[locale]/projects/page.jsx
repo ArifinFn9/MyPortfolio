@@ -26,11 +26,11 @@ export default function ProjectsPage() {
                 transition={{ duration: 0.5 }}
                 className="mb-10 flex flex-col gap-5 md:mb-14 md:flex-row md:items-end md:justify-between"
               >
-                <div>
+                <div className="text-center md:text-left w-full">
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">
                     {t("all_projects_title")}
                   </h1>
-                  <p className="text-gray-400 max-w-2xl text-lg">
+                  <p className="text-gray-400 max-w-2xl text-lg mx-auto md:mx-0">
                     {t("all_projects_desc")}
                   </p>
                 </div>

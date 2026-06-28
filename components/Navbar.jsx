@@ -76,8 +76,8 @@ export default function Navbar() {
     <>
       {/* Mobile Top Bar */}
       <div key={`top-${locale}`} className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] flex items-center justify-between py-2 px-4 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-lg">
-        <Link href="/" className="flex items-center gap-2 font-bold text-white tracking-wide text-sm">
-          <span>{t("brand")}</span>
+        <Link href="/" className="font-bold text-white tracking-wide text-sm">
+          {t("brand")}
         </Link>
         <button
           onClick={toggleLanguage}
