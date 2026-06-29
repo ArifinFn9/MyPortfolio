@@ -32,7 +32,7 @@ export default function AboutPage() {
   const t = useTranslations("about");
 
   return (
-    <main className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
+    <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10" />
 
@@ -47,8 +47,8 @@ export default function AboutPage() {
           {/* Photo */}
           <div className="relative shrink-0">
             <div className="relative w-64 h-64 md:w-80 md:h-80 group">
-              {/* Animated Border/Glow - Monochrome */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-gray-500 to-white rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-60 transition-opacity duration-500 animate-pulse-slow" />
+              {/* Animated Border/Glow - Aurora (Option A) */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-70 transition-opacity duration-500 animate-pulse-slow" />
               <div className="absolute inset-0 bg-[#0a0a0a] rounded-[2rem] -rotate-3 border border-white/10" />
 
               {/* Image Container */}
@@ -57,6 +57,8 @@ export default function AboutPage() {
                   src="/assets/me.png"
                   alt="Muhammad Arifin"
                   fill
+                  sizes="(max-width: 768px) 256px, 320px"
+                  priority
                   className="object-cover transition-transform duration-700 group-hover:scale-200 scale-180"
                   style={{
                     objectPosition: "0% 5%",
@@ -101,7 +103,7 @@ export default function AboutPage() {
                 href={socials.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors shadow-lg shrink-0 w-full justify-center md:w-auto"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto"
               >
                 <FileText className="w-4 h-4" />
                 <span>{t("viewResume")}</span>
@@ -145,7 +147,7 @@ export default function AboutPage() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 shadow-md ${social.hoverClass}`}
+                    className={`p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 transition-all duration-150 hover:-translate-y-0.5 active:scale-90 shadow-md ${social.hoverClass}`}
                   >
                     <social.icon className="w-5 h-5" />
                   </a>

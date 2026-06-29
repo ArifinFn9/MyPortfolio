@@ -15,7 +15,7 @@ export default function ProjectsPage() {
         const [activeProject, setActiveProject] = useState(null);
 
         return (
-          <main className="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
+          <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
             {/* Background Gradients */}
             <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10" />
 

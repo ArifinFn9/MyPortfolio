@@ -28,6 +28,7 @@ const navItems = [
 const mobileNavItems = [
   { key: "home", path: "#home", icon: Home },
   { key: "about", path: "#about", icon: User },
+  { key: "skills", path: "#skills", icon: Code2 },
   { key: "experience", path: "#experience", icon: Briefcase },
   { key: "projects", path: "#projects", icon: Layout },
   { key: "contact", path: "#contact", icon: Mail },
@@ -76,56 +77,71 @@ export default function Navbar() {
     router.replace(pathname, { locale: nextLocale });
   };
 
+  const handleNavLinkClick = (e, path) => {
+    const isHomePage = pathname === "/";
+    if (isHomePage && path.startsWith("#")) {
+      const sectionId = path.replace("#", "");
+      const element = document.getElementById(sectionId);
+      if (element) {
+        e.preventDefault();
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <>
-      {/* Mobile Top Bar */}
-      <div key={`top-${locale}`} className="md:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[92%] flex items-center justify-between py-2 px-4 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-lg select-none">
-        <Link href="/" className="font-bold text-white tracking-wide text-sm">
-          {t("brand")}
-        </Link>
-        <button
-          onClick={toggleLanguage}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-400 hover:text-white transition-colors bg-white/5 border border-white/10 cursor-pointer"
-        >
-          <Globe className="w-3.5 h-3.5" />
-          <span className="font-mono text-xs">{locale.toUpperCase()}</span>
-        </button>
-      </div>
+      {/* Mobile Floating Bottom Navigation and Language Control Center */}
+      <div
+        key={`mobile-controls-${locale}`}
+        className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm flex items-center gap-2 select-none"
+      >
+        {/* Main Navigation Capsule */}
+        <div className="flex-1 flex items-center justify-around p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl">
+          {mobileNavItems.map((item) => {
+            const isHomePage = pathname === "/";
+            const isActive = isHomePage && activeSection === item.path.replace("#", "");
 
-      {/* Mobile Floating Bottom Glassmorphism Tab Bar */}
-      <div key={`bottom-${locale}`} className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm p-2 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl flex items-center justify-around select-none">
-        {mobileNavItems.map((item) => {
-          const isHomePage = pathname === "/";
-          const isActive = isHomePage && activeSection === item.path.replace("#", "");
-
-          return (
-            <Link
-              key={item.path}
-              href={isHomePage ? item.path : `/${item.path}`}
-              className="relative flex flex-col items-center justify-center p-2.5 rounded-full transition-colors"
-            >
-              <item.icon
-                className={cn(
-                  "w-5 h-5 transition-all duration-300",
-                  isActive
-                    ? "text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                    : "text-gray-400 hover:text-white",
-                )}
-              />
-              {isActive && (
-                <motion.div
-                  layoutId="mobile-active-dot"
-                  className="absolute -bottom-1.5 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"
-                  transition={{
-                    type: "spring",
-                    stiffness: 380,
-                    damping: 30,
-                  }}
+            return (
+              <Link
+                key={item.path}
+                href={isHomePage ? item.path : `/${item.path}`}
+                onClick={(e) => handleNavLinkClick(e, item.path)}
+                className="relative flex flex-col items-center justify-center p-2 rounded-full transition-all active:scale-90 duration-200"
+              >
+                <item.icon
+                  className={cn(
+                    "w-5 h-5 transition-all duration-300",
+                    isActive
+                      ? "text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+                      : "text-gray-400 hover:text-white",
+                  )}
                 />
-              )}
-            </Link>
-          );
-        })}
+                {isActive && (
+                  <motion.div
+                    layoutId="mobile-active-dot"
+                    className="absolute -bottom-1 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Standalone Language Switcher Bubble */}
+        <div className="shrink-0 flex items-center justify-center p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl">
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center justify-center w-9 h-9 rounded-full text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
+          >
+            <span className="font-mono text-xs uppercase">{locale}</span>
+          </button>
+        </div>
       </div>
 
       {/* Desktop Floating Navbar (Top Center) */}
@@ -159,6 +175,7 @@ export default function Navbar() {
                 <Link
                   key={item.path}
                   href={isHomePage ? item.path : `/${item.path}`}
+                  onClick={(e) => handleNavLinkClick(e, item.path)}
                   {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath(null)}

@@ -1,15 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "@/i18n/routing";
 import { Code2, Mail } from "lucide-react";
 import { SiGithub, SiLinkedin, SiInstagram, SiTelegram, SiYoutube } from "react-icons/si";
 import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 import { socials } from "@/data/socials";
 
 export default function Footer() {
   const t = useTranslations("footer");
   const tNav = useTranslations("navbar");
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
 
   const handleNavLinkClick = (e, item) => {
@@ -55,17 +58,27 @@ export default function Footer() {
                 { key: "experience", path: "/experience" },
                 { key: "projects", path: "/projects" },
                 { key: "contact", path: "/contact" },
-              ].map((item) => (
-                <li key={item.key}>
-                  <Link
-                    href={item.path}
-                    onClick={(e) => handleNavLinkClick(e, item)}
-                    className="text-gray-400 hover:text-white transition-all duration-300 text-sm hover:translate-x-1 inline-block"
-                  >
-                    {tNav(item.key)}
-                  </Link>
-                </li>
-              ))}
+              ].map((item) => {
+                const isActive = (item.key === "home" && pathname === "/") || pathname === item.path;
+
+                return (
+                  <li key={item.key}>
+                    <Link
+                      href={item.path}
+                      onClick={(e) => handleNavLinkClick(e, item)}
+                      className={cn(
+                        "transition-all duration-300 text-sm hover:translate-x-1 flex items-center gap-1.5",
+                        isActive ? "text-white font-semibold" : "text-gray-400 hover:text-white"
+                      )}
+                    >
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
+                      )}
+                      <span>{tNav(item.key)}</span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -77,7 +90,7 @@ export default function Footer() {
                 href={socials.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-white/10"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-white/10 duration-150"
                 aria-label="GitHub"
               >
                 <SiGithub className="w-5 h-5" />
@@ -86,7 +99,7 @@ export default function Footer() {
                 href={socials.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-blue-500/10 hover:text-blue-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-blue-500/20"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-blue-500/10 hover:text-blue-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-blue-500/20 duration-150"
                 aria-label="LinkedIn"
               >
                 <SiLinkedin className="w-5 h-5" />
@@ -95,7 +108,7 @@ export default function Footer() {
                 href={socials.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-pink-500/10 hover:text-pink-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-pink-500/20"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-pink-500/10 hover:text-pink-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-pink-500/20 duration-150"
                 aria-label="Instagram"
               >
                 <SiInstagram className="w-5 h-5" />
@@ -104,7 +117,7 @@ export default function Footer() {
                 href={socials.telegram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-sky-500/10 hover:text-sky-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-sky-500/20"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-sky-500/10 hover:text-sky-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-sky-500/20 duration-150"
                 aria-label="Telegram"
               >
                 <SiTelegram className="w-5 h-5" />
@@ -113,14 +126,14 @@ export default function Footer() {
                 href={socials.youtube.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-red-500/10 hover:text-red-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-red-500/20"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-red-500/10 hover:text-red-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-red-500/20 duration-150"
                 aria-label="YouTube"
               >
                 <SiYoutube className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${socials.email.url}`}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 text-gray-400 transition-all duration-300 hover:-translate-y-0.5 border border-white/5 hover:border-emerald-500/20"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-emerald-500/20 duration-150"
                 aria-label="Email"
               >
                 <Mail className="w-5 h-5" />

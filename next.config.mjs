@@ -6,6 +6,7 @@ const withNextIntl = createNextIntlPlugin('./i18n/request.js');
 const nextConfig = {
   /* config options here */
   allowedDevOrigins: ['192.168.1.2:3000', '192.168.1.2'],
+  devIndicators: false,
 };
 
 export default withNextIntl(nextConfig);

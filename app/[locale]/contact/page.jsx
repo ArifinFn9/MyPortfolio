@@ -49,7 +49,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen pt-32 pb-20 px-6 flex items-center justify-center relative overflow-hidden">
+    <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 flex items-center justify-center relative overflow-hidden">
       <Section className="max-w-4xl w-full">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 pb-2">

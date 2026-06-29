@@ -15,7 +15,7 @@ export default function ExperienceSection() {
   return (
     <Section
       id="experience"
-      className="scroll-mt-4 py-20 px-6 max-w-4xl mx-auto"
+      className="scroll-mt-4 py-12 md:py-20 px-6 max-w-4xl mx-auto"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -113,26 +113,38 @@ export default function ExperienceSection() {
       </div>
 
         {/* Freelance CTA */}
-        <Card className="mt-16 p-8 md:p-10 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border-purple-500/20 text-center">
-          <div className="flex justify-center mb-4">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          whileHover={{ y: -5, transition: { duration: 0.2 } }}
+          className="glass-card mt-16 p-8 md:p-10 bg-zinc-900/40 border border-white/10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
+        >
+          {/* Subtle hover white glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="flex justify-center mb-4">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              {t("cta.title")}
+            </h3>
+            <p className="text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
+              {t("cta.desc")}
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:bg-gray-200 transition-all active:scale-95 duration-150"
+            >
+              {t("cta.button")}
+            </a>
           </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {t("cta.title")}
-          </h3>
-          <p className="text-gray-400 max-w-xl mx-auto mb-6 leading-relaxed">
-            {t("cta.desc")}
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium hover:opacity-90 transition-opacity"
-          >
-            {t("cta.button")}
-          </a>
-        </Card>
+        </motion.div>
     </Section>
   );
 }
