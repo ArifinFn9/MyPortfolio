@@ -52,7 +52,7 @@ export default function ContactPage() {
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 flex items-center justify-center relative overflow-hidden">
       <Section className="max-w-4xl w-full">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 pb-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500 pb-2">
             {t("title")}
           </h1>
           <p className="text-gray-400 max-w-xl mx-auto">
@@ -71,9 +71,9 @@ export default function ContactPage() {
               {/* Email Card */}
               <a
                 href={`mailto:${socials.email.url}`}
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 hover:bg-white/10 transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-150 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="overflow-hidden">
@@ -91,9 +91,9 @@ export default function ContactPage() {
                 href={socials.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-white/10 transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-150 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                   <SiLinkedin className="w-5 h-5" />
                 </div>
                 <div className="overflow-hidden">
@@ -111,9 +111,9 @@ export default function ContactPage() {
                 href={socials.telegram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 hover:bg-white/10 transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-150 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                   <SiTelegram className="w-5 h-5" />
                 </div>
                 <div className="overflow-hidden">
@@ -131,9 +131,9 @@ export default function ContactPage() {
                 href={socials.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-pink-500/30 hover:bg-white/10 transition-all group"
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/10 active:scale-[0.98] transition-all duration-150 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 shrink-0 group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                   <SiInstagram className="w-5 h-5" />
                 </div>
                 <div className="overflow-hidden">
@@ -150,7 +150,7 @@ export default function ContactPage() {
 
           {/* Right Column: Contact Form */}
           <div className="md:col-span-7 w-full">
-            <Card className="bg-white/5 border-white/10 p-8 md:p-10 relative overflow-hidden">
+            <Card className="p-8 md:p-10 relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {isSuccess ? (
                   <motion.div

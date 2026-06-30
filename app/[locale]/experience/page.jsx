@@ -5,11 +5,33 @@ import Card from "@/components/ui/Card";
 import { Briefcase, Award, ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { socials } from "@/data/socials";
+import { usePreview } from "@/components/PreviewProvider";
 
 const experiencesKeys = ["bsi", "udemy", "myskill"];
 
 export default function ExperiencePage() {
   const t = useTranslations("experience");
+  const { openPreview } = usePreview();
+
+  const handleCertClick = (e, key, title, period) => {
+    e.preventDefault();
+    let cleanTitle = title;
+    let type = "";
+    if (title.includes(" (")) {
+      const parts = title.split(" (");
+      cleanTitle = parts[0];
+      type = parts[1].replace(")", "");
+    }
+    const yearMatch = period.match(/\b\d{4}\b/);
+    const year = yearMatch ? yearMatch[0] : "2025";
+
+    openPreview({
+      url: socials.certificates[key],
+      title: cleanTitle,
+      type: type,
+      year: year,
+    });
+  };
 
   return (
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
@@ -18,7 +40,7 @@ export default function ExperiencePage() {
           {t("title")}
         </h2>
 
-        <div className="relative border-l border-purple-500/20 ml-3 md:ml-6 space-y-12">
+        <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12">
           {experiencesKeys.map((key, index) => {
             const title = t(`items.${key}.title`);
             const company = t(`items.${key}.company`);
@@ -28,10 +50,10 @@ export default function ExperiencePage() {
             return (
               <div key={key} className="relative pl-8 md:pl-12">
                 {/* Timeline Dot */}
-                <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]" />
+                <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_8px_white]" />
 
                 <Card
-                  className="p-6 md:p-8 bg-white/5 border-white/5 transition-all duration-300 hover:border-purple-500/30 group"
+                  className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.2 }}
@@ -55,21 +77,21 @@ export default function ExperiencePage() {
                             e.target.nextSibling.style.display = 'block';
                           }}
                         />
-                        <div style={{ display: 'none' }} className={key === 'bsi' ? 'text-gray-500 group-hover:text-cyan-400 transition-colors duration-300' : 'text-gray-500 group-hover:text-purple-400 transition-colors duration-300'}>
+                        <div style={{ display: 'none' }} className="text-gray-500 group-hover:text-white transition-colors duration-300">
                           {key === 'bsi' ? <Briefcase className="w-5 h-5" /> : <Award className="w-5 h-5" />}
                         </div>
                       </div>
-                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-white transition-colors">
                         {title}
                       </h3>
                     </div>
-                    <div className="flex items-center gap-2 text-sm font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
-                      <Briefcase className="w-3 h-3" />
+                    <div className="flex items-center gap-2 text-sm font-mono text-gray-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
+                      <Briefcase className="w-3 h-3 text-zinc-400" />
                       {period}
                     </div>
                   </div>
 
-                  <p className="text-purple-300 font-medium mb-4">
+                  <p className="text-gray-300 font-semibold mb-4">
                     {company}
                   </p>
 
@@ -79,7 +101,7 @@ export default function ExperiencePage() {
                         key={i}
                         className="flex items-start gap-3 text-gray-400"
                       >
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-cyan-500 shrink-0" />
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0" />
                         {task}
                       </li>
                     ))}
@@ -88,16 +110,14 @@ export default function ExperiencePage() {
                   {/* Certificate Button */}
                   {socials.certificates && socials.certificates[key] && (
                     <div className="mt-6 pt-4 border-t border-white/5 flex justify-end">
-                      <a
-                        href={socials.certificates[key]}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-xs font-semibold text-gray-300 hover:text-white transition-all cursor-pointer group/cert"
-                      >
-                        <Award className="w-4 h-4 text-cyan-400 group-hover/cert:scale-110 transition-transform" />
-                        <span>{t("viewCert")}</span>
-                        <ExternalLink className="w-3 h-3 text-gray-500 group-hover/cert:translate-x-0.5 transition-transform" />
-                      </a>
+                    <button
+                      onClick={(e) => handleCertClick(e, key, title, period)}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-xs font-semibold text-gray-300 hover:text-white transition-all cursor-pointer group/cert"
+                    >
+                      <Award className="w-4 h-4 text-zinc-400 group-hover/cert:scale-110 transition-transform" />
+                      <span>{t("viewCert")}</span>
+                      <ExternalLink className="w-3 h-3 text-gray-500 group-hover/cert:translate-x-0.5 transition-transform" />
+                    </button>
                     </div>
                   )}
                 </Card>
@@ -107,7 +127,7 @@ export default function ExperiencePage() {
         </div>
 
         {/* Freelance CTA */}
-        <Card className="mt-16 p-8 md:p-10 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 border-purple-500/20 text-center">
+        <Card className="mt-16 p-8 md:p-10 bg-zinc-900/40 border border-white/10 relative overflow-hidden text-center">
           <div className="flex justify-center mb-4">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -122,7 +142,7 @@ export default function ExperiencePage() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-medium hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 active:scale-95 duration-150 transition-all shadow-md"
           >
             {t("cta.button")}
           </a>

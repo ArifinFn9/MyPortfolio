@@ -8,20 +8,25 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { socials } from "@/data/socials";
 import {
-  SiNextdotjs,
-  SiReact,
-  SiNodedotjs,
-  SiPrisma,
-  SiPostgresql,
-  SiTailwindcss,
-  SiFramer,
-  SiGit,
   SiGithub,
   SiLinkedin,
   SiInstagram,
   SiTelegram,
   SiYoutube,
 } from "react-icons/si";
+
+// Formatters declared outside component to prevent re-creation during render (resolves SonarQube S6478)
+const renderGradient = (chunks) => (
+  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600">
+    {chunks}
+  </span>
+);
+
+const renderName = (chunks) => (
+  <span className="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300">
+    {chunks}
+  </span>
+);
 
 export default function AboutSection() {
   const t = useTranslations("about");
@@ -38,23 +43,22 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="relative shrink-0"
         >
-          <div className="relative w-64 h-64 md:w-80 md:h-80 group">
-            {/* Animated Border/Glow - Aurora (Option A) */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-70 transition-opacity duration-500 animate-pulse-slow" />
-            <div className="absolute inset-0 bg-[#0a0a0a] rounded-[2rem] -rotate-3 border border-white/10" />
+          <div className="relative w-64 h-96 md:w-80 md:h-[480px] group">
+            {/* Animated Border/Glow - Monochrome */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-zinc-900/50 to-white/5 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-60 transition-opacity duration-500 animate-pulse-slow" />
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-[#101012] to-black rounded-[2rem] -rotate-3 border border-white/10" />
 
             {/* Image Container */}
-            <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10">
+            <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10 bg-gradient-to-b from-zinc-800 via-zinc-950 to-black">
               <Image
                 src="/assets/me.png"
                 alt="Muhammad Arifin"
                 fill
-                sizes="(max-width: 768px) 256px, 320px"
-                priority
-                className="object-cover transition-transform duration-700 group-hover:scale-200 scale-180"
-                style={{
-                  objectPosition: "0% 5%",    // atas
 
+                priority
+                className="object-cover transition-transform duration-700 group-hover:scale-120 scale-105"
+                style={{
+                  objectPosition: "center 38%",
                 }}
               />
 
@@ -107,13 +111,13 @@ export default function AboutSection() {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
             {t.rich("subtitle", {
-              gradient: (chunks) => <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600">{chunks}</span>
+              gradient: renderGradient
             })}
           </h2>
 
           <p className="text-gray-400 text-lg leading-relaxed mb-8">
             {t.rich("desc", {
-              name: (chunks) => <span className="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300">{chunks}</span>
+              name: renderName
             })}
           </p>
 
@@ -146,7 +150,7 @@ export default function AboutSection() {
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
             >
               <FileText className="w-4 h-4" />
               <span>{t("viewResume")}</span>
@@ -209,7 +213,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="h-full"
         >
-          <Card className="p-8 bg-white/5 border-white/5 h-full hover:border-white/20 transition-colors group">
+          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform shrink-0">
                 <User className="w-6 h-6" />
@@ -229,7 +233,7 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="h-full"
         >
-          <Card className="p-8 bg-white/5 border-white/5 h-full hover:border-white/20 transition-colors group">
+          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform shrink-0">
                 <Globe className="w-6 h-6" />
@@ -257,7 +261,7 @@ export default function AboutSection() {
         </h2>
 
         <div className="relative group p-[1px]">
-          <div className="relative p-8 rounded-2xl bg-white/5 border border-white/5 overflow-hidden h-full hover:border-white/20 transition-colors duration-300">
+          <div className="relative p-8 rounded-2xl glass-card overflow-hidden h-full hover:border-white/20 transition-colors duration-300">
             {/* Background Glow - Subtle White/Gray */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10 group-hover:bg-white/10 transition-colors duration-500" />
 
@@ -287,7 +291,7 @@ export default function AboutSection() {
                   </p>
                 </div>
               </div>
-              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-gray-200 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
+              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
                 {t("period")}
               </span>
             </div>
@@ -313,9 +317,9 @@ export default function AboutSection() {
                 t("tags.sd"),
                 t("tags.wt"),
                 t("tags.db"),
-              ].map((tag, i) => (
+              ].map((tag) => (
                 <span
-                  key={i}
+                  key={tag}
                   className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold shadow-[0_0_10px_rgba(255,255,255,0.05)]"
                 >
                   {tag}

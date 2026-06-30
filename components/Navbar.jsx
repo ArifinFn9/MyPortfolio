@@ -13,8 +13,11 @@ import {
   Layout,
   Mail,
   Globe,
+  ArrowUpRight,
+  Download,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { socials } from "@/data/socials";
 
 const navItems = [
   { key: "home", path: "#home", icon: Home },
@@ -39,6 +42,7 @@ export default function Navbar() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [hoveredPath, setHoveredPath] = useState(null);
@@ -55,8 +59,8 @@ export default function Navbar() {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Find the section that is closest to y = 120px (just below the navbar)
-          const distance = Math.abs(rect.top - 120);
+          // We look for the section closest to the top of the viewport
+          const distance = Math.abs(rect.top);
           if (distance < minDistance) {
             minDistance = distance;
             current = section;
@@ -70,22 +74,27 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (pathname.startsWith("/demo")) return null;
-
-  const toggleLanguage = () => {
-    const nextLocale = locale === "en" ? "id" : "en";
-    router.replace(pathname, { locale: nextLocale });
-  };
-
   const handleNavLinkClick = (e, path) => {
-    const isHomePage = pathname === "/";
     if (isHomePage && path.startsWith("#")) {
-      const sectionId = path.replace("#", "");
-      const element = document.getElementById(sectionId);
+      e.preventDefault();
+      const targetId = path.replace("#", "");
+      const element = document.getElementById(targetId);
       if (element) {
-        e.preventDefault();
         element.scrollIntoView({ behavior: "smooth" });
       }
+    }
+  };
+
+  const toggleLanguage = () => {
+    const nextLocale = locale === "id" ? "en" : "id";
+    // Construct the new path maintaining active hash
+    const hash = window.location.hash;
+    router.replace(pathname, { locale: nextLocale });
+    // Restore hash after navigation completes
+    if (hash) {
+      setTimeout(() => {
+        window.location.hash = hash;
+      }, 100);
     }
   };
 
@@ -97,44 +106,35 @@ export default function Navbar() {
         className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm flex items-center gap-2 select-none"
       >
         {/* Main Navigation Capsule */}
-        <div className="flex-1 flex items-center justify-around p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl">
+        <div className="flex-1 flex items-center justify-around p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
           {mobileNavItems.map((item) => {
-            const isHomePage = pathname === "/";
             const isActive = isHomePage && activeSection === item.path.replace("#", "");
 
             return (
               <Link
                 key={item.path}
-                href={isHomePage ? item.path : `/${item.path}`}
+                href={isHomePage ? item.path : `/${locale}${item.path}`}
                 onClick={(e) => handleNavLinkClick(e, item.path)}
-                className="relative flex flex-col items-center justify-center p-2 rounded-full transition-all active:scale-90 duration-200"
+                className={cn(
+                  "relative p-2 rounded-full text-gray-400 transition-all duration-300",
+                  isActive && "text-white"
+                )}
               >
-                <item.icon
-                  className={cn(
-                    "w-5 h-5 transition-all duration-300",
-                    isActive
-                      ? "text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-                      : "text-gray-400 hover:text-white",
-                  )}
-                />
                 {isActive && (
                   <motion.div
-                    layoutId="mobile-active-dot"
-                    className="absolute -bottom-1 w-1 h-1 rounded-full bg-white shadow-[0_0_8px_white]"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
+                    layoutId="activeMobileNav"
+                    className="absolute inset-0 bg-white/10 rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
+                <item.icon className="w-5 h-5 relative z-10" />
               </Link>
             );
           })}
         </div>
 
         {/* Standalone Language Switcher Bubble */}
-        <div className="shrink-0 flex items-center justify-center p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-md border border-white/10 shadow-2xl">
+        <div className="shrink-0 flex items-center justify-center p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
           <button
             onClick={toggleLanguage}
             className="flex items-center justify-center w-9 h-9 rounded-full text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
@@ -147,98 +147,100 @@ export default function Navbar() {
       {/* Desktop Floating Navbar (Top Center) */}
       <nav
         key={`desktop-${locale}`}
-        className={cn(
-          "hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 items-center gap-2.5",
-        )}
+        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 items-center select-none"
       >
-        {/* Main Navbar Bubble */}
-        <div
-          className={cn(
-            "relative flex items-center justify-center p-1.5 rounded-full backdrop-blur-md transition-all duration-300",
-            "bg-zinc-950/80", // Dark base background
-            "border border-transparent", // Transparent border for gradient mask
-            "before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px]", // Gradient border container
-            "before:bg-gradient-to-r before:from-white/20 before:via-gray-400/20 before:to-white/20", // The gradient
-            "before:content-[''] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)]",
-            "before:[mask-composite:exclude]",
-            "shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)]", // Glow effect
-          )}
-        >
+        <div className="flex items-center gap-3.5 p-2 pr-4 rounded-full bg-[#070708]/85 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+          {/* Logo Badge (AIZ style, MA for Muhammad Arifin) */}
+          <Link
+            href="/"
+            onClick={(e) => handleNavLinkClick(e, "#home")}
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-white/10 text-white font-black text-[10px] tracking-wider hover:border-white/20 transition-colors shrink-0"
+          >
+            MA
+          </Link>
+
+          {/* Divider */}
+          <div className="w-[1px] h-4 bg-white/10" />
+
+          {/* Navigation Links */}
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
-              const isHomePage = pathname === "/";
               const isActive = isHomePage && activeSection === item.path.replace("#", "");
-              const isHovered = hoveredPath === item.path;
-              const isExternal = item.path.startsWith("http");
 
               return (
                 <Link
                   key={item.path}
-                  href={isHomePage ? item.path : `/${item.path}`}
+                  href={isHomePage ? item.path : `/${locale}${item.path}`}
                   onClick={(e) => handleNavLinkClick(e, item.path)}
-                  {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath(null)}
                   className={cn(
-                    "relative flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 whitespace-nowrap",
-                    isActive ? "text-white" : "text-gray-400 hover:text-white",
+                    "relative px-3 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 text-zinc-400 hover:text-white",
+                    isActive && "text-white"
                   )}
                 >
-                  {/* Hover Background */}
-                  {isHovered && !isActive && (
-                    <motion.div
-                      layoutId="navbar-hover"
-                      className="absolute inset-0 bg-white/5 rounded-full z-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  )}
+                  {/* Hover background slide effect */}
+                  <AnimatePresence>
+                    {hoveredPath === item.path && (
+                      <motion.div
+                        layoutId="hoverBg"
+                        className="absolute inset-0 bg-white/5 rounded-full"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      />
+                    )}
+                  </AnimatePresence>
 
-                  {/* Active Background */}
+                  {/* Underline for Active Section */}
                   {isActive && (
                     <motion.div
-                      layoutId="navbar-active"
-                      className="absolute inset-0 bg-white/10 rounded-full z-0"
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                      }}
+                      layoutId="activeUnderline"
+                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-white rounded-full"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
 
-                  <span className="relative z-10 flex items-center gap-2">
-                    <item.icon className="w-4 h-4" />
-                    <span>{t(item.key)}</span>
-                  </span>
+                  <span className="relative z-10">{t(item.key)}</span>
                 </Link>
               );
             })}
           </div>
-        </div>
 
-        {/* Standalone Language Switcher Bubble */}
-        <div
-          className={cn(
-            "relative flex items-center justify-center p-1.5 rounded-full backdrop-blur-md transition-all duration-300 shrink-0",
-            "bg-zinc-950/80", // Dark base background
-            "border border-transparent", // Transparent border for gradient mask
-            "before:absolute before:inset-0 before:-z-10 before:rounded-full before:p-[1px]", // Gradient border container
-            "before:bg-gradient-to-r before:from-white/20 before:via-gray-400/20 before:to-white/20", // The gradient
-            "before:content-[''] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)]",
-            "before:[mask-composite:exclude]",
-            "shadow-[0_0_20px_-5px_rgba(255,255,255,0.1)]", // Glow effect
-          )}
-        >
+          {/* Divider */}
+          <div className="w-[1px] h-4 bg-white/10" />
+
+          {/* Language Control */}
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs md:text-sm font-medium text-gray-400 hover:text-white transition-colors cursor-pointer group"
+            className="flex items-center justify-center w-6 h-6 rounded-full text-[9px] font-extrabold text-zinc-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
           >
-            <Globe className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
-            <span className="font-mono">{locale.toUpperCase()}</span>
+            <span className="font-mono uppercase">{locale}</span>
           </button>
+
+          {/* Divider */}
+          <div className="w-[1px] h-4 bg-white/10" />
+
+          {/* "HUBUNGI SAYA" Button */}
+          <Link
+            href={isHomePage ? "#contact" : "/contact"}
+            onClick={(e) => handleNavLinkClick(e, "#contact")}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-white font-bold text-[10px] tracking-wider uppercase shrink-0"
+          >
+            <span>{t("contact")}</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
+          </Link>
+
+          <a
+            href={socials.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-zinc-400 hover:text-white font-bold text-[10px] tracking-wider uppercase shrink-0 shimmer-btn-dark"
+          >
+            <Download className="w-3.5 h-3.5 text-zinc-400" />
+            <span>Resume</span>
+          </a>
         </div>
       </nav>
     </>

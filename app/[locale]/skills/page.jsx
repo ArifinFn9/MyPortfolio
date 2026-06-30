@@ -13,47 +13,57 @@ import {
   Database,
   TrendingUp,
   Award,
+  Calculator,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function SkillsPage() {
   const t = useTranslations("skills");
+  const locale = useLocale();
+
+  const getSkillName = (name) => {
+    if (name === "Laporan Keuangan") {
+      return locale === "en" ? "Financial Reporting" : "Laporan Keuangan";
+    }
+    return name;
+  };
 
   const categories = [
     {
       id: "finance",
       title: t("categories.finance"),
-      color: "from-emerald-500/20 to-teal-500/20",
-      borderColor: "hover:border-emerald-500/30",
+      color: "from-white/5 to-white/10",
+      borderColor: "hover:border-white/20",
       skills: [
-        { name: "Microsoft Excel", icon: FileSpreadsheet, color: "text-green-500" },
-        { name: "Power BI", icon: BarChart3, color: "text-yellow-500" },
-        { name: "Google Sheets", icon: FileSpreadsheet, color: "text-green-400" },
-        { name: "Data Visualization", icon: TrendingUp, color: "text-orange-400" },
+        { name: "Microsoft Excel", icon: FileSpreadsheet, color: "text-zinc-400" },
+        { name: "Power BI", icon: BarChart3, color: "text-zinc-400" },
+        { name: "Google Sheets", icon: FileSpreadsheet, color: "text-zinc-400" },
+        { name: "Laporan Keuangan", icon: Calculator, color: "text-zinc-400" },
+        { name: "Data Visualization", icon: TrendingUp, color: "text-zinc-400" },
       ],
     },
     {
       id: "data",
       title: t("categories.data"),
-      color: "from-cyan-500/20 to-blue-500/20",
-      borderColor: "hover:border-cyan-500/30",
+      color: "from-white/5 to-white/10",
+      borderColor: "hover:border-white/20",
       skills: [
-        { name: "Data Cleaning", icon: Database, color: "text-cyan-400" },
-        { name: "Power Query", icon: Database, color: "text-blue-400" },
+        { name: "Data Cleaning", icon: Database, color: "text-zinc-400" },
+        { name: "Power Query", icon: Database, color: "text-zinc-400" },
       ],
     },
     {
       id: "productivity",
       title: t("categories.productivity"),
-      color: "from-purple-500/20 to-pink-500/20",
-      borderColor: "hover:border-purple-500/30",
+      color: "from-white/5 to-white/10",
+      borderColor: "hover:border-white/20",
       skills: [
-        { name: "Microsoft Word", icon: FileText, color: "text-blue-500" },
-        { name: "Microsoft PowerPoint", icon: Presentation, color: "text-red-400" },
-        { name: "Google Forms", icon: ClipboardList, color: "text-purple-400" },
-        { name: "Google Workspace", icon: Globe, color: "text-blue-400" },
-        { name: "Canva", icon: Palette, color: "text-pink-400" },
+        { name: "Microsoft Word", icon: FileText, color: "text-zinc-400" },
+        { name: "Microsoft PowerPoint", icon: Presentation, color: "text-zinc-400" },
+        { name: "Google Forms", icon: ClipboardList, color: "text-zinc-400" },
+        { name: "Google Workspace", icon: Globe, color: "text-zinc-400" },
+        { name: "Canva", icon: Palette, color: "text-zinc-400" },
       ],
     },
   ];
@@ -61,8 +71,7 @@ export default function SkillsPage() {
   return (
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
       {/* Background Gradients */}
-      <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-purple-500/10 rounded-full blur-[100px] -z-10" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-white/5 rounded-full blur-[100px] -z-10" />
 
       <Section className="max-w-5xl mx-auto">
         {/* Header */}
@@ -72,7 +81,7 @@ export default function SkillsPage() {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500">
             {t("title")}
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -90,11 +99,11 @@ export default function SkillsPage() {
               transition={{ delay: catIdx * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <Card className={`p-8 bg-white/5 border-white/5 relative overflow-hidden transition-colors duration-500 ${cat.borderColor} group`}>
+              <Card className={`p-8 glass-card relative overflow-hidden transition-colors duration-500 ${cat.borderColor} group`}>
                 <div className={`absolute top-0 left-0 w-48 h-48 bg-gradient-to-br ${cat.color} rounded-full blur-3xl -z-10 opacity-30 group-hover:opacity-50 transition-opacity`} />
                 
                 <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4 flex items-center gap-2.5">
-                  <Award className="w-5 h-5 text-purple-400" />
+                  <Award className="w-5 h-5 text-zinc-400" />
                   {cat.title}
                 </h3>
 
@@ -112,7 +121,7 @@ export default function SkillsPage() {
                           <Icon className="w-5 h-5" />
                         </span>
                         <span className="text-gray-300 font-medium group-hover/item:text-white transition-colors text-sm">
-                          {skill.name}
+                          {getSkillName(skill.name)}
                         </span>
                       </div>
                     );

@@ -6,11 +6,33 @@ import { Briefcase, Award, ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { socials } from "@/data/socials";
+import { usePreview } from "@/components/PreviewProvider";
 
 const experiencesKeys = ["bsi", "udemy", "myskill"];
 
 export default function ExperienceSection() {
   const t = useTranslations("experience");
+  const { openPreview } = usePreview();
+
+  const handleCertClick = (e, key, title, period) => {
+    e.preventDefault();
+    let cleanTitle = title;
+    let type = "";
+    if (title.includes(" (")) {
+      const parts = title.split(" (");
+      cleanTitle = parts[0];
+      type = parts[1].replace(")", "");
+    }
+    const yearMatch = period.match(/\b\d{4}\b/);
+    const year = yearMatch ? yearMatch[0] : "2025";
+
+    openPreview({
+      url: socials.certificates[key],
+      title: cleanTitle,
+      type: type,
+      year: year,
+    });
+  };
 
   return (
     <Section
@@ -42,7 +64,7 @@ export default function ExperienceSection() {
               <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
 
               <Card
-                className="p-6 md:p-8 bg-white/5 border-white/5 transition-all duration-300 hover:border-white/20 group"
+                className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 }}
@@ -66,7 +88,7 @@ export default function ExperienceSection() {
                           e.target.nextSibling.style.display = 'block';
                         }}
                       />
-                      <div style={{ display: 'none' }} className={key === 'bsi' ? 'text-gray-500 group-hover:text-cyan-400 transition-colors duration-300' : 'text-gray-500 group-hover:text-purple-400 transition-colors duration-300'}>
+                      <div style={{ display: 'none' }} className="text-gray-500 group-hover:text-white transition-colors duration-300">
                         {key === 'bsi' ? <Briefcase className="w-5 h-5" /> : <Award className="w-5 h-5" />}
                       </div>
                     </div>
@@ -74,8 +96,8 @@ export default function ExperienceSection() {
                       {title}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-2 text-sm font-mono text-zinc-300 bg-white/5 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
-                    <Briefcase className="w-3 h-3" />
+                  <div className="flex items-center gap-2 text-sm font-mono text-gray-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
+                    <Briefcase className="w-3 h-3 text-zinc-400" />
                     {period}
                   </div>
                 </div>
@@ -94,16 +116,14 @@ export default function ExperienceSection() {
                 {/* Certificate Button */}
                 {socials.certificates && socials.certificates[key] && (
                   <div className="mt-6 pt-4 border-t border-white/5 flex justify-end">
-                    <a
-                      href={socials.certificates[key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={(e) => handleCertClick(e, key, title, period)}
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-xs font-semibold text-gray-300 hover:text-white transition-all cursor-pointer group/cert"
                     >
-                      <Award className="w-4 h-4 text-cyan-400 group-hover/cert:scale-110 transition-transform" />
+                      <Award className="w-4 h-4 text-zinc-400 group-hover/cert:scale-110 transition-transform" />
                       <span>{t("viewCert")}</span>
                       <ExternalLink className="w-3 h-3 text-gray-500 group-hover/cert:translate-x-0.5 transition-transform" />
-                    </a>
+                    </button>
                   </div>
                 )}
               </Card>
@@ -119,7 +139,7 @@ export default function ExperienceSection() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
           whileHover={{ y: -5, transition: { duration: 0.2 } }}
-          className="glass-card mt-16 p-8 md:p-10 bg-zinc-900/40 border border-white/10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
+          className="glass-card mt-16 p-8 md:p-10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
         >
           {/* Subtle hover white glow */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />

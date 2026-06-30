@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { socials } from "@/data/socials";
 import {
   SiGithub,
@@ -30,11 +30,12 @@ import {
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const locale = useLocale();
 
   return (
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
       {/* Background Gradients */}
-      <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] -z-10" />
+      <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-white/5 rounded-full blur-[100px] -z-10" />
 
       <Section className="max-w-5xl mx-auto">
         {/* Hero Section with Photo */}
@@ -46,22 +47,22 @@ export default function AboutPage() {
         >
           {/* Photo */}
           <div className="relative shrink-0">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 group">
-              {/* Animated Border/Glow - Aurora (Option A) */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-70 transition-opacity duration-500 animate-pulse-slow" />
-              <div className="absolute inset-0 bg-[#0a0a0a] rounded-[2rem] -rotate-3 border border-white/10" />
+            <div className="relative w-64 h-96 md:w-80 md:h-[480px] group">
+              {/* Animated Border/Glow - Monochrome */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-zinc-900/50 to-white/5 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-60 transition-opacity duration-500 animate-pulse-slow" />
+              <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-[#101012] to-black rounded-[2rem] -rotate-3 border border-white/10" />
 
               {/* Image Container */}
-              <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10">
+              <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10 bg-gradient-to-b from-zinc-800 via-zinc-950 to-black">
                 <Image
                   src="/assets/me.png"
                   alt="Muhammad Arifin"
                   fill
-                  sizes="(max-width: 768px) 256px, 320px"
+
                   priority
-                  className="object-cover transition-transform duration-700 group-hover:scale-200 scale-180"
+                  className="object-cover transition-transform duration-700 group-hover:scale-120 scale-105"
                   style={{
-                    objectPosition: "0% 5%",
+                    objectPosition: "center 38%",
                   }}
                 />
 
@@ -77,15 +78,15 @@ export default function AboutPage() {
 
           {/* Intro Text */}
           <div className="text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500">
               {t("title")}
             </h1>
             <p className="text-gray-400 text-lg leading-relaxed mb-6">
               {t("pageDesc")}
             </p>
             <div className="flex w-full md:w-auto gap-2 md:gap-3 justify-between md:justify-start mb-5 md:mb-6">
-              <span className="flex-1 md:flex-initial justify-center md:justify-start px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2">
-                <MapPin className="w-3 md:w-3.5 h-3 md:h-3.5 text-purple-400 shrink-0" />
+              <span className="flex-1 md:flex-initial justify-center md:justify-start px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2">
+                <MapPin className="w-3 md:w-3.5 h-3 md:h-3.5 text-zinc-400 shrink-0" />
                 {t("based")}
               </span>
               <span className="flex-1 md:flex-initial justify-center md:justify-start px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-300 text-xs md:text-sm font-medium flex items-center gap-1.5 md:gap-2">
@@ -97,13 +98,12 @@ export default function AboutPage() {
               </span>
             </div>
 
-            {/* Social Links & CV Button */}
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-center md:justify-start">
               <a
                 href={socials.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
               >
                 <FileText className="w-4 h-4" />
                 <span>{t("viewResume")}</span>
@@ -158,9 +158,9 @@ export default function AboutPage() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-16">
-          <Card className="p-8 bg-white/5 border-white/5 h-full hover:border-purple-500/30 transition-colors group">
+          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                 <User className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-white">{t("backgroundTitle")}</h3>
@@ -170,9 +170,9 @@ export default function AboutPage() {
             </p>
           </Card>
 
-          <Card className="p-8 bg-white/5 border-white/5 h-full hover:border-cyan-500/30 transition-colors group">
+          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-110 transition-transform">
+              <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform">
                 <Globe className="w-6 h-6" />
               </div>
               <h3 className="text-xl font-bold text-white">{t("philosophyTitle")}</h3>
@@ -192,14 +192,14 @@ export default function AboutPage() {
           className="mb-16"
         >
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3">
-            <GraduationCap className="w-7 h-7 text-purple-400" />
+            <GraduationCap className="w-7 h-7 text-gray-300" />
             {t("educationTitle")}
           </h2>
-          <Card className="p-8 bg-white/5 border-white/5">
+          <Card className="p-8">
             {/* Header row: Icon, University, and Desktop Period */}
             <div className="flex items-center md:items-start justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 text-purple-400 shrink-0 flex items-center justify-center overflow-hidden p-2">
+                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 text-gray-300 shrink-0 flex items-center justify-center overflow-hidden p-2">
                   <img
                     src="/assets/ums.png"
                     alt="UMS Logo"
@@ -222,7 +222,7 @@ export default function AboutPage() {
                   </h4>
                 </div>
               </div>
-              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
+              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
                 {t("period")}
               </span>
             </div>
@@ -232,7 +232,7 @@ export default function AboutPage() {
               <h4 className="text-lg font-semibold text-gray-200">
                 {t("degree")}
               </h4>
-              <span className="px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-mono whitespace-nowrap shadow-sm w-fit">
+              <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm w-fit">
                 {t("period")}
               </span>
             </div>

@@ -5,7 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { Typewriter } from "react-simple-typewriter";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { SiReact as ReactIcon, SiNextdotjs as NextjsIcon } from "react-icons/si";
 import { socials } from "@/data/socials";
 
@@ -18,26 +18,24 @@ const Tilt = ({ children, className }) => {
   const mouseX = useSpring(x, { stiffness: 150, damping: 15 });
   const mouseY = useSpring(y, { stiffness: 150, damping: 15 });
 
-  const rotateX = useTransform(mouseY, [-0.5, 0.5], ["7deg", "-7deg"]);
-  const rotateY = useTransform(mouseX, [-0.5, 0.5], ["-7deg", "7deg"]);
-
   const handleMouseMove = (e) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
     const height = rect.height;
-    const mouseXPos = e.clientX - rect.left;
-    const mouseYPos = e.clientY - rect.top;
-    const xPct = mouseXPos / width - 0.5;
-    const yPct = mouseYPos / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+    const mouseXVal = e.clientX - rect.left - width / 2;
+    const mouseYVal = e.clientY - rect.top - height / 2;
+    x.set(mouseXVal / 10);
+    y.set(mouseYVal / 10);
   };
 
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
   };
+
+  const rotateX = useTransform(mouseY, [ -100, 100 ], [ 15, -15 ]);
+  const rotateY = useTransform(mouseX, [ -100, 100 ], [ -15, 15 ]);
 
   return (
     <motion.div
@@ -167,6 +165,7 @@ const CodeWindow = ({ t }) => {
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const locale = useLocale();
   return (
     <section
       id="home"
@@ -212,25 +211,21 @@ export default function Hero() {
                 {t("viewWork")}
               </Button>
             </Link>
-            <Link
+            <a
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex items-center justify-center h-12 px-8 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95 transition-all duration-200 shimmer-btn-dark"
             >
-              <Button
-                variant="outline"
-                className="h-12 px-8 rounded-full border-white/10 hover:bg-white/5 text-white font-medium"
-              >
-                {t("resume")}
-              </Button>
-            </Link>
+              {t("resume")}
+            </a>
           </div>
         </motion.div>
 
         {/* Right Column: 3D Code Window */}
         <div className="relative flex justify-center items-center perspective-1000 lg:col-span-5" >
           {/* Glow Effect behind window */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-gray-500/10 to-white/10 blur-3xl transform scale-110 rounded-full" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-gray-500/5 to-zinc-800/10 blur-3xl transform scale-110 rounded-full" />
 
           <Tilt className="relative z-10 w-full max-w-lg">
             <CodeWindow t={t} />

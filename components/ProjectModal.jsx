@@ -159,7 +159,7 @@ export default function ProjectModal({ project, isOpen, onClose }) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 hover:opacity-90 text-sm font-semibold text-white transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-gray-200 text-sm font-bold text-black transition-all active:scale-95 duration-150"
                 >
                   <Globe className="h-4 w-4" />
                   <span>Live Demo</span>

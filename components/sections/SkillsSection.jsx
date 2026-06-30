@@ -2,7 +2,7 @@
 
 import Section from "@/components/ui/Section";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   FileSpreadsheet,
   BarChart3,
@@ -13,12 +13,14 @@ import {
   ClipboardList,
   Database,
   TrendingUp,
+  Calculator,
 } from "lucide-react";
 
 const techStack = [
   { name: "Microsoft Excel", icon: FileSpreadsheet, color: "text-green-500" },
   { name: "Power BI", icon: BarChart3, color: "text-yellow-500" },
   { name: "Google Sheets", icon: FileSpreadsheet, color: "text-green-400" },
+  { name: "Laporan Keuangan", icon: Calculator, color: "text-emerald-400" },
   { name: "Data Cleaning", icon: Database, color: "text-cyan-400" },
   { name: "Data Visualization", icon: TrendingUp, color: "text-orange-400" },
   { name: "Microsoft Word", icon: FileText, color: "text-blue-500" },
@@ -30,6 +32,14 @@ const techStack = [
 
 export default function SkillsSection() {
   const t = useTranslations("skills");
+  const locale = useLocale();
+
+  const getSkillName = (name) => {
+    if (name === "Laporan Keuangan") {
+      return locale === "en" ? "Financial Reporting" : "Laporan Keuangan";
+    }
+    return name;
+  };
 
   return (
     <Section id="skills" className="scroll-mt-4 py-12 md:py-20 px-6 max-w-6xl mx-auto">
@@ -50,7 +60,7 @@ export default function SkillsSection() {
       </motion.div>
 
       {/* Tech Stack Grid */}
-      <div className="p-8 rounded-3xl border border-white/5 bg-white/5 backdrop-blur-sm relative overflow-hidden">
+      <div className="p-8 rounded-3xl glass-card relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10" />
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -67,7 +77,7 @@ export default function SkillsSection() {
                 className={`w-5 h-5 ${tech.color} group-hover:scale-110 transition-transform`}
               />
               <span className="text-gray-300 font-medium group-hover:text-white transition-colors text-sm">
-                {tech.name}
+                {getSkillName(tech.name)}
               </span>
             </motion.div>
           ))}

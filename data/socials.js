@@ -26,7 +26,7 @@ export const socials = {
   resume: "https://docs.google.com/document/d/1GAcrlhDEywqQnyQCoD2-I-P6IuHMXpCJ/export?format=pdf",
   certificates: {
     bsi: "/assets/magang.jpg",
-    udemy: "/assets/udemy.pdf",
-    myskill: "/assets/myskill.pdf",
+    udemy: "/assets/udemy.png",
+    myskill: "/assets/myskill.png",
   },
 };
