@@ -138,27 +138,78 @@
       "impactTitle": "Hasil & Dampak",
       "close": "Tutup"
     },
+    "detail": {
+      "back": "Kembali ke Proyek",
+      "projectInfo": "Detail Proyek",
+      "role": "Peran",
+      "period": "Periode",
+      "tools": "Teknologi",
+      "category": "Kategori",
+      "liveDemo": "Demo Live",
+      "sourceCode": "Kode Sumber",
+      "stepsTitle": "Langkah & Tahap Analisis",
+      "problemTitle": "Masalah & Konteks",
+      "solutionTitle": "Fitur Utama & Implementasi",
+      "impactTitle": "Hasil & Dampak",
+      "roleVal": "Junior Data Analyst",
+      "categoryVal": "Analisis Data & Keuangan"
+    },
     "items": {
       "financial_dashboard": {
-        "title": "Proyek 1",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Dashboard Analisis Laporan Keuangan",
+        "description": "Membangun dashboard analisis laporan keuangan perusahaan terintegrasi menggunakan Microsoft Excel dan Power BI untuk melacak tren arus kas, likuiditas, dan profitabilitas secara interaktif.",
         "problem": "Menganalisis data keuangan perusahaan selama beberapa tahun biasanya lambat dan membutuhkan spreadsheet yang rumit, sehingga menyulitkan manajemen untuk mendeteksi hambatan arus kas dan pergeseran profitabilitas secara cepat.",
         "solution": "Membangun model data terpadu menggunakan Power Query untuk membaca laporan keuangan perusahaan. Membuat formula DAX Power BI khusus untuk menghitung rasio likuiditas, profitabilitas, leverage, serta mendesain visualisasi tren arus kas yang interaktif.",
-        "impact": "Menyediakan akses visual instan bagi eksekutif ke indikator kesehatan keuangan yang kritis, mempercepat proses analisis tren keuangan."
+        "impact": "Menyediakan akses visual instan bagi eksekutif ke indikator kesehatan keuangan yang kritis, mempercepat proses analisis tren keuangan.",
+        "steps": [
+          "Mengekstrak dan menghubungkan data mentah laporan laba rugi, neraca, dan arus kas multi-tahun menggunakan Power Query.",
+          "Melakukan pembersihan data, penanganan nilai kosong (null), serta pembuatan skema data Star Schema terstruktur.",
+          "Merancang relasi tabel fakta transaksi dengan tabel dimensi waktu (Calendar), kategori akun, dan entitas divisi.",
+          "Menyusun perhitungan DAX kustom untuk rasio Profitabilitas (Gross/Net Margin), Likuiditas (Current Ratio), dan Cash Flow Runway.",
+          "Mendesain tata letak dasbor interaktif di Power BI dengan navigasi dinamis dan filter per divisi/tahun."
+        ]
       },
       "data_cleaning": {
-        "title": "Proyek 2",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Pembersihan Data Transaksi Keuangan",
+        "description": "Merancang alur pembersihan data otomatis menggunakan Power Query di Microsoft Excel untuk membersihkan dan menstandarisasi data transaksi mentah yang berantakan.",
         "problem": "Data transaksi mentah yang diekspor dari sistem akuntansi lama seringkali kotor dengan spasi berlebih, data ganda, format tanggal tidak konsisten, dan struktur sel yang berantakan.",
         "solution": "Merancang template audit data otomatis di Microsoft Excel dengan Power Query. Membuat rutinitas validasi data untuk memisahkan anomali, merapikan teks, dan menyelaraskan tanggal secara otomatis tanpa intervensi manual.",
-        "impact": "Meminimalisir kesalahan persiapan data, meniadakan proses pemeriksaan manual, dan menghasilkan dataset bersih yang siap pakai 100% untuk laporan keuangan."
+        "impact": "Meminimalisir kesalahan persiapan data, meniadakan proses pemeriksaan manual, dan menghasilkan dataset bersih yang siap pakai 100% untuk laporan keuangan.",
+        "steps": [
+          "Mengimpor dataset transaksi keuangan mentah yang tidak terstruktur dari sistem database akuntansi lama.",
+          "Mengidentifikasi baris ganda, spasi berlebih, karakter aneh, dan anomali entri menggunakan Power Query.",
+          "Menerapkan fungsi TRIM, CLEAN, dan pemisahan kolom dinamis untuk merapikan nama vendor serta kode akun transaksi.",
+          "Melakukan standardisasi format penanggalan, nilai numerik mata uang, serta menangani baris kosong secara otomatis.",
+          "Menyimpan alur pembersihan sebagai template audit yang otomatis memproses file transaksi baru di masa depan secara instan."
+        ]
       },
       "budgeting_tool": {
-        "title": "Proyek 3",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Alat Pemantauan & Peramalan Anggaran",
+        "description": "Mengembangkan alat otomatisasi penganggaran di Google Sheets menggunakan formula logika terstruktur dan script peringatan dini untuk memantau pengeluaran operasional.",
         "problem": "Spreadsheet anggaran tradisional memerlukan input manual untuk perkiraan masa depan dan tidak memiliki sistem peringatan dini ketika pengeluaran melebihi batas.",
         "solution": "Mengembangkan model penganggaran Google Sheets dengan formula logika terstruktur dan script otomatisasi. Memasang formula bersyarat untuk memicu peringatan visual saat pengeluaran divisi menyentuh 85% dari pagu anggaran.",
-        "impact": "Memungkinkan pemantauan anggaran secara real-time, menekan potensi kebocoran anggaran, dan menghasilkan perkiraan arus kas bulanan yang lebih akurat."
+        "impact": "Memungkinkan pemantauan anggaran secara real-time, menekan potensi kebocoran anggaran, dan menghasilkan perkiraan arus kas bulanan yang lebih akurat.",
+        "steps": [
+          "Memetakan kebutuhan anggaran bulanan dan struktur biaya operasional untuk masing-masing divisi perusahaan.",
+          "Membangun lembar input terpusat dengan validasi data ketat menggunakan Google Sheets / Microsoft Excel.",
+          "Menyusun formula logika terstruktur (INDEX-MATCH, SUMIFS, conditional logic) untuk agregasi pengeluaran secara real-time.",
+          "Membuat skrip otomatisasi (Google Apps Script / VBA) untuk mengunci anggaran akhir bulan dan sinkronisasi otomatis.",
+          "Memasang aturan pemformatan bersyarat (conditional formatting) sebagai alarm peringatan dini jika pengeluaran menyentuh batas 85%."
+        ]
+      },
+      "financial_analysis_simulation": {
+        "title": "Simulasi: Analisis Laporan Keuangan [Nama Perusahaan]",
+        "description": "[Ganti Teks Ini] Deskripsi singkat proyek. Contoh: Membangun dasbor analisis laporan keuangan interaktif menggunakan Excel & Power BI untuk memantau performa bisnis secara berkala.",
+        "problem": "[Ganti Teks Ini] Masalah yang dihadapi perusahaan. Contoh: Data laporan keuangan masih tersebar di beberapa file Excel terpisah, sehingga manajemen lambat dalam melihat tren profitabilitas bulanan.",
+        "solution": "[Ganti Teks Ini] Solusi yang Anda buat. Contoh: Mengintegrasikan seluruh data Excel menggunakan Power Query, membangun skema model data bintang, dan menghitung metrik rasio keuangan menggunakan DAX.",
+        "impact": "[Ganti Teks Ini] Dampak nyata hasil proyek Anda. Contoh: Pembuatan laporan bulanan otomatis menghemat 80% waktu pengerjaan manual dan menyajikan visualisasi tren margin laba secara instan.",
+        "steps": [
+          "[Langkah 1: Pengumpulan Data] Unduh laporan keuangan tahunan PDF/Excel resmi dari IDX untuk perusahaan pilihan Anda (misal: Kalbe Farma, Indofood, dll).",
+          "[Langkah 2: ETL & Cleaning] Masukkan data ke Excel/Power Query untuk membersihkan kolom kosong, menyaring baris tidak perlu, dan menyelaraskan penanggalan.",
+          "[Langkah 3: Pemodelan Data] Hubungkan tabel data laporan laba rugi dan neraca dengan tabel kalender dimensi waktu di Power BI.",
+          "[Langkah 4: Rumus Finansial] Tulis formula DAX kustom untuk menghitung NPM, ROE, ROA, dan DER guna melihat rasio kesehatan keuangan.",
+          "[Langkah 5: Desain Visual] Susun visualisasi grafik laba, aset, dan tren rasio ke dalam kanvas dasbor Power BI yang interaktif."
+        ]
       }
     }
   },

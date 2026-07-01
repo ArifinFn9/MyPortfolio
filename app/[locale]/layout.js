@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Manrope, Geist_Mono } from 'next/font/google'
 import '../globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -8,9 +8,11 @@ import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { PreviewProvider } from '@/components/PreviewProvider'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const manrope = Manrope({
+  variable: '--font-manrope',
   subsets: ['latin'],
 })
 
@@ -58,7 +60,7 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale} data-scroll-behavior="smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} text-white antialiased selection:bg-white/30 selection:text-white`}
+        className={`${manrope.variable} ${geistMono.variable} text-white antialiased selection:bg-white/30 selection:text-white`}
       >
         <NextIntlClientProvider messages={messages}>
           <PreviewProvider>
@@ -66,6 +68,8 @@ export default async function RootLayout({ children, params }) {
             <Navbar />
             {children}
             <Footer />
+            <Analytics />
+            <SpeedInsights />
           </PreviewProvider>
         </NextIntlClientProvider>
       </body>

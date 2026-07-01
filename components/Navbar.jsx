@@ -106,7 +106,7 @@ export default function Navbar() {
         className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm flex items-center gap-2 select-none"
       >
         {/* Main Navigation Capsule */}
-        <div className="flex-1 flex items-center justify-around p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+        <div className="flex-1 flex items-center justify-around p-2 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
           {mobileNavItems.map((item) => {
             const isActive = isHomePage && activeSection === item.path.replace("#", "");
 
@@ -116,7 +116,7 @@ export default function Navbar() {
                 href={isHomePage ? item.path : `/${locale}${item.path}`}
                 onClick={(e) => handleNavLinkClick(e, item.path)}
                 className={cn(
-                  "relative p-2 rounded-full text-gray-400 transition-all duration-300",
+                  "relative p-2.5 rounded-full text-gray-400 transition-all duration-300",
                   isActive && "text-white"
                 )}
               >
@@ -127,17 +127,17 @@ export default function Navbar() {
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
-                <item.icon className="w-5 h-5 relative z-10" />
+                <item.icon className="w-5.5 h-5.5 relative z-10" />
               </Link>
             );
           })}
         </div>
 
         {/* Standalone Language Switcher Bubble */}
-        <div className="shrink-0 flex items-center justify-center p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+        <div className="shrink-0 flex items-center justify-center p-2 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
           <button
             onClick={toggleLanguage}
-            className="flex items-center justify-center w-9 h-9 rounded-full text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
+            className="flex items-center justify-center w-10.5 h-10.5 rounded-full text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
           >
             <span className="font-mono text-xs uppercase">{locale}</span>
           </button>
@@ -214,7 +214,7 @@ export default function Navbar() {
           {/* Language Control */}
           <button
             onClick={toggleLanguage}
-            className="flex items-center justify-center w-6 h-6 rounded-full text-[9px] font-extrabold text-zinc-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-[10px] font-black tracking-wider text-zinc-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/10 hover:border-white/20 active:scale-90 duration-200 shrink-0"
           >
             <span className="font-mono uppercase">{locale}</span>
           </button>

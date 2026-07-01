@@ -138,27 +138,78 @@
       "impactTitle": "Results & Impact",
       "close": "Close"
     },
+    "detail": {
+      "back": "Back to Projects",
+      "projectInfo": "Project Details",
+      "role": "Role",
+      "period": "Period",
+      "tools": "Technologies",
+      "category": "Category",
+      "liveDemo": "Live Demo",
+      "sourceCode": "Source Code",
+      "stepsTitle": "Analysis Steps & Process",
+      "problemTitle": "Problem & Context",
+      "solutionTitle": "Key Features & Implementation",
+      "impactTitle": "Results & Impact",
+      "roleVal": "Junior Data Analyst",
+      "categoryVal": "Data & Finance Analysis"
+    },
     "items": {
       "financial_dashboard": {
-        "title": "Project 1",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Financial Statement Analysis Dashboard",
+        "description": "Built an integrated financial statement analysis dashboard using Microsoft Excel and Power BI to interactively track cash flow, liquidity, and profitability trends.",
         "problem": "Analyzing corporate financial data across multiple years is typically slow and spreadsheet-heavy, making it difficult for management to quickly spot key cash flow bottlenecks and margin shifts.",
         "solution": "Built a unified data model using Power Query to ingest multi-year corporate financial statements. Programmed custom Power BI DAX formulas to calculate financial ratios (liquidity, profitability, leverage) and designed an interactive dashboard showcasing margins and cash flow trends.",
-        "impact": "Provided executives with instant, visual access to critical financial health indicators, reducing report preparation time and speeding up trend analysis."
+        "impact": "Provided executives with instant, visual access to critical financial health indicators, reducing report preparation time and speeding up trend analysis.",
+        "steps": [
+          "Extracting and connecting raw multi-year financial statements data using Power Query.",
+          "Performing data cleaning, null values handling, and designing a structured Star Schema data model.",
+          "Establishing relationships between transaction fact tables and dimension tables (Calendar, accounts, divisions).",
+          "Developing custom DAX calculations for Profitability (Gross/Net Margin), Liquidity (Current Ratio), and Cash Flow Runway.",
+          "Designing an interactive Power BI dashboard with dynamic navigation and division/year filters."
+        ]
       },
       "data_cleaning": {
-        "title": "Project 2",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Financial Transaction Data Cleaning",
+        "description": "Designed an automated data auditing and cleaning pipeline using Power Query in Microsoft Excel to clean and standardize raw transactional data.",
         "problem": "Raw transactional data exported from legacy banking and accounting systems is frequently corrupted with trailing whitespace, duplicate records, incorrect formats, and misaligned cell structures.",
         "solution": "Designed a robust, automated data auditing template in Microsoft Excel using Power Query. Created automatic data validation routines to isolate anomalies, correct text cases, and align dates without manual editing.",
-        "impact": "Minimized data preparation errors, eliminated manual checking, and prepared 100% clean datasets for reporting and analytics."
+        "impact": "Minimized data preparation errors, eliminated manual checking, and prepared 100% clean datasets for reporting and analytics.",
+        "steps": [
+          "Importing unstructured raw financial transaction datasets from legacy accounting databases.",
+          "Identifying duplicates, extra spacing, corrupted characters, and entry anomalies using Power Query.",
+          "Applying TRIM, CLEAN, and custom column splits to clean vendor names and transaction account codes.",
+          "Standardizing date formatting, currency values, and handling missing rows automatically.",
+          "Saving the pipeline as an audit template that automatically cleans new monthly transaction sheets instantly."
+        ]
       },
       "budgeting_tool": {
-        "title": "Project 3",
-        "description": "wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk wkwkwkwkwkwwkwwkwkwkwkwkkwkwkwkwkwkwkwk",
+        "title": "Automated Budget Tracking & Forecasting",
+        "description": "Developed a custom budgeting and cash flow forecasting tool in Google Sheets using structured logical formulas and automated alert scripts.",
         "problem": "Traditional budgeting spreadsheets require manual entry for forecasting and lack proactive warnings for budget overruns, increasing the risk of cash shortages.",
         "solution": "Developed a custom Google Sheets forecasting model using Excel VBA/Google Apps Script. Embedded conditional formulas to trigger alerts when department expenditures exceeded 85% of allocated funds.",
-        "impact": "Enabled real-time budget tracking, resulting in fewer budget overruns and more accurate forecasting of upcoming monthly runway."
+        "impact": "Enabled real-time budget tracking, resulting in fewer budget overruns and more accurate forecasting of upcoming monthly runway.",
+        "steps": [
+          "Mapping monthly budget requirements and operational cost structures for each company division.",
+          "Building a centralized input sheet with strict data validation criteria in Google Sheets / Microsoft Excel.",
+          "Setting up structured formulas (INDEX-MATCH, SUMIFS, conditional logic) for real-time expenditure aggregation.",
+          "Developing automation scripts (Google Apps Script / VBA) for month-end freeze and auto-sync features.",
+          "Installing conditional formatting rules as early-warning indicators when spending exceeds 85% of threshold."
+        ]
+      },
+      "financial_analysis_simulation": {
+        "title": "Simulation: Financial Statement Analysis [Company Name]",
+        "description": "[Replace This Text] Brief project description. Example: Built an interactive financial statement analysis dashboard using Excel & Power BI to monitor business performance periodically.",
+        "problem": "[Replace This Text] The business problem faced. Example: Financial statement data is scattered across separate Excel sheets, making it slow for management to see monthly profitability trends.",
+        "solution": "[Replace This Text] The solution you created. Example: Integrated Excel data using Power Query, designed a star schema data model, and calculated financial ratios using DAX.",
+        "impact": "[Replace This Text] The tangible outcome of your project. Example: Automatic monthly reporting saved 80% of manual effort and provided instant profit margin trend visibility.",
+        "steps": [
+          "[Step 1: Data Collection] Download official financial statement PDF/Excel files from IDX for your chosen company (e.g. Kalbe Farma, Indofood).",
+          "[Step 2: ETL & Cleaning] Load data into Excel/Power Query to clean empty columns, filter unnecessary rows, and format dates.",
+          "[Step 3: Data Modeling] Establish relationships between Balance Sheet and Income Statement fact tables with a dimension Calendar table in Power BI.",
+          "[Step 4: Financial Ratios] Write custom DAX measures for Net Profit Margin, Return on Equity, Return on Assets, and Debt-to-Equity to analyze health.",
+          "[Step 5: Visual Design] Create interactive charts for profit trends, assets breakdown, and ratio comparisons on the Power BI dashboard."
+        ]
       }
     }
   },

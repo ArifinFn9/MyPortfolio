@@ -87,13 +87,11 @@ export default function Footer() {
             <h3 className="font-bold text-white mb-4">{t("connTitle")}</h3>
             <div className="flex flex-wrap gap-4">
               <a
-                href={socials.github.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-white/10 duration-150"
-                aria-label="GitHub"
+                href={`mailto:${socials.email.url}`}
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-emerald-500/20 duration-150"
+                aria-label="Email"
               >
-                <SiGithub className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </a>
               <a
                 href={socials.linkedin.url}
@@ -103,6 +101,15 @@ export default function Footer() {
                 aria-label="LinkedIn"
               >
                 <SiLinkedin className="w-5 h-5" />
+              </a>
+              <a
+                href={socials.github.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 hover:text-white text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-white/10 duration-150"
+                aria-label="GitHub"
+              >
+                <SiGithub className="w-5 h-5" />
               </a>
               <a
                 href={socials.instagram.url}
@@ -130,13 +137,6 @@ export default function Footer() {
                 aria-label="YouTube"
               >
                 <SiYoutube className="w-5 h-5" />
-              </a>
-              <a
-                href={`mailto:${socials.email.url}`}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-500/10 hover:text-emerald-400 text-gray-400 transition-all hover:-translate-y-0.5 active:scale-90 border border-white/5 hover:border-emerald-500/20 duration-150"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>

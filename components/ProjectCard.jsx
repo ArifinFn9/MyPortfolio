@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 import Card from "@/components/ui/Card";
 import { Github, Globe, ArrowUpRight, BarChart3, FileSpreadsheet, Database } from "lucide-react";
 const techIcons = {
@@ -22,27 +24,41 @@ const cardAccents = [
   "from-rose-400/25 via-pink-400/10 to-transparent",
 ];
 
-export default function ProjectCard({ project, index = 0, onOpenDetails }) {
+export default function ProjectCard({ project, index = 0 }) {
   const t = useTranslations("projects");
+  const router = useRouter();
+  const params = useParams();
+  const locale = params.locale || "id";
   const accent = cardAccents[index % cardAccents.length];
   const projectNumber = String(index + 1).padStart(2, "0");
 
   const title = t(`items.${project.id}.title`);
   const description = t(`items.${project.id}.description`);
+  const isClickable = project.hasDetails !== false;
+
+  const handleCardClick = () => {
+    if (isClickable) {
+      router.push(`/${locale}/projects/${project.id}`);
+    }
+  };
 
   return (
     <Card
-      onClick={onOpenDetails}
-      className="group relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950/70 p-0 shadow-2xl shadow-black/20 transition-colors duration-500 hover:border-emerald-300/30 cursor-pointer"
+      onClick={handleCardClick}
+      className={`group relative h-full w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-zinc-950/70 p-0 shadow-2xl shadow-black/20 transition-colors duration-500 ${isClickable ? "hover:border-white/20 cursor-pointer" : "cursor-default"}`}
     >
       <div className={`pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${accent} opacity-80`} />
 
       <div className="relative z-10 flex h-full flex-col">
         <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-zinc-900">
           {project.image ? (
-            <div
-              className="absolute inset-0 bg-cover bg-top transition-transform duration-700 group-hover:scale-105"
-              style={{ backgroundImage: `url(${project.image})` }}
+            <Image
+              src={project.image}
+              alt={title}
+              fill
+              sizes="(max-w-768px) 100vw, 33vw"
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -57,7 +73,7 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
 
         <div className="flex flex-1 flex-col p-5 md:p-6">
           <div className="mb-5">
-            <h3 className="mb-2 text-xl font-bold text-white transition-colors group-hover:text-emerald-300 md:text-2xl">
+            <h3 className="mb-2 text-xl font-bold text-zinc-200 transition-colors group-hover:text-white md:text-2xl">
               {title}
             </h3>
             <p className="line-clamp-3 text-sm leading-relaxed text-zinc-400 md:text-base">
@@ -104,7 +120,7 @@ export default function ProjectCard({ project, index = 0, onOpenDetails }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="ml-auto flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors hover:text-emerald-300 group/link"
+                className="ml-auto flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white group/link"
               >
                 <Globe className="h-4 w-4" />
                 <span>Live Demo</span>

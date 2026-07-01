@@ -65,9 +65,9 @@ export default function ExperienceSection() {
 
               <Card
                 className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.2 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.4 }}
                 viewport={{ once: true }}
               >
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
@@ -96,8 +96,7 @@ export default function ExperienceSection() {
                       {title}
                     </h3>
                   </div>
-                  <div className="flex items-center gap-2 text-sm font-mono text-gray-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
-                    <Briefcase className="w-3 h-3 text-zinc-400" />
+                  <div className="text-sm font-mono text-gray-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
                     {period}
                   </div>
                 </div>

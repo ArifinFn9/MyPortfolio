@@ -15,6 +15,7 @@ import {
   Database,
   TrendingUp,
   MapPin,
+  Mail,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -81,7 +82,7 @@ export default function AboutPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500">
               {t("title")}
             </h1>
-            <p className="text-gray-400 text-lg leading-relaxed mb-6">
+            <p className="text-zinc-300 text-lg leading-relaxed mb-6 text-left">
               {t("pageDesc")}
             </p>
             <div className="flex w-full md:w-auto gap-2 md:gap-3 justify-between md:justify-start mb-5 md:mb-6">
@@ -112,16 +113,22 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 {[
                   {
-                    key: "github",
-                    icon: SiGithub,
-                    href: socials.github.url,
-                    hoverClass: "hover:bg-white/10 hover:text-white hover:border-white/10",
+                    key: "email",
+                    icon: Mail,
+                    href: `mailto:${socials.email.url}`,
+                    hoverClass: "hover:bg-emerald-500/10 hover:text-emerald-400 hover:border-emerald-500/20",
                   },
                   {
                     key: "linkedin",
                     icon: SiLinkedin,
                     href: socials.linkedin.url,
                     hoverClass: "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/20",
+                  },
+                  {
+                    key: "github",
+                    icon: SiGithub,
+                    href: socials.github.url,
+                    hoverClass: "hover:bg-white/10 hover:text-white hover:border-white/10",
                   },
                   {
                     key: "instagram",
@@ -134,12 +141,6 @@ export default function AboutPage() {
                     icon: SiTelegram,
                     href: socials.telegram.url,
                     hoverClass: "hover:bg-sky-500/10 hover:text-sky-400 hover:border-sky-500/20",
-                  },
-                  {
-                    key: "youtube",
-                    icon: SiYoutube,
-                    href: socials.youtube.url,
-                    hoverClass: "hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20",
                   },
                 ].map((social) => (
                   <a
@@ -299,7 +300,7 @@ export default function AboutPage() {
               ].map((tech) => (
                 <div
                   key={tech.name}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-purple-500/30 hover:bg-white/10 transition-all group"
+                  className="flex items-center gap-3 p-4 rounded-xl glass-card hover:border-white/20 hover:bg-white/10 transition-all group"
                 >
                   <span
                     className={`${tech.color} group-hover:scale-110 transition-transform`}

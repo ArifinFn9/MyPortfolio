@@ -23,7 +23,7 @@
 
   --border: rgba(255, 255, 255, 0.1);
 
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-manrope);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -41,7 +41,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -50,6 +50,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   min-height: 100vh;
+  scrollbar-gutter: stable;
 }
 
 @layer utilities {

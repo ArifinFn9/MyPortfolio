@@ -2,7 +2,7 @@
 
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
-import { User, Globe, GraduationCap, CheckCircle2, FileText, MapPin } from "lucide-react";
+import { User, Globe, GraduationCap, CheckCircle2, FileText, MapPin, Mail, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -37,9 +37,9 @@ export default function AboutSection() {
       <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
         {/* Photo Column - Enhanced Animation */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="relative shrink-0"
         >
@@ -76,8 +76,8 @@ export default function AboutSection() {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -right-6 top-10 z-20"
             >
-              <div className="p-3 rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl">
-                <User className="w-6 h-6 text-gray-300" />
+              <div className="p-3 rounded-xl glass-card hover:border-white/30 hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-default shadow-xl">
+                <GraduationCap className="w-6 h-6 text-zinc-300" />
               </div>
             </motion.div>
 
@@ -91,8 +91,8 @@ export default function AboutSection() {
               }}
               className="absolute -left-6 bottom-10 z-20"
             >
-              <div className="p-3 rounded-xl bg-[#1a1a1a] border border-white/10 shadow-xl">
-                <Globe className="w-6 h-6 text-gray-400" />
+              <div className="p-3 rounded-xl glass-card hover:border-white/30 hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-default shadow-xl">
+                <Briefcase className="w-6 h-6 text-zinc-300" />
               </div>
             </motion.div>
           </div>
@@ -100,9 +100,9 @@ export default function AboutSection() {
 
         {/* Text Content */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center md:text-left flex-1"
         >
@@ -115,7 +115,7 @@ export default function AboutSection() {
             })}
           </h2>
 
-          <p className="text-gray-400 text-lg leading-relaxed mb-8">
+          <p className="text-zinc-300 text-lg leading-relaxed mb-8 text-left">
             {t.rich("desc", {
               name: renderName
             })}
@@ -159,16 +159,22 @@ export default function AboutSection() {
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               {[
                 {
-                  key: "github",
-                  icon: SiGithub,
-                  href: socials.github.url,
-                  hoverClass: "hover:bg-white/10 hover:text-white hover:border-white/10",
+                  key: "email",
+                  icon: Mail,
+                  href: `mailto:${socials.email.url}`,
+                  hoverClass: "hover:bg-emerald-500/10 hover:text-emerald-400 hover:border-emerald-500/20",
                 },
                 {
                   key: "linkedin",
                   icon: SiLinkedin,
                   href: socials.linkedin.url,
                   hoverClass: "hover:bg-blue-500/10 hover:text-blue-400 hover:border-blue-500/20",
+                },
+                {
+                  key: "github",
+                  icon: SiGithub,
+                  href: socials.github.url,
+                  hoverClass: "hover:bg-white/10 hover:text-white hover:border-white/10",
                 },
                 {
                   key: "instagram",
@@ -181,12 +187,6 @@ export default function AboutSection() {
                   icon: SiTelegram,
                   href: socials.telegram.url,
                   hoverClass: "hover:bg-sky-500/10 hover:text-sky-400 hover:border-sky-500/20",
-                },
-                {
-                  key: "youtube",
-                  icon: SiYoutube,
-                  href: socials.youtube.url,
-                  hoverClass: "hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20",
                 },
               ].map((social) => (
                 <a

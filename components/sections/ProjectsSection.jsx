@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
-import ProjectModal from "@/components/ProjectModal";
 import Section from "@/components/ui/Section";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -11,8 +9,6 @@ import { useTranslations } from "next-intl";
 export default function ProjectsSection() {
   const t = useTranslations("projects");
   const projectCount = projects.length.toString().padStart(2, "0");
-
-  const [activeProject, setActiveProject] = useState(null);
 
   return (
     <Section
@@ -35,8 +31,8 @@ export default function ProjectsSection() {
           </p>
         </div>
 
-        <div className="mx-auto w-full max-w-xs rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 shadow-2xl shadow-emerald-500/5 backdrop-blur md:mx-0 md:w-auto md:min-w-44 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-emerald-300/80">
+        <div className="mx-auto w-full max-w-xs rounded-3xl glass-card px-5 py-4 shadow-2xl shadow-white/5 md:mx-0 md:w-auto md:min-w-44 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-zinc-400">
             {t("total_projects")}
           </p>
           <p className="mt-2 text-4xl font-black text-white md:text-5xl">
@@ -47,20 +43,20 @@ export default function ProjectsSection() {
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
         {projects.map((project, index) => (
-          <ProjectCard
+          <motion.div
             key={project.id}
-            project={project}
-            index={index}
-            // onOpenDetails={() => setActiveProject(project)}
-          />
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <ProjectCard
+              project={project}
+              index={index}
+            />
+          </motion.div>
         ))}
       </div>
-
-      <ProjectModal
-        project={activeProject}
-        isOpen={!!activeProject}
-        onClose={() => setActiveProject(null)}
-      />
     </Section>
   );
 }
