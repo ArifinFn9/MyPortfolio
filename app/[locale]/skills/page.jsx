@@ -4,14 +4,6 @@ import { useState } from "react";
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import {
-  FileSpreadsheet,
-  BarChart3,
-  Globe,
-  Palette,
-  FileText,
-  Presentation,
-  ClipboardList,
-  Database,
   TrendingUp,
   Calculator,
   Eraser,

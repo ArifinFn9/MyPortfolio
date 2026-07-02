@@ -86,8 +86,6 @@
       "productivity": "Produktivitas & Administrasi Kantor"
     },
     "arcade": {
-      "title": "Google Cloud Arcade Credentials",
-      "desc": "Lencana resmi yang diperoleh melalui tantangan praktis Google Cloud Skills Boost, memvalidasi kompetensi analitik cloud dan data.",
       "showBtn": "Tampilkan Lencana Google Cloud Arcade",
       "hideBtn": "Sembunyikan Lencana Google Cloud Arcade",
       "badges": {
@@ -100,14 +98,6 @@
         "trivia3": "Arcade Trivia Sep 2025 — Week 3",
         "trivia2": "Arcade Trivia Sep 2025 — Week 2",
         "trivia1": "Arcade Trivia Sep 2025 — Week 1"
-      },
-      "types": {
-        "developer": "Developer",
-        "aidata": "AI & Data",
-        "cloudinfra": "Cloud Infra",
-        "basecamp": "Base Camp",
-        "scribble": "Scribble",
-        "trivia": "Trivia"
       }
     }
   },

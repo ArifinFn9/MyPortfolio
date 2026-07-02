@@ -30,7 +30,7 @@ export const projects = [
       { q: 'Q4 2024', revenue: 'Rp 3.5 M', profit: 'Rp 630 Jt' },
     ],
   },
-  /*
+
   {
     id: 'data_cleaning',
     tech: ['Microsoft Excel', 'Power Query'],
@@ -39,6 +39,7 @@ export const projects = [
     image: '/assets/project2.png',
     hasDetails: false,
   },
+  /*
   {
     id: 'budgeting_tool',
     tech: ['Google Sheets', 'Excel VBA'],

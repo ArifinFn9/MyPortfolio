@@ -86,8 +86,6 @@
       "productivity": "Productivity & Office Administration"
     },
     "arcade": {
-      "title": "Google Cloud Arcade Credentials",
-      "desc": "Official hands-on credentials earned through Google Cloud Skills Boost challenges, verifying cloud and data analytics competencies.",
       "showBtn": "Show Google Cloud Arcade Badges",
       "hideBtn": "Hide Google Cloud Arcade Badges",
       "badges": {
@@ -100,14 +98,6 @@
         "trivia3": "Arcade Trivia Sep 2025 — Week 3",
         "trivia2": "Arcade Trivia Sep 2025 — Week 2",
         "trivia1": "Arcade Trivia Sep 2025 — Week 1"
-      },
-      "types": {
-        "developer": "Developer",
-        "aidata": "AI & Data",
-        "cloudinfra": "Cloud Infra",
-        "basecamp": "Base Camp",
-        "scribble": "Scribble",
-        "trivia": "Trivia"
       }
     }
   },

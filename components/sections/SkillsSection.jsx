@@ -4,14 +4,6 @@ import Section from "@/components/ui/Section";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import {
-  FileSpreadsheet,
-  BarChart3,
-  Globe,
-  Palette,
-  FileText,
-  Presentation,
-  ClipboardList,
-  Database,
   TrendingUp,
   Calculator,
   Eraser,
