@@ -1,10 +1,10 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/routing";
+import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { projects } from "@/data/projects";
 import Image from "next/image";
-import Link from "next/link";
 import { 
   ArrowLeft, 
   Github, 
@@ -87,7 +87,7 @@ export default function ProjectDetailPage() {
             if (typeof window !== "undefined" && window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
               router.back();
             } else {
-              router.push(`/${locale}/#projects`);
+              router.push('/#projects');
             }
           }}
           className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-zinc-300 hover:text-white hover:border-white/20 transition-all cursor-pointer mb-6 md:mb-8 text-sm font-semibold"

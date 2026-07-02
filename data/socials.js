@@ -5,7 +5,7 @@ export const socials = {
   },
   linkedin: {
     url: "https://www.linkedin.com/in/muhammadarifinfn/",
-    handle: "Muhammad Arifin",
+    handle: "Muhammad Arifin Fadhil Nugroho",
   },
   instagram: {
     url: "https://www.instagram.com/arifinjndl_/",

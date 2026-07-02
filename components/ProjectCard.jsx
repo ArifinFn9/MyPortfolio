@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/routing";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
 import { Github, Globe, ArrowUpRight, BarChart3, FileSpreadsheet, Database } from "lucide-react";
@@ -38,7 +38,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
   const handleCardClick = () => {
     if (isClickable) {
-      router.push(`/${locale}/projects/${project.id}`);
+      router.push(`/projects/${project.id}`);
     }
   };
 

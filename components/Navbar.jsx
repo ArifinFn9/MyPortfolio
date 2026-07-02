@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname, useRouter } from "@/i18n/routing";
+import { Link, useRouter, usePathname } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import {
@@ -20,21 +19,21 @@ import { cn } from "@/lib/utils";
 import { socials } from "@/data/socials";
 
 const navItems = [
-  { key: "home", path: "#home", icon: Home },
-  { key: "about", path: "#about", icon: User },
-  { key: "skills", path: "#skills", icon: Code2 },
-  { key: "experience", path: "#experience", icon: Briefcase },
-  { key: "projects", path: "#projects", icon: Layout },
-  { key: "contact", path: "#contact", icon: Mail },
+  { key: "home", path: "/#home", icon: Home },
+  { key: "about", path: "/#about", icon: User },
+  { key: "skills", path: "/#skills", icon: Code2 },
+  { key: "experience", path: "/#experience", icon: Briefcase },
+  { key: "projects", path: "/#projects", icon: Layout },
+  { key: "contact", path: "/#contact", icon: Mail },
 ];
 
 const mobileNavItems = [
-  { key: "home", path: "#home", icon: Home },
-  { key: "about", path: "#about", icon: User },
-  { key: "skills", path: "#skills", icon: Code2 },
-  { key: "experience", path: "#experience", icon: Briefcase },
-  { key: "projects", path: "#projects", icon: Layout },
-  { key: "contact", path: "#contact", icon: Mail },
+  { key: "home", path: "/#home", icon: Home },
+  { key: "about", path: "/#about", icon: User },
+  { key: "skills", path: "/#skills", icon: Code2 },
+  { key: "experience", path: "/#experience", icon: Briefcase },
+  { key: "projects", path: "/#projects", icon: Layout },
+  { key: "contact", path: "/#contact", icon: Mail },
 ];
 
 export default function Navbar() {
@@ -51,7 +50,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = navItems.map((item) => item.path.replace("#", ""));
+      const sections = navItems.map((item) => item.path.replace("/", "").replace("#", ""));
       let current = "home";
       let minDistance = Infinity;
 
@@ -75,12 +74,14 @@ export default function Navbar() {
   }, []);
 
   const handleNavLinkClick = (e, path) => {
-    if (isHomePage && path.startsWith("#")) {
+    const isAnchor = path.startsWith("#") || path.startsWith("/#");
+    if (isHomePage && isAnchor) {
       e.preventDefault();
-      const targetId = path.replace("#", "");
+      const targetId = path.replace("/", "").replace("#", "");
       const element = document.getElementById(targetId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
+        window.history.replaceState(null, "", `#${targetId}`);
       }
     }
   };
@@ -108,12 +109,12 @@ export default function Navbar() {
         {/* Main Navigation Capsule */}
         <div className="flex-1 flex items-center justify-around p-2 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
           {mobileNavItems.map((item) => {
-            const isActive = isHomePage && activeSection === item.path.replace("#", "");
+            const isActive = isHomePage && activeSection === item.path.replace("/", "").replace("#", "");
 
             return (
               <Link
                 key={item.path}
-                href={isHomePage ? item.path : `/${locale}${item.path}`}
+                href={item.path}
                 onClick={(e) => handleNavLinkClick(e, item.path)}
                 className={cn(
                   "relative p-2.5 rounded-full text-gray-400 transition-all duration-300",
@@ -165,12 +166,12 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = isHomePage && activeSection === item.path.replace("#", "");
+              const isActive = isHomePage && activeSection === item.path.replace("/", "").replace("#", "");
 
               return (
                 <Link
                   key={item.path}
-                  href={isHomePage ? item.path : `/${locale}${item.path}`}
+                  href={item.path}
                   onClick={(e) => handleNavLinkClick(e, item.path)}
                   onMouseEnter={() => setHoveredPath(item.path)}
                   onMouseLeave={() => setHoveredPath(null)}
@@ -224,8 +225,8 @@ export default function Navbar() {
 
           {/* "HUBUNGI SAYA" Button */}
           <Link
-            href={isHomePage ? "#contact" : "/contact"}
-            onClick={(e) => handleNavLinkClick(e, "#contact")}
+            href="/#contact"
+            onClick={(e) => handleNavLinkClick(e, "/#contact")}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-white font-bold text-[10px] tracking-wider uppercase shrink-0"
           >
             <span>{t("contact")}</span>

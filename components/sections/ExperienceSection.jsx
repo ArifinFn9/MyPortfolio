@@ -16,6 +16,11 @@ export default function ExperienceSection() {
 
   const handleCertClick = (e, key, title, period) => {
     e.preventDefault();
+    const url = socials.certificates[key];
+    if (url && (url.startsWith("http://") || url.startsWith("https://")) && !url.endsWith(".pdf") && !url.endsWith(".png") && !url.endsWith(".jpg") && !url.endsWith(".jpeg")) {
+      window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
     let cleanTitle = title;
     let type = "";
     if (title.includes(" (")) {
@@ -27,7 +32,7 @@ export default function ExperienceSection() {
     const year = yearMatch ? yearMatch[0] : "2025";
 
     openPreview({
-      url: socials.certificates[key],
+      url: url,
       title: cleanTitle,
       type: type,
       year: year,
@@ -59,9 +64,9 @@ export default function ExperienceSection() {
           const tasks = t.raw(`items.${key}.tasks`);
 
           return (
-            <div key={key} className="relative pl-8 md:pl-12">
+            <div key={key} className="relative pl-8 md:pl-12 group/timeline">
               {/* Timeline Dot */}
-              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.2)]" />
+              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white/30 group-hover/timeline:bg-white shadow-none group-hover/timeline:shadow-[0_0_12px_rgba(255,255,255,0.8)] scale-90 group-hover/timeline:scale-110 transition-all duration-300" />
 
               <Card
                 className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"

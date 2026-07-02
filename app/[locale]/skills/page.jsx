@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import {
@@ -12,12 +13,12 @@ import {
   ClipboardList,
   Database,
   TrendingUp,
-  Award,
   Calculator,
   Eraser,
   Filter,
+  ChevronDown,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 
 const ExcelIcon = (props) => (
@@ -108,6 +109,7 @@ const GoogleWorkspaceIcon = (props) => (
 export default function SkillsPage() {
   const t = useTranslations("skills");
   const locale = useLocale();
+  const [isArcadeOpen, setIsArcadeOpen] = useState(false);
 
   const getSkillName = (name) => {
     if (name === "Laporan Keuangan") {
@@ -115,7 +117,62 @@ export default function SkillsPage() {
     }
     return name;
   };
-
+  const arcadeBadges = [
+    {
+      id: "level1",
+      img: "https://cdn.qwiklabs.com/X2exCVJa0%2B6pcTZJtq8ScpOpU1FtZc7e%2B%2FujEwZ2bHI%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18253251",
+      alt: t("arcade.badges.level1"),
+    },
+    {
+      id: "level2",
+      img: "https://cdn.qwiklabs.com/EdapQ6bVK7EJA%2BclqjUA4ocs%2BeJewTfBxqWS%2FbHnWn0%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18299773",
+      alt: t("arcade.badges.level2"),
+    },
+    {
+      id: "level3",
+      img: "https://cdn.qwiklabs.com/6DPuegr7C1MTd7SknOvXivh1MEpVC1gyLFRJbSn8BZ0%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18319757",
+      alt: t("arcade.badges.level3"),
+    },
+    {
+      id: "trivia1",
+      img: "https://cdn.qwiklabs.com/EdZaBB2mo3K%2Fgeqeq17gFdxla0tbc%2B%2Fg8kLMW626ODs%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18274308",
+      alt: t("arcade.badges.trivia1"),
+    },
+    {
+      id: "trivia2",
+      img: "https://cdn.qwiklabs.com/1%2BBao%2FFBuAyakkobTCGRhkqdpLMmkOw4xvsG%2F617cxM%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18275219",
+      alt: t("arcade.badges.trivia2"),
+    },
+    {
+      id: "trivia3",
+      img: "https://cdn.qwiklabs.com/YYKpzMuUyKgtCrf68HQUfZqkcpOA0lthRvk1WGAQ%2FVA%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18319757",
+      alt: t("arcade.badges.trivia3"),
+    },
+    {
+      id: "trivia4",
+      img: "https://cdn.qwiklabs.com/EVhPuKXXqq0Ia%2FktHB9KZ51stuSnvWSk697I6%2Fh7ULs%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18517075",
+      alt: t("arcade.badges.trivia4"),
+    },
+    {
+      id: "basecamp",
+      img: "https://cdn.qwiklabs.com/NaV2sOsKbQP4RSGsk8XrnEhI3NQdQZQFnoj%2F2yrK%2BIs%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18734046",
+      alt: t("arcade.badges.basecamp"),
+    },
+    {
+      id: "scribble",
+      img: "https://cdn.qwiklabs.com/nx3MSjoNE2vjAhLTwswmsBEI4ILSFljtg6JBBSBelhE%3D",
+      url: "https://www.skills.google/public_profiles/9a7eceec-958a-4bd5-8822-1e0011309694/badges/18348588",
+      alt: t("arcade.badges.scribble"),
+    },
+  ];
   const categories = [
     {
       id: "finance",
@@ -188,9 +245,8 @@ export default function SkillsPage() {
             >
               <Card className={`p-8 glass-card relative overflow-hidden transition-colors duration-500 ${cat.borderColor} group`}>
                 <div className={`absolute top-0 left-0 w-48 h-48 bg-gradient-to-br ${cat.color} rounded-full blur-3xl -z-10 opacity-30 group-hover:opacity-50 transition-opacity`} />
-                
+
                 <h3 className="text-xl font-bold text-white mb-6 border-b border-white/10 pb-4 flex items-center gap-2.5">
-                  <Award className="w-5 h-5 text-zinc-400" />
                   {cat.title}
                 </h3>
 
@@ -218,6 +274,58 @@ export default function SkillsPage() {
             </motion.div>
           ))}
         </div>
+
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => setIsArcadeOpen(!isArcadeOpen)}
+            className="flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white font-semibold text-sm transition-all duration-300 cursor-pointer shadow-md select-none w-fit"
+          >
+            <span>
+              {isArcadeOpen
+                ? t("arcade.hideBtn")
+                : t("arcade.showBtn")}
+            </span>
+            <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isArcadeOpen ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {isArcadeOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden mt-8"
+            >
+              <div className="flex flex-wrap justify-center gap-5 pb-4">
+                {arcadeBadges.map((badge, idx) => (
+                  <motion.a
+                    key={badge.id}
+                    href={badge.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: idx * 0.04, duration: 0.3 }}
+                    title={badge.alt}
+                    className="group/badge block"
+                  >
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 border-white/10 group-hover/badge:border-white/40 group-hover/badge:shadow-[0_0_18px_rgba(255,255,255,0.15)] group-hover/badge:scale-110 transition-all duration-300">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={badge.img}
+                        alt={badge.alt}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Section>
     </main>
   );

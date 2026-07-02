@@ -48,7 +48,7 @@
     "title": "About Me",
     "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
     "viewResume": "View CV / Resume",
-    "desc": "Hi! I'm <name>Arifin</name>,a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
+    "desc": "Hi! I'm <name>Arifin</name>, a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
     "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
     "hello": "Hello There! 👋",
     "bullet1": "Data Accuracy",
@@ -84,6 +84,31 @@
       "finance": "Financial Analysis & Visualization",
       "data": "Database Management & Auditing",
       "productivity": "Productivity & Office Administration"
+    },
+    "arcade": {
+      "title": "Google Cloud Arcade Credentials",
+      "desc": "Official hands-on credentials earned through Google Cloud Skills Boost challenges, verifying cloud and data analytics competencies.",
+      "showBtn": "Show Google Cloud Arcade Badges",
+      "hideBtn": "Hide Google Cloud Arcade Badges",
+      "badges": {
+        "level3": "Level 3: Developer Essentials",
+        "level2": "Level 2: AI & Data Innovation",
+        "level1": "Level 1: Cloud Infrastructure",
+        "basecamp": "Arcade Base Camp September 2025",
+        "scribble": "Skills Scribble",
+        "trivia4": "Arcade Trivia Sep 2025 — Week 4",
+        "trivia3": "Arcade Trivia Sep 2025 — Week 3",
+        "trivia2": "Arcade Trivia Sep 2025 — Week 2",
+        "trivia1": "Arcade Trivia Sep 2025 — Week 1"
+      },
+      "types": {
+        "developer": "Developer",
+        "aidata": "AI & Data",
+        "cloudinfra": "Cloud Infra",
+        "basecamp": "Base Camp",
+        "scribble": "Scribble",
+        "trivia": "Trivia"
+      }
     }
   },
   "experience": {

@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { Code2, Mail } from "lucide-react";
 import { SiGithub, SiLinkedin, SiInstagram, SiTelegram, SiYoutube } from "react-icons/si";
 import { useTranslations } from "next-intl";
