@@ -118,7 +118,7 @@ const CodeWindow = ({ t }) => {
           </div>
           <div className="pl-4">
             <span className="text-gray-300">name</span>:{" "}
-            <span className="text-gray-100">'Muhammad Arifin Fadhil Nughroho'</span>,
+            <span className="text-gray-100">'Muhammad Arifin Fadhil Nugroho'</span>,
           </div>
           <div className="pl-4">
             <span className="text-gray-300">education</span>:{" "}

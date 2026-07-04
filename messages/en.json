@@ -1,9 +1,9 @@
 {
   "metadata": {
     "title": "Muhammad Arifin | Portfolio",
-    "description": "Portfolio of Muhammad Arifin Fadhil Nughroho, a Finance Management graduate from Muhammadiyah University of Surakarta. Specialized in Financial Data Analysis, Data Entry, and Administration.",
+    "description": "Portfolio of Muhammad Arifin Fadhil Nugroho, a Finance Management graduate from Muhammadiyah University of Surakarta. Specialized in Financial Data Analysis, Data Entry, and Administration.",
     "ogTitle": "Muhammad Arifin | Portfolio",
-    "ogDescription": "Portfolio of Muhammad Arifin Fadhil Nughroho."
+    "ogDescription": "Portfolio of Muhammad Arifin Fadhil Nugroho."
   },
   "navbar": {
     "home": "Home",
@@ -46,7 +46,7 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Muhammad Arifin <gradient>Fadhil Nughroho</gradient>",
+    "subtitle": "Muhammad Arifin <gradient>Fadhil Nugroho</gradient>",
     "viewResume": "View CV / Resume",
     "desc": "Hi! I'm <name>Arifin</name>, a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
     "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
