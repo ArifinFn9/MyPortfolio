@@ -73,7 +73,7 @@ export default function ProjectDetailPage() {
   const period = "2025";
   const metrics = project.metrics || [];
   const ratios = project.ratios || [];
-  const quarterData = project.quarterData || [];
+  const financialStatement = project.financialStatement || [];
 
   return (
     <main className="min-h-screen pt-24 md:pt-32 pb-20 px-6 relative overflow-hidden">
@@ -128,24 +128,43 @@ export default function ProjectDetailPage() {
         {/* KPI Metrics Cards */}
         {metrics.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-14">
-            {metrics.map((metric, idx) => (
-              <div
-                key={idx}
-                className="glass-card rounded-2xl p-4 md:p-5 space-y-2"
-              >
-                <p className="text-xs font-bold uppercase tracking-wider text-zinc-500">
-                  {metric.label}
-                </p>
-                <p className="text-xl md:text-2xl font-black text-white tracking-tight">
-                  {metric.value}
-                </p>
-                <div className={`inline-flex items-center gap-1 text-xs font-bold ${metric.up ? 'text-emerald-400' : 'text-red-400'}`}>
-                  {metric.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                  <span>{metric.change}</span>
-                  <span className="text-zinc-600 font-medium ml-0.5">YoY</span>
+            {metrics.map((metric, idx) => {
+              // Localize labels for Indonesian
+              let displayLabel = metric.label;
+              if (locale === "id") {
+                const labelsMap = {
+                  "Revenue": "Pendapatan",
+                  "Net Profit": "Laba Bersih",
+                  "Current Ratio": "Rasio Lancar",
+                  "Debt-to-Equity": "Rasio Utang/Ekuitas (DER)",
+                };
+                displayLabel = labelsMap[metric.label] || metric.label;
+              }
+
+              // Localize values (Million M to Million Jt for ID and change decimal dots to commas)
+              const displayValue = locale === "id"
+                ? metric.value.replace(/\bM\b/g, "Jt").replace(/\./g, ",")
+                : metric.value;
+
+              return (
+                <div
+                  key={idx}
+                  className="glass-card rounded-2xl p-4 md:p-5 space-y-2"
+                >
+                  <p className="text-xs font-bold uppercase tracking-wider text-zinc-500">
+                    {displayLabel}
+                  </p>
+                  <p className="text-xl md:text-2xl font-black text-white tracking-tight">
+                    {displayValue}
+                  </p>
+                  <div className={`inline-flex items-center gap-1 text-xs font-bold ${metric.up ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {metric.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+                    <span>{metric.change.replace(/\./g, ",")}</span>
+                    <span className="text-zinc-600 font-medium ml-0.5">YoY</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -207,6 +226,7 @@ export default function ProjectDetailPage() {
                         </th>
                         <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2023</th>
                         <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2024</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2025</th>
                         <th className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">Trend</th>
                       </tr>
                     </thead>
@@ -215,14 +235,15 @@ export default function ProjectDetailPage() {
                         <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
                           <td className="px-4 md:px-5 py-3.5 text-zinc-300 font-medium">{ratio.name}</td>
                           <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2023}</td>
-                          <td className="px-4 md:px-5 py-3.5 text-right text-white font-mono text-xs font-bold">{ratio.y2024}</td>
+                          <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2024}</td>
+                          <td className="px-4 md:px-5 py-3.5 text-right text-white font-mono text-xs font-bold">{ratio.y2025}</td>
                           <td className="px-4 md:px-5 py-3.5 text-center">
                             {ratio.status === 'up' ? (
                               <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-bold">
                                 <TrendingUp className="w-3.5 h-3.5" />
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-bold">
+                              <span className="inline-flex items-center gap-1 text-red-400 text-xs font-bold">
                                 <TrendingDown className="w-3.5 h-3.5" />
                               </span>
                             )}
@@ -235,33 +256,47 @@ export default function ProjectDetailPage() {
               </div>
             )}
 
-            {/* Quarterly Revenue Breakdown */}
-            {quarterData.length > 0 && (
+            {/* Detail Financial Statement Table */}
+            {financialStatement.length > 0 && (
               <div className="space-y-4">
                 <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                  {locale === "id" ? "Pendapatan Per Kuartal" : "Quarterly Revenue Breakdown"}
+                  {locale === "id" ? "Detail Laporan Keuangan" : "Detail Financial Statement"}
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {quarterData.map((q, idx) => (
-                    <div key={idx} className="glass-card rounded-xl p-4 space-y-2.5">
-                      <p className="text-[10px] font-mono font-black uppercase tracking-widest text-zinc-500">
-                        {q.q}
-                      </p>
-                      <div>
-                        <p className="text-xs text-zinc-500 font-semibold mb-0.5">
-                          {locale === "id" ? "Pendapatan" : "Revenue"}
-                        </p>
-                        <p className="text-base md:text-lg font-black text-white">{q.revenue}</p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-zinc-500 font-semibold mb-0.5">
-                          {locale === "id" ? "Laba Bersih" : "Net Profit"}
-                        </p>
-                        <p className="text-sm font-bold text-emerald-400">{q.profit}</p>
-                      </div>
-                    </div>
-                  ))}
+                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-white/[0.04]">
+                        <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Tahun" : "Year"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Pendapatan" : "Revenue"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Bersih" : "Net Profit"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Kotor" : "Gross Profit"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Aset" : "Total Assets"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Ekuitas" : "Total Equity"}</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">DER</th>
+                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">NPM</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {financialStatement.map((row, idx) => (
+                        <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                          <td className="px-4 py-3.5 pl-5 text-white font-bold">{row.year}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.revenue}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.netProfit}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.grossProfit}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalAssets}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalEquity}</td>
+                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.der}</td>
+                          <td className="px-4 py-3.5 text-right text-white font-mono text-xs font-bold pr-5">{row.npm}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
+                <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
+                  {locale === "id"
+                    ? "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
+                    : "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"}
+                </p>
               </div>
             )}
 

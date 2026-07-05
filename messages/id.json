@@ -171,17 +171,17 @@
     },
     "items": {
       "financial_dashboard": {
-        "title": "Dashboard Analisis Laporan Keuangan",
-        "description": "Membangun dashboard analisis laporan keuangan perusahaan terintegrasi menggunakan Microsoft Excel dan Power BI untuk melacak tren arus kas, likuiditas, dan profitabilitas secara interaktif.",
-        "problem": "Menganalisis data keuangan perusahaan selama beberapa tahun biasanya lambat dan membutuhkan spreadsheet yang rumit, sehingga menyulitkan manajemen untuk mendeteksi hambatan arus kas dan pergeseran profitabilitas secara cepat.",
-        "solution": "Membangun model data terpadu menggunakan Power Query untuk membaca laporan keuangan perusahaan. Membuat formula DAX Power BI khusus untuk menghitung rasio likuiditas, profitabilitas, leverage, serta mendesain visualisasi tren arus kas yang interaktif.",
-        "impact": "Menyediakan akses visual instan bagi eksekutif ke indikator kesehatan keuangan yang kritis, mempercepat proses analisis tren keuangan.",
+        "title": "Dasbor Kinerja Keuangan PT Indofood CBP Tbk",
+        "description": "Dasbor analisis keuangan PT Indofood CBP Tbk (2023–2025) menggunakan Power BI untuk memantau tren profitabilitas, likuiditas, dan leverage secara dinamis.",
+        "problem": "Menilai kinerja keuangan emiten FMCG raksasa seperti PT Indofood CBP Tbk dari spreadsheet laporan keuangan mentah seringkali membutuhkan waktu lama. Manajemen membutuhkan visibilitas cepat untuk mendeteksi dampak kenaikan beban pokok penjualan (COGS) terhadap margin laba bersih, serta tren perbandingan struktur liabilitas vs ekuitas.",
+        "solution": "Mengintegrasikan neraca dan laporan laba rugi 3 tahun (2023–2025) ke dalam model data Power BI. Menulis kalkulasi DAX kustom untuk melacak profitabilitas (GPM, NPM), likuiditas (Current Ratio), dan leverage (DER, DAR) serta mendesain dasbor interaktif dengan visualisasi tren aset dan liabilitas.",
+        "impact": "Menyajikan wawasan instan bahwa laba bersih tumbuh pesat sebesar ▲ 30.3% di tahun 2025 menjadi Rp9.22M berkat peningkatan efisiensi margin operasional (NPM naik ke 12.3%), dengan rasio likuiditas sangat kuat di angka 4.15x dan debt leverage (DER) yang sehat sebesar 0.84x.",
         "steps": [
-          "Mengekstrak dan menghubungkan data mentah laporan laba rugi, neraca, dan arus kas multi-tahun menggunakan Power Query.",
-          "Melakukan pembersihan data, penanganan nilai kosong (null), serta pembuatan skema data Star Schema terstruktur.",
-          "Merancang relasi tabel fakta transaksi dengan tabel dimensi waktu (Calendar), kategori akun, dan entitas divisi.",
-          "Menyusun perhitungan DAX kustom untuk rasio Profitabilitas (Gross/Net Margin), Likuiditas (Current Ratio), dan Cash Flow Runway.",
-          "Mendesain tata letak dasbor interaktif di Power BI dengan navigasi dinamis dan filter per divisi/tahun."
+          "Ekstraksi data laporan posisi keuangan (neraca) dan laporan laba rugi tahunan PT Indofood CBP Tbk (2023–2025) dari BEI.",
+          "Melakukan pembersihan dan transformasi data nominal (menghapus format desimal mentah) menggunakan Power Query.",
+          "Merancang pemodelan data terstruktur untuk mengaitkan pos laporan keuangan historis dengan tabel dimensi kalender.",
+          "Membuat formula kalkulasi DAX untuk menghitung NPM, GPM, ROE, Current Ratio, dan Debt-to-Equity Ratio (DER).",
+          "Mendesain kanvas dasbor interaktif di Power BI Desktop dengan visualisasi tren likuiditas, solvabilitas, dan diagram struktur aset."
         ]
       },
       "data_cleaning": {
@@ -219,7 +219,7 @@
         "solution": "[Ganti Teks Ini] Solusi yang Anda buat. Contoh: Mengintegrasikan seluruh data Excel menggunakan Power Query, membangun skema model data bintang, dan menghitung metrik rasio keuangan menggunakan DAX.",
         "impact": "[Ganti Teks Ini] Dampak nyata hasil proyek Anda. Contoh: Pembuatan laporan bulanan otomatis menghemat 80% waktu pengerjaan manual dan menyajikan visualisasi tren margin laba secara instan.",
         "steps": [
-          "[Langkah 1: Pengumpulan Data] Unduh laporan keuangan tahunan PDF/Excel resmi dari IDX untuk perusahaan pilihan Anda (misal: Kalbe Farma, Indofood, dll).",
+          "[Langkah 1: Pengumpulan Data] Unduh spreadsheet laporan keuangan tahunan resmi dari IDX untuk perusahaan pilihan Anda (misal: Kalbe Farma, Indofood, dll).",
           "[Langkah 2: ETL & Cleaning] Masukkan data ke Excel/Power Query untuk membersihkan kolom kosong, menyaring baris tidak perlu, dan menyelaraskan penanggalan.",
           "[Langkah 3: Pemodelan Data] Hubungkan tabel data laporan laba rugi dan neraca dengan tabel kalender dimensi waktu di Power BI.",
           "[Langkah 4: Rumus Finansial] Tulis formula DAX kustom untuk menghitung NPM, ROE, ROA, dan DER guna melihat rasio kesehatan keuangan.",

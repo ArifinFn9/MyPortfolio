@@ -171,17 +171,17 @@
     },
     "items": {
       "financial_dashboard": {
-        "title": "Financial Statement Analysis Dashboard",
-        "description": "Built an integrated financial statement analysis dashboard using Microsoft Excel and Power BI to interactively track cash flow, liquidity, and profitability trends.",
-        "problem": "Analyzing corporate financial data across multiple years is typically slow and spreadsheet-heavy, making it difficult for management to quickly spot key cash flow bottlenecks and margin shifts.",
-        "solution": "Built a unified data model using Power Query to ingest multi-year corporate financial statements. Programmed custom Power BI DAX formulas to calculate financial ratios (liquidity, profitability, leverage) and designed an interactive dashboard showcasing margins and cash flow trends.",
-        "impact": "Provided executives with instant, visual access to critical financial health indicators, reducing report preparation time and speeding up trend analysis.",
+        "title": "PT Indofood CBP Tbk Financial Performance Dashboard",
+        "description": "A Power BI financial performance dashboard of PT Indofood CBP Tbk (2023–2025) to monitor profitability, liquidity, and leverage trends.",
+        "problem": "Assessing the financial health of a giant FMCG emiten like PT Indofood CBP Tbk from raw financial statement spreadsheets is often slow and cumbersome. Management required instant visibility to track the impact of rising Cost of Goods Sold (COGS) on net margins and compare multi-year debt leverage vs equity structures.",
+        "solution": "Integrated 3-year balance sheets and income statements (2023–2025) into a unified Power BI data model. Built custom DAX measures for profitability (GPM, NPM), liquidity (Current Ratio), and leverage (DER, DAR) while designing an interactive layout featuring asset/liability breakdowns.",
+        "impact": "Delivered instant visibility showing that net profit grew significantly by ▲ 30.3% in 2025 to Rp9.22M due to operating margin efficiency (NPM rose to 12.3%), backed by an exceptionally strong liquidity position (Current Ratio of 4.15x) and a healthy debt leverage (DER) of 0.84x.",
         "steps": [
-          "Extracting and connecting raw multi-year financial statements data using Power Query.",
-          "Performing data cleaning, null values handling, and designing a structured Star Schema data model.",
-          "Establishing relationships between transaction fact tables and dimension tables (Calendar, accounts, divisions).",
-          "Developing custom DAX calculations for Profitability (Gross/Net Margin), Liquidity (Current Ratio), and Cash Flow Runway.",
-          "Designing an interactive Power BI dashboard with dynamic navigation and division/year filters."
+          "Extracting annual balance sheets and income statements of PT Indofood CBP Tbk (2023–2025) from the IDX.",
+          "Performing data cleaning and nominal unit transformations (removing raw decimal figures) using Power Query.",
+          "Designing a structured star schema to link historical financial statement lines with dimension calendar tables.",
+          "Developing custom DAX measures to calculate NPM, GPM, ROE, Current Ratio, and Debt-to-Equity Ratio (DER).",
+          "Designing the interactive dashboard layout in Power BI Desktop featuring liquidity, solvency, and asset breakdowns."
         ]
       },
       "data_cleaning": {
@@ -219,7 +219,7 @@
         "solution": "[Replace This Text] The solution you created. Example: Integrated Excel data using Power Query, designed a star schema data model, and calculated financial ratios using DAX.",
         "impact": "[Replace This Text] The tangible outcome of your project. Example: Automatic monthly reporting saved 80% of manual effort and provided instant profit margin trend visibility.",
         "steps": [
-          "[Step 1: Data Collection] Download official financial statement PDF/Excel files from IDX for your chosen company (e.g. Kalbe Farma, Indofood).",
+          "[Step 1: Data Collection] Download official financial statement spreadsheet files from IDX for your chosen company (e.g. Kalbe Farma, Indofood).",
           "[Step 2: ETL & Cleaning] Load data into Excel/Power Query to clean empty columns, filter unnecessary rows, and format dates.",
           "[Step 3: Data Modeling] Establish relationships between Balance Sheet and Income Statement fact tables with a dimension Calendar table in Power BI.",
           "[Step 4: Financial Ratios] Write custom DAX measures for Net Profit Margin, Return on Equity, Return on Assets, and Debt-to-Equity to analyze health.",

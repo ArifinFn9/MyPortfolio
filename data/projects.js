@@ -2,32 +2,30 @@ export const projects = [
   {
     id: 'financial_dashboard',
     tech: ['Microsoft Excel', 'Power BI'],
-    githubUrl: 'https://github.com/arifinfn9',
+    githubUrl: 'https://github.com/arifinfn9/financial-statement-analysis',
     liveUrl: '',
     image: '/assets/project1.png',
     hasDetails: true,
     // KPI metrics displayed as highlight cards
     metrics: [
-      { label: 'Revenue', value: 'Rp 12.8 M', change: '+18.4%', up: true },
-      { label: 'Net Profit', value: 'Rp 2.1 M', change: '+24.6%', up: true },
-      { label: 'Current Ratio', value: '1.85', change: '+0.32', up: true },
-      { label: 'Debt-to-Equity', value: '0.47', change: '-0.15', up: true },
+      { label: 'Revenue', value: 'Rp 74.85 M', change: '+3.10%', up: true },
+      { label: 'Net Profit', value: 'Rp 9.22 M', change: '+30.30%', up: true },
+      { label: 'Current Ratio', value: '4.15x', change: '+0.06', up: true },
+      { label: 'Debt-to-Equity', value: '0.84x', change: '-0.04', up: true },
     ],
-    // Financial ratios table data
+    // Financial ratios table data covering 3 years
     ratios: [
-      { name: 'Gross Profit Margin', y2023: '32.1%', y2024: '35.8%', status: 'up' },
-      { name: 'Net Profit Margin', y2023: '12.4%', y2024: '16.7%', status: 'up' },
-      { name: 'Return on Assets (ROA)', y2023: '8.2%', y2024: '10.5%', status: 'up' },
-      { name: 'Return on Equity (ROE)', y2023: '14.6%', y2024: '18.3%', status: 'up' },
-      { name: 'Current Ratio', y2023: '1.53', y2024: '1.85', status: 'up' },
-      { name: 'Debt-to-Equity Ratio', y2023: '0.62', y2024: '0.47', status: 'down' },
+      { name: 'Gross Profit Margin', y2023: '37.00%', y2024: '37.04%', y2025: '35.22%', status: 'down' },
+      { name: 'Net Profit Margin', y2023: '10.29%', y2024: '9.75%', y2025: '12.32%', status: 'up' },
+      { name: 'Return on Equity (ROE)', y2023: '11.26%', y2024: '10.56%', y2025: '12.52%', status: 'up' },
+      { name: 'Current Ratio', y2023: '3.51', y2024: '4.09', y2025: '4.15', status: 'up' },
+      { name: 'Debt-to-Equity Ratio', y2023: '0.92', y2024: '0.88', y2025: '0.84', status: 'down' },
     ],
-    // Revenue breakdown by quarter
-    quarterData: [
-      { q: 'Q1 2024', revenue: 'Rp 2.8 M', profit: 'Rp 420 Jt' },
-      { q: 'Q2 2024', revenue: 'Rp 3.1 M', profit: 'Rp 510 Jt' },
-      { q: 'Q3 2024', revenue: 'Rp 3.4 M', profit: 'Rp 580 Jt' },
-      { q: 'Q4 2024', revenue: 'Rp 3.5 M', profit: 'Rp 630 Jt' },
+    // Detailed financial statement items
+    financialStatement: [
+      { year: '2025', revenue: 'Rp74,850,923', netProfit: 'Rp9,224,927', grossProfit: 'Rp26,360,420', totalAssets: 'Rp135,544,351', totalEquity: 'Rp73,683,004', der: '0.84', npm: '12.3%' },
+      { year: '2024', revenue: 'Rp72,597,188', netProfit: 'Rp7,079,369', grossProfit: 'Rp26,893,089', totalAssets: 'Rp126,040,905', totalEquity: 'Rp67,043,885', der: '0.88', npm: '9.8%' },
+      { year: '2023', revenue: 'Rp67,909,901', netProfit: 'Rp6,990,572', grossProfit: 'Rp25,126,260', totalAssets: 'Rp119,267,076', totalEquity: 'Rp62,104,033', der: '0.92', npm: '10.3%' },
     ],
   },
 
