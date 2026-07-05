@@ -50,8 +50,8 @@ const Tilt = ({ children, className }) => {
     y.set(0);
   };
 
-  const rotateX = useTransform(mouseY, [ -100, 100 ], [ 15, -15 ]);
-  const rotateY = useTransform(mouseX, [ -100, 100 ], [ -15, 15 ]);
+  const rotateX = useTransform(mouseY, [-100, 100], [15, -15]);
+  const rotateY = useTransform(mouseX, [-100, 100], [-15, 15]);
 
   return (
     <motion.div
@@ -287,6 +287,6 @@ export default function Hero() {
           </Tilt>
         </motion.div>
       </div>
-      </section>
+    </section>
   );
 }

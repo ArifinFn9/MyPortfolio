@@ -59,7 +59,7 @@ export default function AboutPage() {
                   src="/assets/me.png"
                   alt="Muhammad Arifin"
                   fill
-
+                  sizes="(max-width: 768px) 512px, 640px"
                   priority
                   className="object-cover transition-transform duration-700 group-hover:scale-120 scale-105"
                   style={{

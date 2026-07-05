@@ -66,7 +66,7 @@ export default function ExperienceSection() {
           return (
             <div key={key} className="relative pl-8 md:pl-12 group/timeline">
               {/* Timeline Dot */}
-              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white/30 group-hover/timeline:bg-white shadow-none group-hover/timeline:shadow-[0_0_12px_rgba(255,255,255,0.8)] scale-90 group-hover/timeline:scale-110 transition-all duration-300" />
+              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white/30 scale-90 transition-all duration-300 timeline-dot" />
 
               <Card
                 className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"
@@ -136,39 +136,39 @@ export default function ExperienceSection() {
         })}
       </div>
 
-        {/* Freelance CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -5, transition: { duration: 0.2 } }}
-          className="glass-card mt-16 p-8 md:p-10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
-        >
-          {/* Subtle hover white glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      {/* Freelance CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        whileHover={{ y: -5, transition: { duration: 0.2 } }}
+        className="glass-card mt-16 p-8 md:p-10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
+      >
+        {/* Subtle hover white glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-          <div className="relative z-10">
-            <div className="flex justify-center mb-4">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-              </span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              {t("cta.title")}
-            </h3>
-            <p className="text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
-              {t("cta.desc")}
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:bg-gray-200 transition-all active:scale-95 duration-150"
-            >
-              {t("cta.button")}
-            </a>
+        <div className="relative z-10">
+          <div className="flex justify-center mb-4">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
           </div>
-        </motion.div>
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            {t("cta.title")}
+          </h3>
+          <p className="text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
+            {t("cta.desc")}
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:bg-gray-200 transition-all active:scale-95 duration-150"
+          >
+            {t("cta.button")}
+          </a>
+        </div>
+      </motion.div>
     </Section>
   );
 }
