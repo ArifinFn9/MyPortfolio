@@ -15,7 +15,7 @@
     "brand": "M. Arifin,"
   },
   "footer": {
-    "brand": "Muhammad Arifin",
+    "brand": "Muhammad Arifin Fadhil Nugroho",
     "desc": "Lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Memiliki pengetahuan dalam Analisis Laporan Keuangan, Data Entri, dan Administrasi Kantor.",
     "navTitle": "Navigasi",
     "connTitle": "Hubungi",
@@ -185,8 +185,8 @@
         ]
       },
       "data_cleaning": {
-        "title": "Pembersihan Data Transaksi Keuangan",
-        "description": "Merancang alur pembersihan data otomatis menggunakan Power Query di Microsoft Excel untuk membersihkan dan menstandarisasi data transaksi mentah yang berantakan.",
+        "title": "Otomasi Pembersihan & Audit Data Keuangan",
+        "description": "Merancang alur pembersihan data otomatis menggunakan Power Query di Microsoft Excel untuk memproses dan menstandarisasi data transaksi secara instan.",
         "problem": "Data transaksi mentah yang diekspor dari sistem akuntansi lama seringkali kotor dengan spasi berlebih, data ganda, format tanggal tidak konsisten, dan struktur sel yang berantakan.",
         "solution": "Merancang template audit data otomatis di Microsoft Excel dengan Power Query. Membuat rutinitas validasi data untuk memisahkan anomali, merapikan teks, dan menyelaraskan tanggal secara otomatis tanpa intervensi manual.",
         "impact": "Meminimalisir kesalahan persiapan data, meniadakan proses pemeriksaan manual, dan menghasilkan dataset bersih yang siap pakai 100% untuk laporan keuangan.",

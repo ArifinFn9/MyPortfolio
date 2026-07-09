@@ -15,7 +15,7 @@
     "brand": "M. Arifin,"
   },
   "footer": {
-    "brand": "Muhammad Arifin",
+    "brand": "Muhammad Arifin Fadhil Nugroho",
     "desc": "Finance Management graduate from Muhammadiyah University of Surakarta. Possesses knowledge of Financial Statement Analysis, Data Entry, and Office Administration",
     "navTitle": "Navigation",
     "connTitle": "Connect",
@@ -185,8 +185,8 @@
         ]
       },
       "data_cleaning": {
-        "title": "Financial Transaction Data Cleaning",
-        "description": "Designed an automated data auditing and cleaning pipeline using Power Query in Microsoft Excel to clean and standardize raw transactional data.",
+        "title": "Automated Financial Data Cleansing & Audit Pipeline",
+        "description": "Designed an automated data auditing and cleaning pipeline using Power Query in Microsoft Excel to instantly process and standardize raw transaction data.",
         "problem": "Raw transactional data exported from legacy banking and accounting systems is frequently corrupted with trailing whitespace, duplicate records, incorrect formats, and misaligned cell structures.",
         "solution": "Designed a robust, automated data auditing template in Microsoft Excel using Power Query. Created automatic data validation routines to isolate anomalies, correct text cases, and align dates without manual editing.",
         "impact": "Minimized data preparation errors, eliminated manual checking, and prepared 100% clean datasets for reporting and analytics.",

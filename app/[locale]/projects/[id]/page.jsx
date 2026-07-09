@@ -70,10 +70,12 @@ export default function ProjectDetailPage() {
     console.error("Failed to load steps:", e);
   }
 
-  const period = "2025";
+  const period = project.period || "2025";
   const metrics = project.metrics || [];
   const ratios = project.ratios || [];
   const financialStatement = project.financialStatement || [];
+  const cleansingRules = project.cleansingRules || [];
+  const cleansingStats = project.cleansingStats || [];
 
   return (
     <main className="min-h-screen pt-24 md:pt-32 pb-20 px-6 relative overflow-hidden">
@@ -107,14 +109,14 @@ export default function ProjectDetailPage() {
         </div>
 
         {/* Cover Preview Image */}
-        <div className="relative aspect-[16/9] w-full bg-zinc-900 border border-white/10 rounded-[1.75rem] overflow-hidden mb-10 md:mb-14 shadow-2xl">
+        <div className={`relative ${project.aspectRatio || 'aspect-[16/9]'} w-full bg-zinc-900 border border-white/10 rounded-[1.75rem] overflow-hidden mb-10 md:mb-14 shadow-2xl`}>
           {project.image ? (
             <Image
               src={project.image}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 960px"
-              className="object-cover object-top hover:scale-[1.02] transition-transform duration-700 ease-out"
+              className={`${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} object-top hover:scale-[1.02] transition-transform duration-700 ease-out`}
               priority
             />
           ) : (
@@ -211,93 +213,168 @@ export default function ProjectDetailPage() {
               </div>
             )}
 
-            {/* Financial Ratios Table */}
-            {ratios.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                  {locale === "id" ? "Tabel Rasio Keuangan" : "Financial Ratios Table"}
-                </h2>
-                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-white/[0.04]">
-                        <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
-                          {locale === "id" ? "Rasio" : "Ratio"}
-                        </th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2023</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2024</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2025</th>
-                        <th className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">Trend</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                      {ratios.map((ratio, idx) => (
-                        <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                          <td className="px-4 md:px-5 py-3.5 text-zinc-300 font-medium">{ratio.name}</td>
-                          <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2023}</td>
-                          <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2024}</td>
-                          <td className="px-4 md:px-5 py-3.5 text-right text-white font-mono text-xs font-bold">{ratio.y2025}</td>
-                          <td className="px-4 md:px-5 py-3.5 text-center">
-                            {ratio.status === 'up' ? (
-                              <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-bold">
-                                <TrendingUp className="w-3.5 h-3.5" />
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1 text-red-400 text-xs font-bold">
-                                <TrendingDown className="w-3.5 h-3.5" />
-                              </span>
-                            )}
-                          </td>
+            {/* Financial Ratios or Data Validation Rules Table */}
+            {project.id === 'data_cleaning' ? (
+              cleansingRules.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
+                    {locale === "id" ? "Aturan Validasi & Pembersihan Data" : "Data Validation & Cleansing Rules"}
+                  </h2>
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-white/[0.04]">
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
+                            {locale === "id" ? "Kolom Data" : "Data Field"}
+                          </th>
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
+                            {locale === "id" ? "Masalah Umum" : "Common Issue"}
+                          </th>
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5 pr-5">
+                            {locale === "id" ? "Fungsi Power Query" : "Power Query Function"}
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {cleansingRules.map((rule, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-4 md:px-5 py-3.5 text-white font-semibold">{rule.field}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-zinc-400 text-xs">{rule.issue}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-emerald-400 font-mono text-xs pr-5">{rule.transformation}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
+              )
+            ) : (
+              ratios.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
+                    {locale === "id" ? "Tabel Rasio Keuangan" : "Financial Ratios Table"}
+                  </h2>
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-white/[0.04]">
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
+                            {locale === "id" ? "Rasio" : "Ratio"}
+                          </th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2023</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2024</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2025</th>
+                          <th className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">Trend</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {ratios.map((ratio, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-4 md:px-5 py-3.5 text-zinc-300 font-medium">{ratio.name}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2023}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-right text-zinc-400 font-mono text-xs">{ratio.y2024}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-right text-white font-mono text-xs font-bold">{ratio.y2025}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-center">
+                              {ratio.status === 'up' ? (
+                                <span className="inline-flex items-center gap-1 text-emerald-400 text-xs font-bold">
+                                  <TrendingUp className="w-3.5 h-3.5" />
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 text-red-400 text-xs font-bold">
+                                  <TrendingDown className="w-3.5 h-3.5" />
+                                </span>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )
             )}
 
-            {/* Detail Financial Statement Table */}
-            {financialStatement.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                  {locale === "id" ? "Detail Laporan Keuangan" : "Detail Financial Statement"}
-                </h2>
-                <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="bg-white/[0.04]">
-                        <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Tahun" : "Year"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Pendapatan" : "Revenue"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Bersih" : "Net Profit"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Kotor" : "Gross Profit"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Aset" : "Total Assets"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Ekuitas" : "Total Equity"}</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">DER</th>
-                        <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">NPM</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-white/5">
-                      {financialStatement.map((row, idx) => (
-                        <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                          <td className="px-4 py-3.5 pl-5 text-white font-bold">{row.year}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.revenue}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.netProfit}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.grossProfit}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalAssets}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalEquity}</td>
-                          <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.der}</td>
-                          <td className="px-4 py-3.5 text-right text-white font-mono text-xs font-bold pr-5">{row.npm}</td>
+            {/* Detail Financial Statement or Data Cleansing Stats Table */}
+            {project.id === 'data_cleaning' ? (
+              cleansingStats.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
+                    {locale === "id" ? "Statistik Volume & Kebersihan Data" : "Data Volume & Cleansing Statistics"}
+                  </h2>
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-white/[0.04]">
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Bulan" : "Month"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Data Mentah" : "Raw Rows"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Duplikat Dihapus" : "Duplicates Removed"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Format Diperbaiki" : "Errors Fixed"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">{locale === "id" ? "Data Bersih" : "Cleaned Rows"}</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {cleansingStats.map((row, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-4 py-3.5 pl-5 text-white font-bold">{row.month}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.rawRows}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-400 font-mono text-xs">{row.duplicates}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-400 font-mono text-xs">{row.errors}</td>
+                            <td className="px-4 py-3.5 text-right text-emerald-400 font-mono text-xs font-bold pr-5">{row.cleanedRows}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
+                    {locale === "id"
+                      ? "*Catatan: Seluruh data di atas disimulasikan berdasarkan log bulanan pemrosesan data transaksi."
+                      : "*Note: All data above is simulated based on monthly transaction data cleaning logs."}
+                  </p>
                 </div>
-                <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
-                  {locale === "id"
-                    ? "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
-                    : "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"}
-                </p>
-              </div>
+              )
+            ) : (
+              financialStatement.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
+                    {locale === "id" ? "Detail Laporan Keuangan" : "Detail Financial Statement"}
+                  </h2>
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-white/[0.04]">
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Tahun" : "Year"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Pendapatan" : "Revenue"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Bersih" : "Net Profit"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Kotor" : "Gross Profit"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Aset" : "Total Assets"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Ekuitas" : "Total Equity"}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">DER</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">NPM</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {financialStatement.map((row, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-4 py-3.5 pl-5 text-white font-bold">{row.year}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.revenue}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.netProfit}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.grossProfit}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalAssets}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.totalEquity}</td>
+                            <td className="px-4 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.der}</td>
+                            <td className="px-4 py-3.5 text-right text-white font-mono text-xs font-bold pr-5">{row.npm}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
+                    {locale === "id"
+                      ? "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
+                      : "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"}
+                  </p>
+                </div>
+              )
             )}
 
             {/* Solution & Implementation */}
