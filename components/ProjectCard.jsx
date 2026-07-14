@@ -50,14 +50,14 @@ export default function ProjectCard({ project, index = 0 }) {
       <div className={`pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${accent} opacity-80`} />
 
       <div className="relative z-10 flex h-full flex-col">
-        <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-zinc-900">
+        <div className="relative aspect-[16/11] overflow-hidden bg-zinc-900">
           {project.image ? (
             <Image
               src={project.image}
               alt={title}
               fill
               sizes="(max-w-768px) 100vw, 33vw"
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-top scale-[1.005] [backface-visibility:hidden] will-change-transform transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
           ) : (
@@ -65,7 +65,9 @@ export default function ProjectCard({ project, index = 0 }) {
               <span className="text-zinc-500">No Preview</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent pointer-events-none" />
+          {/* Absolute bottom border overlay to prevent sub-pixel hover blinking */}
+          <div className="absolute inset-x-0 bottom-0 h-[1px] bg-white/10 z-20 pointer-events-none" />
           <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
             #{projectNumber}
           </div>

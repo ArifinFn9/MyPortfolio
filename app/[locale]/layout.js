@@ -30,6 +30,9 @@ export async function generateMetadata({ params }) {
     metadataBase: new URL('https://njenz.vercel.app'),
     title: meta.title,
     description: meta.description,
+    verification: {
+      google: 'w0sJTEejQ87iy4qE7HHMu6XtVeTuRo0YxUo8E-EKh4s',
+    },
     openGraph: {
       title: meta.ogTitle,
       description: meta.ogDescription,
