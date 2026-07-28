@@ -16,36 +16,52 @@ export default function ContactSection() {
     name: "",
     email: "",
     message: "",
+    botcheck: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Construct mailto link
-    const subject = encodeURIComponent(`Contact Form: Message from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
-    const mailtoLink = `mailto:${socials.email.url}?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "c092557e-e8d7-4cec-bd4c-c2c56955904f",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          botcheck: formData.botcheck ? "true" : "",
+        }),
+      });
 
-    // Open email client
-    window.location.href = mailtoLink;
-
-    // Small delay to show loading state
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormData({ name: "", email: "", message: "" });
-
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+      const result = await response.json();
+      if (result.success) {
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", message: "", botcheck: false });
+      } else {
+        alert(result.message || "Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      console.error("Web3Forms error:", error);
+      alert("Terjadi kesalahan koneksi. Silakan coba lagi.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -198,6 +214,14 @@ export default function ContactSection() {
                     onSubmit={handleSubmit}
                     className="space-y-6"
                   >
+                    <input
+                      type="checkbox"
+                      name="botcheck"
+                      className="hidden"
+                      style={{ display: "none" }}
+                      checked={formData.botcheck}
+                      onChange={handleChange}
+                    />
                     <div>
                       <label
                         htmlFor="name"
