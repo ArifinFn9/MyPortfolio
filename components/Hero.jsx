@@ -222,19 +222,35 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <Link href="#projects">
-              <Button className="h-12 px-8 rounded-full bg-white text-black hover:bg-gray-200 transition-colors font-medium">
-                {t("viewWork")}
-              </Button>
+            <Link 
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("projects");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth" });
+                  window.history.replaceState(null, "", "#projects");
+                }
+              }}
+            >
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.96 }}
+                className="h-12 px-8 rounded-full bg-white text-black font-semibold shadow-lg hover:bg-gray-100 hover:shadow-[0_0_25px_rgba(255,255,255,0.35)] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>{t("viewWork")}</span>
+              </motion.button>
             </Link>
-            <a
+            <motion.a
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-12 px-8 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] active:scale-95 transition-all duration-200 shimmer-btn-dark"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center justify-center h-12 px-8 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-200 shimmer-btn-dark"
             >
               {t("resume")}
-            </a>
+            </motion.a>
           </div>
         </motion.div>
 

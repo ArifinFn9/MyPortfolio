@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useRouter, usePathname } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
@@ -45,10 +45,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [hoveredPath, setHoveredPath] = useState(null);
+  const isManualScrollRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      if (isManualScrollRef.current) return;
 
       const sections = navItems.map((item) => item.path.replace("/", "").replace("#", ""));
       let current = "home";
@@ -58,7 +61,6 @@ export default function Navbar() {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // We look for the section closest to the top of the viewport
           const distance = Math.abs(rect.top);
           if (distance < minDistance) {
             minDistance = distance;
@@ -80,8 +82,13 @@ export default function Navbar() {
       const targetId = path.replace("/", "").replace("#", "");
       const element = document.getElementById(targetId);
       if (element) {
+        isManualScrollRef.current = true;
+        setActiveSection(targetId);
         element.scrollIntoView({ behavior: "smooth" });
         window.history.replaceState(null, "", `#${targetId}`);
+        setTimeout(() => {
+          isManualScrollRef.current = false;
+        }, 800);
       }
     }
   };
@@ -125,7 +132,7 @@ export default function Navbar() {
                   <motion.div
                     layoutId="activeMobileNav"
                     className="absolute inset-0 bg-white/10 rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 36, mass: 0.6 }}
                   />
                 )}
                 <item.icon className="w-5.5 h-5.5 relative z-10" />
@@ -198,8 +205,8 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="activeUnderline"
-                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-white rounded-full"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      className="absolute bottom-0 left-3 right-3 h-[2px] bg-white rounded-full pointer-events-none"
+                      transition={{ type: "spring", stiffness: 320, damping: 36, mass: 0.6 }}
                     />
                   )}
 

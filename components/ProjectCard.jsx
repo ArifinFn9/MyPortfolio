@@ -57,7 +57,7 @@ export default function ProjectCard({ project, index = 0 }) {
               alt={title}
               fill
               sizes="(max-w-768px) 100vw, 33vw"
-              className="object-cover object-top scale-[1.005] [backface-visibility:hidden] will-change-transform transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-top scale-[1.000] [backface-visibility:hidden] will-change-transform transition-transform duration-700 group-hover:scale-100"
               loading="lazy"
             />
           ) : (
@@ -112,11 +112,11 @@ export default function ProjectCard({ project, index = 0 }) {
                 className="flex items-center gap-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white group/link"
               >
                 <Github className="h-4 w-4" />
-                <span>Code</span>
+                <span>{t("detail.sourceCode")}</span>
               </Link>
             )}
 
-            {project.liveUrl && (
+            {project.liveUrl ? (
               <Link
                 href={project.liveUrl}
                 target="_blank"
@@ -128,7 +128,12 @@ export default function ProjectCard({ project, index = 0 }) {
                 <span>Live Demo</span>
                 <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
               </Link>
-            )}
+            ) : isClickable ? (
+              <span className="ml-auto flex items-center gap-1.5 text-xs md:text-sm font-semibold text-zinc-400 transition-colors group-hover:text-white">
+                <span>{t("detail.viewDetails")}</span>
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </span>
+            ) : null}
           </div>
         </div>
       </div>

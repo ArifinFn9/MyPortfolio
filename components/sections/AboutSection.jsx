@@ -140,15 +140,17 @@ export default function AboutSection() {
 
           {/* Social Links & CV Button */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-center md:justify-start">
-            <a
+            <motion.a
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
             >
               <FileText className="w-4 h-4" />
               <span>{t("viewResume")}</span>
-            </a>
+            </motion.a>
 
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               {[
