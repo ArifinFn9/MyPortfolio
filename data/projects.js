@@ -37,7 +37,7 @@ export const projects = [
     tech: ['Microsoft Excel', 'Power Query', 'Python'],
     githubUrl: 'https://github.com/arifinfn9',
     liveUrl: '',
-    image: '/assets/project2.png',
+    image: '/assets/project_wip.png',
     hasDetails: false,
     isWip: true,
     period: '2026',
