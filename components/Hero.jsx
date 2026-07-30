@@ -222,7 +222,7 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <Link 
+            <Link
               href="#projects"
               onClick={(e) => {
                 e.preventDefault();
