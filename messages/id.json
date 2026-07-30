@@ -19,7 +19,7 @@
     "desc": "Lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Memiliki pengetahuan dalam Analisis Laporan Keuangan, Data Entri, dan Administrasi Kantor.",
     "navTitle": "Navigasi",
     "connTitle": "Hubungi",
-    "rights": "© {year} Muhammad Arifin. Hak cipta dilindungi undang-undang.",
+    "rights": "© {year} Muhammad Arifin Fadhil Nugroho. Hak cipta dilindungi undang-undang.",
     "builtWith": "Dibuat dengan <heart></heart> menggunakan Next.js & Tailwind"
   },
   "hero": {
@@ -153,6 +153,8 @@
       "impactTitle": "Hasil & Dampak",
       "close": "Tutup"
     },
+    "wipBadge": "Dalam Pengerjaan",
+    "wipStatus": "Tahap Pengujian",
     "detail": {
       "back": "Kembali ke Proyek",
       "projectInfo": "Detail Proyek",
@@ -163,6 +165,7 @@
       "liveDemo": "Demo Live",
       "viewDetails": "Detail Proyek",
       "sourceCode": "Kode Sumber",
+      "soon": "Segera",
       "stepsTitle": "Langkah & Tahap Analisis",
       "problemTitle": "Masalah & Konteks",
       "solutionTitle": "Fitur Utama & Implementasi",
@@ -184,6 +187,10 @@
           "Membuat formula kalkulasi DAX untuk menghitung NPM, GPM, ROE, Current Ratio, dan Debt-to-Equity Ratio (DER).",
           "Mendesain kanvas dasbor interaktif di Power BI Desktop dengan visualisasi tren likuiditas, solvabilitas, dan diagram struktur aset."
         ]
+      },
+      "financial_automation_wip": {
+        "title": "Sistem Otomasi Entri Data & Validasi Laporan Keuangan",
+        "description": "Pengembangan skrip otomatisasi Python & Power Query untuk pembersihan, validasi, dan pengolahan data transaksi keuangan secara masif dengan presisi 100%."
       },
       "data_cleaning": {
         "title": "Otomasi Pembersihan & Audit Data Keuangan",

@@ -19,7 +19,7 @@
     "desc": "Finance Management graduate from Muhammadiyah University of Surakarta. Possesses knowledge of Financial Statement Analysis, Data Entry, and Office Administration",
     "navTitle": "Navigation",
     "connTitle": "Connect",
-    "rights": "© {year} Muhammad Arifin. All rights reserved.",
+    "rights": "© {year} Muhammad Arifin Fadhil Nugroho. All rights reserved.",
     "builtWith": "Built with <heart></heart> using Next.js & Tailwind"
   },
   "hero": {
@@ -153,6 +153,8 @@
       "impactTitle": "Results & Impact",
       "close": "Close"
     },
+    "wipBadge": "Work in Progress",
+    "wipStatus": "Under Testing",
     "detail": {
       "back": "Back to Projects",
       "projectInfo": "Project Details",
@@ -163,6 +165,7 @@
       "liveDemo": "Live Demo",
       "viewDetails": "View Details",
       "sourceCode": "Source Code",
+      "soon": "Soon",
       "stepsTitle": "Analysis Steps & Process",
       "problemTitle": "Problem & Context",
       "solutionTitle": "Key Features & Implementation",
@@ -184,6 +187,10 @@
           "Developing custom DAX measures to calculate NPM, GPM, ROE, Current Ratio, and Debt-to-Equity Ratio (DER).",
           "Designing the interactive dashboard layout in Power BI Desktop featuring liquidity, solvency, and asset breakdowns."
         ]
+      },
+      "financial_automation_wip": {
+        "title": "Financial Statement Data Entry & Validation Automation",
+        "description": "Development of automated Python & Power Query pipelines to bulk clean, validate, and process financial statement data with 100% precision."
       },
       "data_cleaning": {
         "title": "Automated Financial Data Cleansing & Audit Pipeline",
