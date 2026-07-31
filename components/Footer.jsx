@@ -187,7 +187,7 @@ export default function Footer() {
             exit={{ opacity: 0, y: 16, scale: 0.9 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={scrollToTop}
-            className="hidden md:flex fixed bottom-8 right-8 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-950/80 backdrop-blur-md text-zinc-300 hover:text-white border border-white/10 hover:border-white/20 shadow-2xl hover:shadow-purple-500/10 text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 group select-none"
+            className="hidden md:flex fixed bottom-8 right-8 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-950/95 text-zinc-300 hover:text-white border border-white/10 hover:border-white/20 shadow-2xl text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 group select-none"
             aria-label="Scroll to top"
           >
             <span>Back to top</span>

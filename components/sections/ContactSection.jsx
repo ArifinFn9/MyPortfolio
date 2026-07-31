@@ -168,139 +168,128 @@ export default function ContactSection() {
 
         {/* Right Column: Contact Form */}
         <div className="md:col-span-7 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="glass-card rounded-2xl p-8 md:p-10 relative overflow-hidden shadow-xl hover:border-white/20 transition-all duration-300 group"
-          >
-            {/* Subtle hover white glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-            <div className="relative z-10">
-              <AnimatePresence mode="wait">
-                {isSuccess ? (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="flex flex-col items-center justify-center py-10 text-center"
+          <Card className="!p-8 md:!p-10 relative overflow-hidden shadow-xl">
+            <AnimatePresence mode="wait">
+              {isSuccess ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="flex flex-col items-center justify-center py-10 text-center"
+                >
+                  <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mb-4 text-green-400">
+                    <CheckCircle className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">
+                    {t("successTitle")}
+                  </h3>
+                  <p className="text-gray-400">
+                    {t("successDesc")}
+                  </p>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setIsSuccess(false)}
+                    className="mt-6 text-purple-400 hover:text-purple-300"
                   >
-                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-4 text-white">
-                      <CheckCircle className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {t("successTitle")}
-                    </h3>
-                    <p className="text-gray-400">
-                      {t("successDesc")}
-                    </p>
-                    <Button
-                      variant="ghost"
-                      onClick={() => setIsSuccess(false)}
-                      className="mt-6 text-white hover:text-gray-300"
+                    {t("sendAnother")}
+                  </Button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden"
+                    style={{ display: "none" }}
+                    checked={formData.botcheck}
+                    onChange={handleChange}
+                  />
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
-                      {t("sendAnother")}
-                    </Button>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    key="form"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onSubmit={handleSubmit}
-                    className="space-y-6"
-                  >
+                      {t("nameLabel")}
+                    </label>
                     <input
-                      type="checkbox"
-                      name="botcheck"
-                      className="hidden"
-                      style={{ display: "none" }}
-                      checked={formData.botcheck}
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
                       onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/30 focus:ring-1 focus:ring-white/30 outline-none transition-all placeholder:text-gray-500 text-white"
+                      placeholder={t("namePlaceholder")}
                     />
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t("nameLabel")}
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/50 focus:ring-1 focus:ring-white/50 outline-none transition-all placeholder:text-zinc-600 text-white"
-                        placeholder={t("namePlaceholder")}
-                      />
-                    </div>
+                  </div>
 
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t("emailLabel")}
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/50 focus:ring-1 focus:ring-white/50 outline-none transition-all placeholder:text-zinc-600 text-white"
-                        placeholder={t("emailPlaceholder")}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-gray-300 mb-2"
-                      >
-                        {t("messageLabel")}
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 focus:border-white/50 focus:ring-1 focus:ring-white/50 outline-none transition-all placeholder:text-gray-600 text-white resize-none"
-                        placeholder={t("messagePlaceholder")}
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full h-12 rounded-xl bg-white text-black font-semibold shadow-lg hover:bg-gray-200 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:bg-white/20 disabled:text-gray-500 disabled:cursor-not-allowed duration-150"
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="block text-sm font-medium text-gray-300 mb-2"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          <span>{t("sending")}</span>
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          <span>{t("sendButton")}</span>
-                        </>
-                      )}
-                    </Button>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.div>
+                      {t("emailLabel")}
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-white/30 focus:ring-1 focus:ring-white/30 outline-none transition-all placeholder:text-gray-500 text-white"
+                      placeholder={t("emailPlaceholder")}
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-300 mb-2"
+                    >
+                      {t("messageLabel")}
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 focus:border-white/30 focus:ring-1 focus:ring-white/30 outline-none transition-all placeholder:text-gray-500 text-white resize-none"
+                      placeholder={t("messagePlaceholder")}
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <span>{t("sending")}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        <span>{t("sendButton")}</span>
+                      </>
+                    )}
+                  </Button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </Card>
         </div>
       </div>
     </Section>

@@ -111,10 +111,10 @@ export default function Navbar() {
       {/* Mobile Floating Bottom Navigation and Language Control Center */}
       <div
         key={`mobile-controls-${locale}`}
-        className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm flex items-center gap-2 select-none"
+        className="md:hidden fixed bottom-6 inset-x-0 flex justify-center items-center gap-2 z-50 w-full px-4 pointer-events-none select-none"
       >
         {/* Main Navigation Capsule */}
-        <div className="flex-1 flex items-center justify-around p-2 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+        <div className="pointer-events-auto flex-1 max-w-xs flex items-center justify-around p-2 rounded-full glass-nav backdrop-blur-[var(--nav-blur)] shadow-2xl">
           {mobileNavItems.map((item) => {
             const isActive = isHomePage && activeSection === item.path.replace("/", "").replace("#", "");
 
@@ -142,7 +142,7 @@ export default function Navbar() {
         </div>
 
         {/* Standalone Language Switcher Bubble */}
-        <div className="shrink-0 flex items-center justify-center p-2 rounded-full bg-zinc-950/80 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+        <div className="pointer-events-auto shrink-0 flex items-center justify-center p-2 rounded-full glass-nav backdrop-blur-[var(--nav-blur)] shadow-2xl">
           <button
             onClick={toggleLanguage}
             className="flex items-center justify-center w-10.5 h-10.5 rounded-full text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer bg-white/5 border border-white/5 active:scale-90 duration-200"
@@ -155,9 +155,9 @@ export default function Navbar() {
       {/* Desktop Floating Navbar (Top Center) */}
       <nav
         key={`desktop-${locale}`}
-        className="hidden md:flex fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 items-center select-none"
+        className="hidden md:flex fixed top-6 inset-x-0 justify-center z-50 pointer-events-none select-none"
       >
-        <div className="flex items-center gap-3.5 p-2 pr-4 rounded-full bg-[#070708]/85 backdrop-blur-[8px] border border-white/10 shadow-2xl">
+        <div className="pointer-events-auto flex items-center gap-3.5 p-2 pr-4 rounded-full glass-nav backdrop-blur-[var(--nav-blur)] shadow-2xl">
           {/* Logo Badge (AIZ style, MA for Muhammad Arifin) */}
           <Link
             href="/"

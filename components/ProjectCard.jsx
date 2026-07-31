@@ -49,11 +49,11 @@ export default function ProjectCard({ project, index = 0 }) {
   return (
     <Card
       onClick={handleCardClick}
-      className={`group relative h-full w-full overflow-hidden rounded-[1.75rem] border bg-zinc-950/70 p-0 shadow-2xl transition-colors duration-500 ${isWip
+      className={`group relative h-full w-full overflow-hidden rounded-[1.75rem] p-0 shadow-2xl transition-colors duration-500 ${isWip
         ? "border-amber-500/30 hover:border-amber-500/50 shadow-amber-950/20 cursor-default"
         : isClickable
-          ? "border-white/10 hover:border-white/20 cursor-pointer shadow-black/20"
-          : "border-white/10 cursor-default shadow-black/20"
+          ? "cursor-pointer shadow-black/20"
+          : "cursor-default shadow-black/20"
         }`}
     >
       <div className={`pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${accent} opacity-80`} />

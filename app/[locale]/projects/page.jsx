@@ -3,6 +3,7 @@
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 import Section from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
@@ -31,14 +32,14 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className="mx-auto w-full max-w-xs rounded-3xl glass-card px-5 py-4 shadow-2xl shadow-white/5 md:mx-0 md:w-auto md:min-w-44 text-center">
+          <Card className="mx-auto w-full max-w-xs rounded-3xl px-5 py-4 shadow-2xl shadow-white/5 md:mx-0 md:w-auto md:min-w-44 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-zinc-400">
               {t("total_projects")}
             </p>
             <p className="mt-2 text-4xl font-black text-white md:text-5xl">
               {projectCount}
             </p>
-          </div>
+          </Card>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">

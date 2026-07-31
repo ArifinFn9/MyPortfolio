@@ -38,6 +38,7 @@ export async function generateMetadata({ params }) {
       description: meta.ogDescription,
       type: 'website',
       locale: locale === 'id' ? 'id_ID' : 'en_US',
+      url: locale === 'id' ? 'https://njenz.vercel.app/id' : 'https://njenz.vercel.app/en',
       siteName: locale === 'id' ? 'Portofolio Arifin' : 'Arifin Portfolio',
     },
     twitter: {

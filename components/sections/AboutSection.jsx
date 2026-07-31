@@ -257,10 +257,7 @@ export default function AboutSection() {
         </h2>
 
         <div className="relative group p-[1px]">
-          <div className="relative p-8 rounded-2xl glass-card overflow-hidden h-full hover:border-white/20 transition-colors duration-300">
-            {/* Background Glow - Subtle White/Gray */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10 group-hover:bg-white/10 transition-colors duration-500" />
-
+          <Card className="p-8 h-full hover:border-white/20 transition-colors duration-300">
             {/* Header row: Icon, University, and Desktop Period */}
             <div className="flex items-center md:items-start justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
@@ -322,7 +319,7 @@ export default function AboutSection() {
                 </span>
               ))}
             </div>
-          </div>
+          </Card>
         </div>
       </motion.div>
     </Section>

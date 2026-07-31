@@ -137,16 +137,7 @@ export default function ExperienceSection() {
       </div>
 
       {/* Freelance CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        whileHover={{ y: -5, transition: { duration: 0.2 } }}
-        className="glass-card mt-16 p-8 md:p-10 text-center rounded-2xl relative overflow-hidden backdrop-blur-sm shadow-xl group hover:border-white/20 transition-all duration-300"
-      >
-        {/* Subtle hover white glow */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <Card className="mt-16 p-8 md:p-10 text-center">
 
         <div className="relative z-10">
           <div className="flex justify-center mb-4">
@@ -168,7 +159,7 @@ export default function ExperienceSection() {
             {t("cta.button")}
           </a>
         </div>
-      </motion.div>
+      </Card>
     </Section>
   );
 }

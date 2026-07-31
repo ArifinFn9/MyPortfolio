@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
 import Link from "next/link";
 import { Typewriter } from "react-simple-typewriter";
 import { useTranslations, useLocale } from "next-intl";
@@ -95,9 +96,9 @@ const OrbitIcon = ({ Icon, color, delay, radius }) => (
 // --- Code Window with Typing Effect ---
 const CodeWindow = ({ t }) => {
   return (
-    <div className="w-full bg-[#070708]/95 rounded-xl border border-white/10 shadow-2xl font-mono text-sm relative z-0 backdrop-blur-sm overflow-hidden transform-gpu">
+    <Card className="w-full font-mono text-sm relative z-0 overflow-hidden !p-0">
       {/* Window Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-[#121214] border-b border-white/10">
+      <div className="flex items-center justify-between px-4 py-3 bg-white/5 border-b border-white/10">
         <div className="flex gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500/80" />
           <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
@@ -175,7 +176,7 @@ const CodeWindow = ({ t }) => {
           <div>{"}"}</div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 
@@ -262,7 +263,7 @@ export default function Hero() {
           className="relative flex justify-center items-center perspective-1000 lg:col-span-5"
         >
           {/* Glow Effect behind window */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-gray-500/5 to-zinc-800/10 blur-3xl transform scale-110 rounded-full" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-gray-500/5 to-zinc-800/10 blur-md transform scale-110 rounded-full pointer-events-none" />
 
           <Tilt className="relative z-10 w-full max-w-lg">
             <CodeWindow t={t} />

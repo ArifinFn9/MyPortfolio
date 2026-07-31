@@ -209,12 +209,12 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white">
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
                     {t("university")}
                   </h3>
-                  <h4 className="hidden md:block text-lg font-semibold text-gray-200 mt-1">
+                  <p className="hidden md:block text-gray-400 font-medium tracking-wide mt-1">
                     {t("degree")}
-                  </h4>
+                  </p>
                 </div>
               </div>
               <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
@@ -224,9 +224,9 @@ export default function AboutPage() {
 
             {/* Mobile Only Details row: Degree & Period */}
             <div className="flex flex-col gap-2 mb-4 md:hidden">
-              <h4 className="text-lg font-semibold text-gray-200">
+              <p className="text-gray-400 font-medium tracking-wide">
                 {t("degree")}
-              </h4>
+              </p>
               <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm w-fit">
                 {t("period")}
               </span>
@@ -238,14 +238,14 @@ export default function AboutPage() {
           </Card>
         </motion.div>
 
-        {/* Tech Stack Section */}
+        {/* Tech Stack / Core Competencies Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="p-8 rounded-3xl border border-white/5 bg-white/5 backdrop-blur-sm">
+          <Card className="p-8">
             <h2 className="text-2xl font-bold text-white mb-8 text-center">
               {t("techStackTitle")}
             </h2>
@@ -294,18 +294,20 @@ export default function AboutPage() {
               ].map((tech) => (
                 <div
                   key={tech.name}
-                  className="flex items-center gap-3 p-4 rounded-xl glass-card hover:border-white/20 hover:bg-white/10 transition-all group"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl glass-mini-card group cursor-default"
                 >
                   <span
                     className={`${tech.color} group-hover:scale-110 transition-transform`}
                   >
                     {tech.icon}
                   </span>
-                  <span className="text-gray-300 font-medium">{tech.name}</span>
+                  <span className="text-gray-300 font-medium group-hover:text-white transition-colors text-sm">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         </motion.div>
       </Section>
     </main>

@@ -1,6 +1,7 @@
 "use client";
 
 import Section from "@/components/ui/Section";
+import Card from "@/components/ui/Card";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import {
@@ -138,9 +139,7 @@ export default function SkillsSection() {
       </motion.div>
 
       {/* Tech Stack Grid */}
-      <div className="p-8 rounded-3xl glass-card relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10" />
-
+      <Card className="p-8 rounded-3xl relative overflow-hidden">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {techStack.map((tech, i) => (
             <motion.div
@@ -149,18 +148,18 @@ export default function SkillsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 * i }}
               viewport={{ once: true }}
-              className="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all group cursor-default"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl glass-mini-card group cursor-default"
             >
               <tech.icon
                 className={`w-5 h-5 ${tech.color} group-hover:scale-110 transition-transform`}
               />
-              <span className="text-gray-300 font-medium group-hover:text-white transition-colors text-sm">
+              <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
                 {getSkillName(tech.name)}
               </span>
             </motion.div>
           ))}
         </div>
-      </div>
+      </Card>
     </Section>
   );
 }
