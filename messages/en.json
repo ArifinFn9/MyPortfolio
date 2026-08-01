@@ -102,7 +102,8 @@
     }
   },
   "experience": {
-    "title": "Experience & Training",
+    "title": "Experience & Certifications",
+    "desc": "Practical internship experience, professional certifications, and training in data analysis and financial administration.",
     "viewCert": "View Certificate",
     "cta": {
       "title": "Looking for an Admin or Data Analyst?",
@@ -237,8 +238,14 @@
     }
   },
   "contact": {
-    "title": "Contact Me",
-    "desc": "Have a question or want to work together? I'd love to hear from you.",
+    "title": "Get In Touch",
+    "desc": "Feel free to reach out — I'm always open to discussing new projects, opportunities, or just having a chat!",
+    "connectTitle": "Connect With Me",
+    "connectSubtitle": "Find me on these platforms",
+    "preferEmailTitle": "Prefer email?",
+    "preferEmailDesc": "Use the form or reach out at",
+    "sendTitle": "Send a Message",
+    "sendSubtitle": "I'll get back to you as soon as possible",
     "directTitle": "Direct Connection",
     "directEmail": "Email Directly",
     "directLinkedin": "LinkedIn Profile",
@@ -248,11 +255,11 @@
     "successDesc": "Thank you for reaching out. I'll get back to you as soon as possible.",
     "sendAnother": "Send another message",
     "nameLabel": "Name",
-    "namePlaceholder": "Your Name",
+    "namePlaceholder": "Your name",
     "emailLabel": "Email",
-    "emailPlaceholder": "email@example.com",
+    "emailPlaceholder": "your@email.com",
     "messageLabel": "Message",
-    "messagePlaceholder": "Tell me about your project...",
+    "messagePlaceholder": "Tell me about your project or just say hi...",
     "sending": "Sending...",
     "sendButton": "Send Message"
   },

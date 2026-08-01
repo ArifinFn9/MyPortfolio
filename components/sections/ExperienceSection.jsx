@@ -49,11 +49,14 @@ export default function ExperienceSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-center md:text-left mb-8 md:mb-16"
+        className="text-center mb-10 md:mb-14"
       >
         <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4">
           {t("title")}
         </h2>
+        <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-lg">
+          {t("desc")}
+        </p>
       </motion.div>
 
       <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12">

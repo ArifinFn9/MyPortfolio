@@ -103,6 +103,7 @@
   },
   "experience": {
     "title": "Pengalaman & Pelatihan",
+    "desc": "Pengalaman magang praktis, sertifikasi profesional, dan pelatihan dalam bidang analisis data dan administrasi keuangan.",
     "viewCert": "Lihat Sertifikat",
     "cta": {
       "title": "Mencari Staf Admin atau Analis Data?",
@@ -238,7 +239,13 @@
   },
   "contact": {
     "title": "Hubungi Saya",
-    "desc": "Punya peluang kerja sama atau hanya ingin menyapa? Saya akan sangat senang mendengar kabar dari Anda.",
+    "desc": "Punya pertanyaan atau ingin bekerja sama? Saya selalu terbuka untuk mendiskusikan proyek baru, peluang kerja, atau sekadar berdiskusi!",
+    "connectTitle": "Terhubung Dengan Saya",
+    "connectSubtitle": "Temukan saya di platform berikut",
+    "preferEmailTitle": "Lebih suka email?",
+    "preferEmailDesc": "Gunakan formulir atau hubungi langsung di",
+    "sendTitle": "Kirim Pesan",
+    "sendSubtitle": "Saya akan membalas pesan Anda secepatnya",
     "directTitle": "Koneksi Langsung",
     "directEmail": "Email Langsung",
     "directLinkedin": "Profil LinkedIn",
@@ -252,7 +259,7 @@
     "emailLabel": "Email",
     "emailPlaceholder": "email@contoh.com",
     "messageLabel": "Pesan",
-    "messagePlaceholder": "Ceritakan peluang kerja sama atau pesan Anda...",
+    "messagePlaceholder": "Ceritakan tentang proyek Anda atau sekadar menyapa...",
     "sending": "Mengirim...",
     "sendButton": "Kirim Pesan"
   },

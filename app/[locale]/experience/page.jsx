@@ -41,9 +41,14 @@ export default function ExperiencePage() {
   return (
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
       <Section className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4 text-center md:text-left">
-          {t("title")}
-        </h2>
+        <div className="text-center mb-10 md:mb-14">
+          <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4">
+            {t("title")}
+          </h1>
+          <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-lg">
+            {t("desc")}
+          </p>
+        </div>
 
         <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12">
           {experiencesKeys.map((key, index) => {
