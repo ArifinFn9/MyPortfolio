@@ -2,12 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { X, Download } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PreviewContext = createContext(null);
 
 export function PreviewProvider({ children }) {
+  const t = useTranslations("preview");
   const [isOpen, setIsOpen] = useState(false);
   const [url, setUrl] = useState("");
   const [title, setTitle] = useState("");
@@ -120,13 +121,7 @@ export function PreviewProvider({ children }) {
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-white/10 shrink-0 bg-white/[0.02]">
                 <h3 className="text-sm font-bold text-white uppercase tracking-wider">
-                  {isCv
-                    ? locale === "id"
-                      ? "Pratinjau CV / Resume"
-                      : "CV / Resume Preview"
-                    : locale === "id"
-                      ? "Pratinjau Sertifikat"
-                      : "Certificate Preview"}
+                  {isCv ? t("cvPreview") : t("certPreview")}
                 </h3>
                 <button
                   type="button"
@@ -150,11 +145,9 @@ export function PreviewProvider({ children }) {
                   >
                     {/* Fallback & Loading UI behind iframe */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-zinc-500 text-xs z-0">
-                      <p className="mb-2 font-medium">{locale === "id" ? "Memuat dokumen..." : "Loading document..."}</p>
+                      <p className="mb-2 font-medium">{t("loading")}</p>
                       <p className="text-[10px] text-zinc-600 max-w-md">
-                        {locale === "id"
-                          ? "Jika pratinjau tidak muncul otomatis di perangkat Anda, silakan gunakan tombol Unduh di bawah."
-                          : "If the preview does not appear automatically on your device, please use the Download button below."}
+                        {t("fallbackDesc")}
                       </p>
                     </div>
                     <iframe
@@ -201,7 +194,7 @@ export function PreviewProvider({ children }) {
                     }}
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 text-white font-semibold text-sm active:scale-95 transition-all cursor-pointer"
                   >
-                    <span>{locale === "id" ? "Tutup" : "Close"}</span>
+                    <span>{t("close")}</span>
                   </button>
                   <a
                     href={url}
@@ -211,7 +204,7 @@ export function PreviewProvider({ children }) {
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all cursor-pointer shadow-md"
                   >
                     <Download className="w-4 h-4" />
-                    <span>{locale === "id" ? "Unduh" : "Download"}</span>
+                    <span>{t("download")}</span>
                   </a>
                 </div>
               </div>

@@ -38,13 +38,22 @@ export async function generateMetadata({ params }) {
       description: meta.ogDescription,
       type: 'website',
       locale: locale === 'id' ? 'id_ID' : 'en_US',
-      url: locale === 'id' ? 'https://njenz.vercel.app/id' : 'https://njenz.vercel.app/en',
-      siteName: locale === 'id' ? 'Portofolio Arifin' : 'Arifin Portfolio',
+      url: meta.ogUrl,
+      siteName: meta.siteName,
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: meta.ogTitle,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: meta.ogTitle,
       description: meta.ogDescription,
+      images: ['/opengraph-image'],
     },
   };
 }

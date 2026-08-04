@@ -46,7 +46,7 @@ export default function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-8 bg-purple-500/10 blur-2xl -z-0 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 pt-12 pb-28 md:pb-12 relative z-10">
+      <div className="max-w-6xl mx-auto px-6 pt-12 pb-28 md:pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12">
           {/* Brand Column (5 cols) */}
           <div className="col-span-1 md:col-span-6 lg:col-span-5">
@@ -190,7 +190,7 @@ export default function Footer() {
             className="hidden md:flex fixed bottom-8 right-8 z-40 items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-950/95 text-zinc-300 hover:text-white border border-white/10 hover:border-white/20 shadow-2xl text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 group select-none"
             aria-label="Scroll to top"
           >
-            <span>Back to top</span>
+            <span>{t("backToTop")}</span>
             <ArrowUp className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
           </motion.button>
         )}

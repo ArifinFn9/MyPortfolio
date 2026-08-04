@@ -5,7 +5,7 @@ import { Link, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
-import { Github, Globe, ArrowUpRight, BarChart3, FileSpreadsheet, Database, Code2, Clock } from "lucide-react";
+import { Github, Globe, ArrowUpRight, BarChart3, FileSpreadsheet, Database, Code2, Clock, TrendingUp, LineChart, PieChart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const techIcons = {
@@ -16,6 +16,11 @@ const techIcons = {
   "Excel VBA": { icon: FileSpreadsheet, color: "text-green-600" },
   "VBA Macros": { icon: FileSpreadsheet, color: "text-green-600" },
   "Python": { icon: Code2, color: "text-amber-400" },
+  "Financial Statement Analysis": { icon: TrendingUp, color: "text-purple-400" },
+  "Analisis Laporan Keuangan": { icon: TrendingUp, color: "text-purple-400" },
+  "DAX & Data Modeling": { icon: LineChart, color: "text-sky-400" },
+  "Financial Ratios": { icon: PieChart, color: "text-emerald-400" },
+  "Rasio Keuangan": { icon: PieChart, color: "text-emerald-400" },
 };
 
 const cardAccents = [
@@ -98,10 +103,10 @@ export default function ProjectCard({ project, index = 0 }) {
         {/* Bagian 2 (Snap Top): Judul, Deskripsi, dan Teknologi */}
         <div className="flex flex-1 flex-col p-5 md:p-6 pb-4">
           <div className="mb-3">
-            <h3 className="mb-2 text-lg font-bold text-zinc-200 transition-colors group-hover:text-white md:text-xl">
+            <h3 className="mb-2 text-lg md:text-xl font-bold text-white transition-colors group-hover:text-zinc-200">
               {title}
             </h3>
-            <p className="line-clamp-3 text-sm leading-relaxed text-zinc-400">
+            <p className="line-clamp-3 text-sm text-zinc-400 leading-relaxed font-normal">
               {description}
             </p>
           </div>

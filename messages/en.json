@@ -3,7 +3,9 @@
     "title": "Muhammad Arifin | Financial & Data Analyst Portfolio",
     "description": "Professional portfolio of Muhammad Arifin. Specializing in Financial Data Analysis, Power BI Dashboards, Database Cleansing, & Data Administration Automation.",
     "ogTitle": "Muhammad Arifin | Financial & Data Analyst Portfolio",
-    "ogDescription": "Professional portfolio of Muhammad Arifin — Financial Data Analysis, Power BI, & Data Administration Specialist."
+    "ogDescription": "Professional portfolio of Muhammad Arifin — Financial Data Analysis, Power BI, & Data Administration Specialist.",
+    "ogUrl": "https://njenz.vercel.app/en",
+    "siteName": "Arifin Portfolio"
   },
   "navbar": {
     "home": "Home",
@@ -12,6 +14,7 @@
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
+    "resume": "Resume",
     "brand": "M. Arifin,"
   },
   "footer": {
@@ -20,7 +23,8 @@
     "navTitle": "Navigation",
     "connTitle": "Connect",
     "rights": "© {year} Muhammad Arifin Fadhil Nugroho. All rights reserved.",
-    "builtWith": "Built with <heart></heart> using Next.js & Tailwind"
+    "builtWith": "Built with <heart></heart> using Next.js & Tailwind",
+    "backToTop": "Back to top"
   },
   "hero": {
     "available": "Open for Opportunities",
@@ -51,10 +55,10 @@
     "desc": "Hi! I'm <name>Arifin</name>, a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
     "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
     "hello": "Hello There! 👋",
-    "bullet1": "Data Accuracy",
+    "bullet1": "Data Integrity & Confidentiality",
     "bullet2": "Financial Analysis & Reporting",
     "bullet3": "Data Entry & Administration",
-    "bullet4": "Detail-Oriented",
+    "bullet4": "Detail-Oriented & Precision",
     "bullet5": "Data Visualization",
     "bullet6": "Database Cleaning",
     "based": "Klaten, Central Java",
@@ -67,13 +71,8 @@
     "degree": "Bachelor of Management (GPA: 3.48/4.00)",
     "university": "Muhammadiyah University of Surakarta",
     "period": "Sep 2022 — Apr 2026",
-    "eduDesc": "Relevant Courses: Financial Management, Financial Technology (Fintech), Financial Statement Analysis, International Finance, Management of Financial Institutions.",
-    "tags": {
-      "se": "Financial Management",
-      "sd": "Data Analysis",
-      "wt": "Database Entry",
-      "db": "Office Administration"
-    },
+    "eduDesc": "Financial Management, Financial Technology (Fintech), Financial Statement Analysis, International Finance, Management of Financial Institutions.",
+    "relevantCoursesLabel": "Relevant Courses:",
     "techStackTitle": "Core Competencies"
   },
   "skills": {
@@ -81,9 +80,19 @@
     "subtitle": "Leveraging spreadsheet and analytical tools to optimize financial administration",
     "pageDesc": "Structured expertise in processing financial and administrative data using modern tools to ensure accuracy, compliance, and efficiency.",
     "categories": {
+      "analytics": "Financial & Data Analytics",
       "finance": "Financial Analysis & Visualization",
       "data": "Database Management & Auditing",
-      "productivity": "Productivity & Office Administration"
+      "productivity": "Productivity & Office Administration",
+      "softSkills": "Interpersonal & Management Skills"
+    },
+    "items": {
+      "financialReporting": "Financial Reporting",
+      "problemSolving": "Problem Solving",
+      "adaptability": "Adaptability",
+      "timeManagement": "Time Management",
+      "teamwork": "Teamwork",
+      "communication": "Communication"
     },
     "arcade": {
       "showBtn": "Show Google Cloud Arcade Badges",
@@ -101,6 +110,38 @@
       }
     }
   },
+  "preview": {
+    "loading": "Loading document...",
+    "close": "Close",
+    "download": "Download",
+    "openNewTab": "Open in New Tab",
+    "cvPreview": "CV / Resume Preview",
+    "certPreview": "Certificate Preview",
+    "fallbackDesc": "If the preview does not appear automatically on your device, please use the Download button below."
+  },
+  "projectDetail": {
+    "cleansingRulesTitle": "Data Validation & Cleansing Rules",
+    "dataField": "Data Field",
+    "commonIssue": "Common Issue",
+    "powerQueryFunction": "Power Query Function",
+    "ratiosTitle": "Financial Ratios Table",
+    "ratio": "Ratio",
+    "cleansingStatsTitle": "Data Volume & Cleansing Statistics",
+    "month": "Month",
+    "rawRows": "Raw Rows",
+    "duplicatesRemoved": "Duplicates Removed",
+    "errorsFixed": "Errors Fixed",
+    "cleanedRows": "Cleaned Rows",
+    "statementTitle": "Detail Financial Statement",
+    "year": "Year",
+    "revenue": "Revenue",
+    "netProfit": "Net Profit",
+    "grossProfit": "Gross Profit",
+    "totalAssets": "Total Assets",
+    "totalEquity": "Total Equity",
+    "cleansingNote": "*Note: All data above is simulated based on monthly transaction data cleaning logs.",
+    "financialNote": "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"
+  },
   "experience": {
     "title": "Experience & Certifications",
     "desc": "Practical internship experience, professional certifications, and training in data analysis and financial administration.",
@@ -111,6 +152,16 @@
       "button": "Contact Me"
     },
     "items": {
+      "revou": {
+        "title": "Intro to Data Analytics (Mini Course)",
+        "company": "RevoU",
+        "period": "Jul 2026 • 5 Days",
+        "tasks": [
+          "Performed data cleaning and dataset variable transformations.",
+          "Processed and summarized transaction data using Pivot Tables.",
+          "Constructed and analyzed conversion funnels to evaluate user pipeline performance."
+        ]
+      },
       "bsi": {
         "title": "Data Entry & Data Administration (Internship)",
         "company": "Bank Syariah Indonesia KCP Sukoharjo Kartasura",

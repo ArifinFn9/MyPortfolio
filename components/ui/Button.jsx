@@ -24,7 +24,7 @@ export const Button = ({
 
   return (
     <motion.button
-      whileTap={{ scale: 0.95 }}
+      whileTap={props.disabled ? undefined : { scale: 0.97 }}
       onClick={onClick}
       className={cn(baseStyles, variants[variant], className)}
       {...props}

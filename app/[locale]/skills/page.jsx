@@ -9,9 +9,16 @@ import {
   Eraser,
   Filter,
   ChevronDown,
+  BrainCircuit,
+  Sparkles,
+  Clock,
+  Users,
+  MessageSquare,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
+import MiniCard from "@/components/ui/MiniCard";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const ExcelIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="none" className={props.className}>
@@ -27,6 +34,21 @@ const PowerBIIcon = (props) => (
     <rect x="4" y="14" width="4" height="6" rx="1" fill="#f2c811" />
     <rect x="10" y="8" width="4" height="12" rx="1" fill="#f29f05" />
     <rect x="16" y="4" width="4" height="16" rx="1" fill="#e27c00" />
+  </svg>
+);
+
+const PowerQueryIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" className={props.className}>
+    <path d="M4 4h16v3.5H4z" fill="#00838f" />
+    <path d="M6 9.5h12v3.5H6z" fill="#00acc1" />
+    <path d="M8 15h8v3.5H8z" fill="#26c6da" />
+  </svg>
+);
+
+const PythonIcon = (props) => (
+  <svg viewBox="0 0 24 24" fill="none" className={props.className}>
+    <path d="M11.8 2c-5.2 0-4.9 2.3-4.9 2.3v2.4h5v.7H4.9S2.6 7.1 2.6 12.3c0 5.2 2 5 2 5h1.2v-2.5c0-2.8 2.4-2.8 2.4-2.8h4.9s2.3.1 2.3-2.3V4.3C15.4 2 11.8 2 11.8 2zm-2.7 1.6c.5 0 .9.4.9.9s-.4.9-.9.9-.9-.4-.9-.9.4-.9.9-.9z" fill="#3776ab" />
+    <path d="M12.2 22c5.2 0 4.9-2.3 4.9-2.3v-2.4h-5v-.7h7s2.3.3 2.3-4.9c0-5.2-2-5-2-5h-1.2v2.5c0 2.8-2.4 2.8-2.4 2.8h-4.9s-2.3-.1-2.3 2.3v4.9c0 2.3 3.6 2.3 3.6 2.3zm2.7-1.6c-.5 0-.9-.4-.9-.9s.4-.9.9-.9.9.4.9.9-.4.9-.9.9z" fill="#ffd43b" />
   </svg>
 );
 
@@ -105,7 +127,7 @@ export default function SkillsPage() {
 
   const getSkillName = (name) => {
     if (name === "Laporan Keuangan") {
-      return locale === "en" ? "Financial Reporting" : "Laporan Keuangan";
+      return t("items.financialReporting");
     }
     return name;
   };
@@ -186,7 +208,8 @@ export default function SkillsPage() {
       borderColor: "hover:border-white/20",
       skills: [
         { name: "Data Cleaning", icon: Eraser, color: "text-cyan-400" },
-        { name: "Power Query", icon: Filter, color: "text-teal-400" },
+        { name: "Power Query", icon: PowerQueryIcon, color: "text-teal-400" },
+        { name: "Python", icon: PythonIcon, color: "text-sky-400" },
       ],
     },
     {
@@ -202,6 +225,19 @@ export default function SkillsPage() {
         { name: "Canva", icon: CanvaIcon, color: "text-pink-400" },
       ],
     },
+    {
+      id: "softSkills",
+      title: t("categories.softSkills"),
+      color: "from-white/5 to-white/10",
+      borderColor: "hover:border-white/20",
+      skills: [
+        { name: t("items.problemSolving"), icon: BrainCircuit, color: "text-amber-400" },
+        { name: t("items.adaptability"), icon: Sparkles, color: "text-indigo-400" },
+        { name: t("items.timeManagement"), icon: Clock, color: "text-cyan-400" },
+        { name: t("items.teamwork"), icon: Users, color: "text-emerald-400" },
+        { name: t("items.communication"), icon: MessageSquare, color: "text-sky-400" },
+      ],
+    },
   ];
 
   return (
@@ -211,19 +247,10 @@ export default function SkillsPage() {
 
       <Section className="max-w-5xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-zinc-200 to-zinc-500">
-            {t("title")}
-          </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            {t("pageDesc")}
-          </p>
-        </motion.div>
+        <SectionHeader
+          title={t("title")}
+          subtitle={t("pageDesc")}
+        />
 
         {/* Skill Categories Grid */}
         <div className="space-y-12">
@@ -242,23 +269,24 @@ export default function SkillsPage() {
                   {cat.title}
                 </h3>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                   {cat.skills.map((skill, skillIdx) => {
                     const Icon = skill.icon;
                     return (
-                      <div
+                      <MiniCard
                         key={skill.name}
-                        className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 transition-all group/item"
+                        interactive={false}
+                        className="flex items-center gap-2.5 !px-3.5 !py-3 cursor-default h-full group/mini"
                       >
                         <span
-                          className={`${skill.color} group-hover/item:scale-110 transition-transform`}
+                          className={`${skill.color} group-hover/mini:scale-110 transition-transform shrink-0`}
                         >
                           <Icon className="w-5 h-5" />
                         </span>
-                        <span className="text-gray-300 font-medium group-hover/item:text-white transition-colors text-sm">
+                        <span className="text-gray-300 font-medium group-hover/mini:text-white transition-colors text-xs sm:text-sm leading-tight">
                           {getSkillName(skill.name)}
                         </span>
-                      </div>
+                      </MiniCard>
                     );
                   })}
                 </div>

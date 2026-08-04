@@ -23,9 +23,13 @@ const renderGradient = (chunks) => (
 );
 
 const renderName = (chunks) => (
-  <span className="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300">
+  <span className="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300 mx-1 shadow-sm">
     {chunks}
   </span>
+);
+
+const renderHighlight = (chunks) => (
+  <span className="text-white font-semibold mr-1.5">{chunks}</span>
 );
 
 export default function AboutSection() {
@@ -115,11 +119,11 @@ export default function AboutSection() {
             })}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-left">
+          <div className="grid grid-cols-2 gap-x-3.5 gap-y-3.5 md:gap-4 mb-8 text-left">
             {["bullet1", "bullet2", "bullet3", "bullet4", "bullet5", "bullet6"].map((key) => (
-              <div key={key} className="flex items-center gap-3 text-gray-300">
-                <CheckCircle2 className="w-5 h-5 text-white shrink-0" />
-                <span className="text-sm md:text-base font-medium">{t(key)}</span>
+              <div key={key} className="flex items-start gap-2 sm:gap-2.5 text-gray-300">
+                <CheckCircle2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white shrink-0 mt-0.5" />
+                <span className="text-xs sm:text-sm md:text-base font-medium leading-snug">{t(key)}</span>
               </div>
             ))}
           </div>
@@ -257,13 +261,13 @@ export default function AboutSection() {
         </h2>
 
         <div className="relative group p-[1px]">
-          <Card className="p-8 h-full hover:border-white/20 transition-colors duration-300">
-            {/* Header row: Icon, University, and Desktop Period */}
-            <div className="flex items-center md:items-start justify-between gap-4 mb-6">
+          <Card className="p-6 md:p-8 h-full hover:border-white/20 transition-colors duration-300">
+            {/* Header row: Logo, University, Degree, and Period */}
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-white/10 to-gray-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 overflow-hidden p-2">
                   <img
-                    src="/assets/ums.png"
+                    src="/assets/logo_ums.png"
                     alt="UMS Logo"
                     className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                     onError={(e) => {
@@ -272,52 +276,31 @@ export default function AboutSection() {
                     }}
                   />
                   <div style={{ display: 'none' }}>
-                    <GraduationCap className="w-7 h-7 md:w-10 md:h-10 text-white" />
+                    <GraduationCap className="w-7 h-7 text-white" />
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white drop-shadow-md">
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
                     {t("university")}
                   </h3>
-                  <p className="hidden md:block text-gray-400 font-medium tracking-wide mt-1">
+                  <p className="text-sm md:text-base font-semibold text-zinc-400 mt-1">
                     {t("degree")}
                   </p>
                 </div>
               </div>
-              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
+              <span className="px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-xs md:text-sm font-mono whitespace-nowrap shadow-sm sm:self-start self-start w-fit shrink-0">
                 {t("period")}
               </span>
             </div>
 
-            {/* Mobile Only Details row: Degree & Period */}
-            <div className="flex flex-col gap-2 mb-4 md:hidden">
-              <p className="text-gray-400 font-medium tracking-wide">
-                {t("degree")}
+            {/* Relevant Courses Sub-List */}
+            <div className="mt-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+                {t("relevantCoursesLabel")}
               </p>
-              <span className="px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-gray-200 text-sm font-mono whitespace-nowrap shadow-sm w-fit">
-                {t("period")}
-              </span>
-            </div>
-
-            <p className="text-gray-300 leading-relaxed mb-6 font-medium">
-              {t("eduDesc")}
-            </p>
-
-            {/* Tags / Achievements */}
-            <div className="flex flex-wrap gap-2">
-              {[
-                t("tags.se"),
-                t("tags.sd"),
-                t("tags.wt"),
-                t("tags.db"),
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold shadow-[0_0_10px_rgba(255,255,255,0.05)]"
-                >
-                  {tag}
-                </span>
-              ))}
+              <p className="text-sm md:text-base text-zinc-400 leading-relaxed font-normal">
+                {t("eduDesc")}
+              </p>
             </div>
           </Card>
         </div>

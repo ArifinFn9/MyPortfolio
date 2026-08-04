@@ -14,7 +14,7 @@ export default function ProjectsSection() {
   return (
     <Section
       id="projects"
-      className="scroll-mt-4 py-12 md:py-20 px-4 md:px-6 max-w-7xl mx-auto relative overflow-hidden"
+      className="scroll-mt-4 py-12 md:py-20 px-6 max-w-6xl mx-auto relative overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -46,9 +46,9 @@ export default function ProjectsSection() {
         {projects.map((project, index) => (
           <motion.div
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.5 }}
+            transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
           >
             <ProjectCard

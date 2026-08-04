@@ -3,7 +3,9 @@
     "title": "Muhammad Arifin | Financial & Data Analyst Portfolio",
     "description": "Portofolio profesional Muhammad Arifin. Spesialisasi dalam Analisis Data Keuangan, Dasbor Power BI, Pembersihan Database, & Otomasi Administrasi Data.",
     "ogTitle": "Muhammad Arifin | Financial & Data Analyst Portfolio",
-    "ogDescription": "Portofolio profesional Muhammad Arifin — Spesialis Analisis Data Keuangan, Power BI, & Administrasi Data."
+    "ogDescription": "Portofolio profesional Muhammad Arifin — Spesialis Analisis Data Keuangan, Power BI, & Administrasi Data.",
+    "ogUrl": "https://njenz.vercel.app/id",
+    "siteName": "Portofolio Arifin"
   },
   "navbar": {
     "home": "Beranda",
@@ -12,6 +14,7 @@
     "experience": "Pengalaman",
     "projects": "Proyek",
     "contact": "Kontak",
+    "resume": "Resume",
     "brand": "M. Arifin,"
   },
   "footer": {
@@ -20,7 +23,8 @@
     "navTitle": "Navigasi",
     "connTitle": "Hubungi",
     "rights": "© {year} Muhammad Arifin Fadhil Nugroho. Hak cipta dilindungi undang-undang.",
-    "builtWith": "Dibuat dengan <heart></heart> menggunakan Next.js & Tailwind"
+    "builtWith": "Dibuat dengan <heart></heart> menggunakan Next.js & Tailwind",
+    "backToTop": "Kembali ke atas"
   },
   "hero": {
     "available": "Terbuka untuk Peluang Kerja",
@@ -51,10 +55,10 @@
     "desc": "Halo! Saya <name>Arifin</name>, seorang lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Saya memiliki pengalaman magang di Bank Syariah Indonesia (BSI) pada bagian data entry dan administrasi data nasabah, di mana saya terbiasa mengelola data nasabah dengan akurasi tinggi dan menjaga kerahasiaan dokumen.",
     "pageDesc": "Saya adalah lulusan Manajemen Keuangan yang fokus pada analisis data keuangan, operasional administrasi, dan pengelolaan database. Saya memastikan tingkat presisi tinggi di setiap laporan dan pencatatan.",
     "hello": "Halo! 👋",
-    "bullet1": "Akurasi Data",
+    "bullet1": "Integritas & Kerahasiaan Data",
     "bullet2": "Analisis & Pelaporan Keuangan",
     "bullet3": "Administrasi & Manajemen Data",
-    "bullet4": "Berorientasi Detail",
+    "bullet4": "Berorientasi Detail & Presisi",
     "bullet5": "Visualisasi Data",
     "bullet6": "Pembersihan Database",
     "based": "Klaten, Jawa Tengah",
@@ -67,13 +71,8 @@
     "degree": "S1 Manajemen (IPK: 3.48/4.00)",
     "university": "Universitas Muhammadiyah Surakarta",
     "period": "Sep 2022 — Apr 2026",
-    "eduDesc": "Mata kuliah relevan: Manajemen Keuangan, Teknologi Keuangan, Analisis Informasi Keuangan, Manajemen Keuangan Internasional, Manajemen Lembaga Keuangan.",
-    "tags": {
-      "se": "Manajemen Keuangan",
-      "sd": "Analisis Data",
-      "wt": "Entri Database",
-      "db": "Administrasi Kantor"
-    },
+    "eduDesc": "Manajemen Keuangan, Teknologi Keuangan, Analisis Informasi Keuangan, Manajemen Keuangan Internasional, Manajemen Lembaga Keuangan.",
+    "relevantCoursesLabel": "Mata Kuliah Relevan:",
     "techStackTitle": "Kompetensi Utama"
   },
   "skills": {
@@ -81,9 +80,19 @@
     "subtitle": "Memanfaatkan spreadsheet dan alat analisis untuk mengoptimalkan administrasi keuangan",
     "pageDesc": "Keahlian terstruktur dalam mengolah data keuangan dan administrasi menggunakan berbagai tools modern untuk menjamin akurasi, kepatuhan, dan efisiensi kerja.",
     "categories": {
+      "analytics": "Analisis Keuangan & Data",
       "finance": "Analisis Keuangan & Visualisasi",
       "data": "Pengelolaan & Audit Database",
-      "productivity": "Produktivitas & Administrasi Kantor"
+      "productivity": "Produktivitas & Administrasi Kantor",
+      "softSkills": "Keahlian Interpersonal & Manajemen"
+    },
+    "items": {
+      "financialReporting": "Laporan Keuangan",
+      "problemSolving": "Pemecahan Masalah",
+      "adaptability": "Adaptabilitas",
+      "timeManagement": "Manajemen Waktu",
+      "teamwork": "Kerja Sama Tim",
+      "communication": "Komunikasi"
     },
     "arcade": {
       "showBtn": "Tampilkan Lencana Google Cloud Arcade",
@@ -101,6 +110,38 @@
       }
     }
   },
+  "preview": {
+    "loading": "Memuat dokumen...",
+    "close": "Tutup",
+    "download": "Unduh",
+    "openNewTab": "Buka di Tab Baru",
+    "cvPreview": "Pratinjau CV / Resume",
+    "certPreview": "Pratinjau Sertifikat",
+    "fallbackDesc": "Jika pratinjau tidak muncul otomatis di perangkat Anda, silakan gunakan tombol Unduh di bawah."
+  },
+  "projectDetail": {
+    "cleansingRulesTitle": "Aturan Validasi & Pembersihan Data",
+    "dataField": "Kolom Data",
+    "commonIssue": "Masalah Umum",
+    "powerQueryFunction": "Fungsi Power Query",
+    "ratiosTitle": "Tabel Rasio Keuangan",
+    "ratio": "Rasio",
+    "cleansingStatsTitle": "Statistik Volume & Kebersihan Data",
+    "month": "Bulan",
+    "rawRows": "Data Mentah",
+    "duplicatesRemoved": "Duplikat Dihapus",
+    "errorsFixed": "Format Diperbaiki",
+    "cleanedRows": "Data Bersih",
+    "statementTitle": "Detail Laporan Keuangan",
+    "year": "Tahun",
+    "revenue": "Pendapatan",
+    "netProfit": "Laba Bersih",
+    "grossProfit": "Laba Kotor",
+    "totalAssets": "Total Aset",
+    "totalEquity": "Total Ekuitas",
+    "cleansingNote": "*Catatan: Seluruh data di atas disimulasikan berdasarkan log bulanan pemrosesan data transaksi.",
+    "financialNote": "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
+  },
   "experience": {
     "title": "Pengalaman & Pelatihan",
     "desc": "Pengalaman magang praktis, sertifikasi profesional, dan pelatihan dalam bidang analisis data dan administrasi keuangan.",
@@ -111,6 +152,16 @@
       "button": "Hubungi Saya"
     },
     "items": {
+      "revou": {
+        "title": "Intro to Data Analytics (Mini Course)",
+        "company": "RevoU",
+        "period": "Jul 2026 • 5 Hari",
+        "tasks": [
+          "Melakukan pembersihan data (data cleaning) dan transformasi variabel dataset.",
+          "Mengolah dan merangkum data transaksi menggunakan Pivot Table.",
+          "Membangun dan menganalisis conversion funnel untuk mengukur efektivitas alur transaksi."
+        ]
+      },
       "bsi": {
         "title": "Data Entry & Administrasi Data (Magang)",
         "company": "Bank Syariah Indonesia KCP Sukoharjo Kartasura",
@@ -271,4 +322,26 @@
     "ensurePdf": "Pastikan file <codeRef>public/assets/resume.pdf</codeRef> ada dalam proyek Anda.",
     "openNewTab": "Buka di Tab Baru"
   }
+}   "directTelegram": "Chat Telegram",
+"directInstagram": "Profil Instagram",
+"successTitle": "Pesan Terkirim!",
+"successDesc": "Terima kasih telah menghubungi saya. Saya akan segera membalas pesan Anda.",
+"sendAnother": "Kirim pesan lain",
+"nameLabel": "Nama",
+"namePlaceholder": "Nama Anda",
+"emailLabel": "Email",
+"emailPlaceholder": "email@contoh.com",
+"messageLabel": "Pesan",
+"messagePlaceholder": "Ceritakan tentang proyek Anda atau sekadar menyapa...",
+"sending": "Mengirim...",
+"sendButton": "Kirim Pesan"
+},
+"resume": {
+"title": "Resume Saya",
+"downloadPdf": "Unduh PDF",
+"downloadResume": "Unduh Resume",
+"previewNotAvailable": "Pratinjau tidak tersedia (File mungkin hilang)",
+"ensurePdf": "Pastikan file <codeRef>public/assets/resume.pdf</codeRef> ada dalam proyek Anda.",
+"openNewTab": "Buka di Tab Baru"
+}
 }

@@ -7,6 +7,13 @@ A premium, modern, and highly responsive bilingual (English / Indonesian) person
 - **Data Entry & Management**: Processing databases with high precision, transaction auditing, database cleaning.
 - **Office Administration**: Secure documentation, verified banking records, administrative workflow optimization.
 
+## 🌟 Key Website Features
+
+- **Interactive Glassmorphism UI & Sticky Navbar**: Modern dark-mode aesthetic with custom backdrop blur (`backdrop-blur-md`), ambient card borders, floating Back-to-Top glass button, and smooth navigation.
+- **Generative HTML5 Canvas Grid Animation**: Custom background renderer featuring dynamic, non-repeating grid block spawn, velocity drift, and opacity lifecycle over a fixed 15° rotated grid.
+- **Bilingual & Responsive Design**: Complete English and Indonesian (`en` / `id`) routing powered by `next-intl`, fully optimized for mobile, tablet, and desktop viewports.
+- **Working Contact Form**: Direct message delivery powered by Web3Forms API with real-time form validation.
+
 ## 🚀 Tech Stack
 
 | Technology | Purpose |
@@ -16,6 +23,14 @@ A premium, modern, and highly responsive bilingual (English / Indonesian) person
 | **Tailwind CSS 4** | Box-shadow, backdrop blur, and custom utility classes |
 | **Framer Motion 12** | Smooth layout animations and physics-based interactions |
 | **Lucide React** | Consistent and premium iconography |
+
+## 🔑 Environment Variables
+
+Create a `.env.local` file in the root directory and configure the Web3Forms API key:
+
+```env
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
+```
 
 ## 📁 Key Project Structure
 - `app/` - Page routes and global configurations.
@@ -51,6 +66,7 @@ The portfolio is designed to be easily editable without touching JSX files:
 - **Social Media & Credentials**: Edit [data/socials.js](file:///C:/Users/arifi/Desktop/MyPortofolio/data/socials.js) to update handles, links, and PDF certificate files.
 - **Projects Database**: Edit [data/projects.js](file:///C:/Users/arifi/Desktop/MyPortofolio/data/projects.js) to add or manage your projects, tech stack badges, and image cards.
 - **Bilingual Copywriting**: Edit translation files inside the [messages/](file:///C:/Users/arifi/Desktop/MyPortofolio/messages) folder to update biography texts, project descriptions, and headings.
+- **Dynamic LAN Network Origins**: Configured in `next.config.mjs` using `os.networkInterfaces()` for automatic local network IP detection during cross-device testing.
 
 ## 📧 Contact & Links
 - **Email**: [arifinfn9@gmail.com](mailto:arifinfn9@gmail.com)

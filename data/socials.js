@@ -25,8 +25,9 @@ export const socials = {
   },
   resume: "https://docs.google.com/document/d/1GAcrlhDEywqQnyQCoD2-I-P6IuHMXpCJ/export?format=pdf",
   certificates: {
-    bsi: "/assets/magang.jpg",
-    udemy: "/assets/udemy.png",
-    myskill: "/assets/myskill.png",
+    bsi: "/assets/sertif_magang.jpg",
+    udemy: "/assets/sertif_udemy.png",
+    myskill: "/assets/sertif_myskill.png",
+    revou: "/assets/sertif_revou.png",
   },
 };

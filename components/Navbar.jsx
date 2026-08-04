@@ -227,27 +227,15 @@ export default function Navbar() {
             <span className="font-mono uppercase">{locale}</span>
           </button>
 
-          {/* Divider */}
-          <div className="w-[1px] h-4 bg-white/10" />
-
-          {/* "HUBUNGI SAYA" Button */}
-          <Link
-            href="/#contact"
-            onClick={(e) => handleNavLinkClick(e, "/#contact")}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-white font-bold text-[10px] tracking-wider uppercase shrink-0"
-          >
-            <span>{t("contact")}</span>
-            <ArrowUpRight className="w-3.5 h-3.5 text-zinc-400" />
-          </Link>
-
+          {/* Resume Download CTA Button */}
           <a
             href={socials.resume}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-zinc-400 hover:text-white font-bold text-[10px] tracking-wider uppercase shrink-0 shimmer-btn-dark"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10 active:scale-95 transition-all duration-150 text-white hover:text-white font-bold text-[10px] tracking-wider uppercase shrink-0 shimmer-btn-dark"
           >
-            <Download className="w-3.5 h-3.5 text-zinc-400" />
-            <span>Resume</span>
+            <Download className="w-3.5 h-3.5 text-white" />
+            <span>{t("resume")}</span>
           </a>
         </div>
       </nav>

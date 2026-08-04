@@ -2,16 +2,16 @@
 
 import { Link, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { projects } from "@/data/projects";
 import Image from "next/image";
-import { 
-  ArrowLeft, 
-  Github, 
-  Globe, 
-  CheckCircle2, 
-  FileSpreadsheet, 
-  BarChart3, 
+import {
+  ArrowLeft,
+  Github,
+  Globe,
+  CheckCircle2,
+  FileSpreadsheet,
+  BarChart3,
   Database,
   Calendar,
   Briefcase,
@@ -19,6 +19,9 @@ import {
   ArrowUpRight,
   TrendingUp,
   TrendingDown,
+  LineChart,
+  PieChart,
+  Code2,
 } from "lucide-react";
 import Section from "@/components/ui/Section";
 
@@ -29,14 +32,21 @@ const techIcons = {
   "Power Query": { icon: Database, color: "text-cyan-400" },
   "Excel VBA": { icon: FileSpreadsheet, color: "text-green-600" },
   "VBA Macros": { icon: FileSpreadsheet, color: "text-green-600" },
+  "Python": { icon: Code2, color: "text-amber-400" },
+  "Financial Statement Analysis": { icon: TrendingUp, color: "text-purple-400" },
+  "Analisis Laporan Keuangan": { icon: TrendingUp, color: "text-purple-400" },
+  "DAX & Data Modeling": { icon: LineChart, color: "text-sky-400" },
+  "Financial Ratios": { icon: PieChart, color: "text-emerald-400" },
+  "Rasio Keuangan": { icon: PieChart, color: "text-emerald-400" },
 };
 
 export default function ProjectDetailPage() {
   const router = useRouter();
   const params = useParams();
-  const id = params.id;
-  const locale = params.locale;
   const t = useTranslations("projects");
+  const tDetail = useTranslations("projectDetail");
+  const locale = useLocale();
+  const id = params.id;
 
   const project = projects.find((p) => p.id === id);
 
@@ -44,7 +54,7 @@ export default function ProjectDetailPage() {
     return (
       <main className="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center justify-center text-center">
         <h1 className="text-3xl font-black text-white mb-4">Project Not Found</h1>
-        <Link 
+        <Link
           href={`/${locale}`}
           className="px-6 py-2.5 rounded-full bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-all"
         >
@@ -116,7 +126,7 @@ export default function ProjectDetailPage() {
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 960px"
-              className={`${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} object-top hover:scale-[1.02] transition-transform duration-700 ease-out`}
+              className={`${project.imageFit === 'contain' ? 'object-contain' : 'object-cover'} object-top hover:scale-[1.005] transition-transform duration-700 ease-out`}
               priority
             />
           ) : (
@@ -218,20 +228,20 @@ export default function ProjectDetailPage() {
               cleansingRules.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                    {locale === "id" ? "Aturan Validasi & Pembersihan Data" : "Data Validation & Cleansing Rules"}
+                    {tDetail("cleansingRulesTitle")}
                   </h2>
                   <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="bg-white/[0.04]">
                           <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
-                            {locale === "id" ? "Kolom Data" : "Data Field"}
+                            {tDetail("dataField")}
                           </th>
                           <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
-                            {locale === "id" ? "Masalah Umum" : "Common Issue"}
+                            {tDetail("commonIssue")}
                           </th>
                           <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5 pr-5">
-                            {locale === "id" ? "Fungsi Power Query" : "Power Query Function"}
+                            {tDetail("powerQueryFunction")}
                           </th>
                         </tr>
                       </thead>
@@ -252,14 +262,14 @@ export default function ProjectDetailPage() {
               ratios.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                    {locale === "id" ? "Tabel Rasio Keuangan" : "Financial Ratios Table"}
+                    {tDetail("ratiosTitle")}
                   </h2>
                   <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="bg-white/[0.04]">
                           <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">
-                            {locale === "id" ? "Rasio" : "Ratio"}
+                            {tDetail("ratio")}
                           </th>
                           <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2023</th>
                           <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">2024</th>
@@ -299,17 +309,17 @@ export default function ProjectDetailPage() {
               cleansingStats.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                    {locale === "id" ? "Statistik Volume & Kebersihan Data" : "Data Volume & Cleansing Statistics"}
+                    {tDetail("cleansingStatsTitle")}
                   </h2>
                   <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="bg-white/[0.04]">
-                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Bulan" : "Month"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Data Mentah" : "Raw Rows"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Duplikat Dihapus" : "Duplicates Removed"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Format Diperbaiki" : "Errors Fixed"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">{locale === "id" ? "Data Bersih" : "Cleaned Rows"}</th>
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{tDetail("month")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("rawRows")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("duplicatesRemoved")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("errorsFixed")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">{tDetail("cleanedRows")}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-white/5">
@@ -326,9 +336,7 @@ export default function ProjectDetailPage() {
                     </table>
                   </div>
                   <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
-                    {locale === "id"
-                      ? "*Catatan: Seluruh data di atas disimulasikan berdasarkan log bulanan pemrosesan data transaksi."
-                      : "*Note: All data above is simulated based on monthly transaction data cleaning logs."}
+                    {tDetail("cleansingNote")}
                   </p>
                 </div>
               )
@@ -336,18 +344,18 @@ export default function ProjectDetailPage() {
               financialStatement.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
-                    {locale === "id" ? "Detail Laporan Keuangan" : "Detail Financial Statement"}
+                    {tDetail("statementTitle")}
                   </h2>
                   <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
                     <table className="w-full text-sm">
                       <thead>
                         <tr className="bg-white/[0.04]">
-                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{locale === "id" ? "Tahun" : "Year"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Pendapatan" : "Revenue"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Bersih" : "Net Profit"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Laba Kotor" : "Gross Profit"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Aset" : "Total Assets"}</th>
-                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{locale === "id" ? "Total Ekuitas" : "Total Equity"}</th>
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pl-5">{tDetail("year")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("revenue")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("netProfit")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("grossProfit")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("totalAssets")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">{tDetail("totalEquity")}</th>
                           <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5">DER</th>
                           <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 py-3.5 pr-5">NPM</th>
                         </tr>
@@ -369,9 +377,7 @@ export default function ProjectDetailPage() {
                     </table>
                   </div>
                   <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
-                    {locale === "id"
-                      ? "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
-                      : "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"}
+                    {tDetail("financialNote")}
                   </p>
                 </div>
               )

@@ -6,8 +6,9 @@ import { Briefcase, Award, ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { socials } from "@/data/socials";
 import { usePreview } from "@/components/PreviewProvider";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-const experiencesKeys = ["bsi", "udemy", "myskill"];
+const experiencesKeys = ["revou", "udemy", "bsi", "myskill"];
 
 export default function ExperiencePage() {
   const t = useTranslations("experience");
@@ -41,14 +42,10 @@ export default function ExperiencePage() {
   return (
     <main className="min-h-screen pt-12 md:pt-32 pb-20 px-6 relative overflow-hidden">
       <Section className="max-w-4xl mx-auto">
-        <div className="text-center mb-10 md:mb-14">
-          <h1 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600 pb-2 mb-4">
-            {t("title")}
-          </h1>
-          <p className="text-gray-400 max-w-xl mx-auto text-sm md:text-lg">
-            {t("desc")}
-          </p>
-        </div>
+        <SectionHeader
+          title={t("title")}
+          subtitle={t("desc")}
+        />
 
         <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12">
           {experiencesKeys.map((key, index) => {
@@ -75,10 +72,12 @@ export default function ExperiencePage() {
                         <img
                           src={
                             key === 'bsi'
-                              ? '/assets/logo-bsi.svg'
+                              ? '/assets/logo_bsi.svg'
                               : key === 'udemy'
-                                ? '/assets/logo-udemy.svg'
-                                : '/assets/logo-myskill.svg'
+                                ? '/assets/logo_udemy.svg'
+                                : key === 'revou'
+                                  ? '/assets/logo_revou.png'
+                                  : '/assets/logo_myskill.svg'
                           }
                           alt={company}
                           className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
@@ -95,7 +94,7 @@ export default function ExperiencePage() {
                         {title}
                       </h3>
                     </div>
-                    <div className="text-sm font-mono text-gray-300 bg-white/5 border border-white/10 px-3 py-1 rounded-full w-fit shrink-0 whitespace-nowrap md:mt-1">
+                    <div className="px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-xs md:text-sm font-mono whitespace-nowrap shadow-sm shrink-0 w-fit self-start sm:self-auto md:mt-1">
                       {period}
                     </div>
                   </div>
@@ -104,13 +103,13 @@ export default function ExperiencePage() {
                     {company}
                   </p>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-1.5">
                     {tasks.map((task, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-3 text-gray-400"
+                        className="flex items-start gap-2.5 text-sm md:text-base text-zinc-400 leading-relaxed font-normal"
                       >
-                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-400 shrink-0" />
+                        <span className="mt-[9px] w-1.5 h-1.5 rounded-full bg-white/60 shrink-0" />
                         {task}
                       </li>
                     ))}

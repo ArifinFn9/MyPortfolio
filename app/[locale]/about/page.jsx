@@ -190,13 +190,13 @@ export default function AboutPage() {
             <GraduationCap className="w-7 h-7 text-gray-300" />
             {t("educationTitle")}
           </h2>
-          <Card className="p-8">
-            {/* Header row: Icon, University, and Desktop Period */}
-            <div className="flex items-center md:items-start justify-between gap-4 mb-6">
+          <Card className="p-6 md:p-8">
+            {/* Header row: Logo, University, Degree, and Period */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 text-gray-300 shrink-0 flex items-center justify-center overflow-hidden p-2">
+                <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-white/10 to-gray-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 overflow-hidden p-2">
                   <img
-                    src="/assets/ums.png"
+                    src="/assets/logo_ums.png"
                     alt="UMS Logo"
                     className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                     onError={(e) => {
@@ -205,36 +205,32 @@ export default function AboutPage() {
                     }}
                   />
                   <div style={{ display: 'none' }}>
-                    <GraduationCap className="w-8 h-8" />
+                    <GraduationCap className="w-7 h-7 text-white" />
                   </div>
                 </div>
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold text-white">
                     {t("university")}
                   </h3>
-                  <p className="hidden md:block text-gray-400 font-medium tracking-wide mt-1">
+                  <p className="text-sm md:text-base font-semibold text-zinc-400 mt-1">
                     {t("degree")}
                   </p>
                 </div>
               </div>
-              <span className="hidden md:inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm shrink-0">
+              <span className="px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-400 text-xs md:text-sm font-mono whitespace-nowrap shadow-sm sm:self-center self-start w-fit shrink-0">
                 {t("period")}
               </span>
             </div>
 
-            {/* Mobile Only Details row: Degree & Period */}
-            <div className="flex flex-col gap-2 mb-4 md:hidden">
-              <p className="text-gray-400 font-medium tracking-wide">
-                {t("degree")}
+            {/* Relevant Courses Sub-List */}
+            <div className="mt-5">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1.5">
+                {t("relevantCoursesLabel")}
               </p>
-              <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm font-mono whitespace-nowrap shadow-sm w-fit">
-                {t("period")}
-              </span>
+              <p className="text-sm md:text-base text-zinc-400 leading-relaxed font-normal">
+                {t("eduDesc")}
+              </p>
             </div>
-
-            <p className="text-gray-400 leading-relaxed">
-              {t("eduDesc")}
-            </p>
           </Card>
         </motion.div>
 

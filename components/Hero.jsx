@@ -188,7 +188,7 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen pt-20 pb-16 lg:pb-0 flex items-center justify-center overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div className="max-w-6xl mx-auto w-full px-6 grid lg:grid-cols-12 gap-12 items-center relative z-10">
         {/* Left Column: Text Content */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
