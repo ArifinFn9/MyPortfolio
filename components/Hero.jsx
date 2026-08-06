@@ -4,27 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { Typewriter } from "react-simple-typewriter";
 import { useTranslations, useLocale } from "next-intl";
 import { socials } from "@/data/socials";
-
-const ExcelIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
-    <path d="M16.2 21H7.8C6.8 21 6 20.2 6 19.2V4.8C6 3.8 6.8 3 7.8 3h8.4c1 0 1.8.8 1.8 1.8v14.4c0 1-.8 1.8-1.8 1.8z" fill="currentColor" opacity="0.2" />
-    <path d="M9.8 17.5h4.4c.5 0 .9-.4.9-.9v-3.4H9v3.4c0 .5.4.9.9.9z" fill="currentColor" opacity="0.4" />
-    <path d="M2.3 7.7v8.6l7.2 2.2V5.5L2.3 7.7z" fill="currentColor" />
-    <path d="M4.5 10.2l1.6 2.3 1.6-2.3H8.9L6.9 13l2 3.1H7.6l-1.5-2.4-1.5 2.4H3.3l2-3.1-2-2.8h1.2z" fill="#09090b" />
-  </svg>
-);
-
-const PowerBIIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className={props.className}>
-    <rect x="4" y="14" width="4" height="6" rx="1" fill="currentColor" />
-    <rect x="10" y="8" width="4" height="12" rx="1" fill="currentColor" opacity="0.8" />
-    <rect x="16" y="4" width="4" height="16" rx="1" fill="currentColor" opacity="0.6" />
-  </svg>
-);
+import { ExcelIcon, PowerBIIcon } from "@/components/icons/TechIcons";
 
 // --- 3D Tilt Component ---
 const Tilt = ({ children, className }) => {

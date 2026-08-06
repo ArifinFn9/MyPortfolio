@@ -139,6 +139,13 @@
     "grossProfit": "Gross Profit",
     "totalAssets": "Total Assets",
     "totalEquity": "Total Equity",
+    "budgetTableTitle": "Departmental Budget Breakdown",
+    "department": "Department",
+    "budget": "Budget",
+    "actual": "Actual",
+    "variance": "Variance",
+    "absorption": "Absorption Status",
+    "budgetNote": "*Note: All figures above are simulated based on a 2026 operational transaction dataset for portfolio case study purposes.",
     "cleansingNote": "*Note: All data above is simulated based on monthly transaction data cleaning logs.",
     "financialNote": "*Note: All Rupiah currency values above are presented in Millions of Rupiah (except DER & NPM)"
   },
@@ -229,9 +236,15 @@
       "financial_dashboard": {
         "title": "PT Indofood CBP Tbk Financial Performance Dashboard",
         "description": "A Power BI financial performance dashboard of PT Indofood CBP Tbk (2023–2025) to monitor profitability, liquidity, and leverage trends.",
+        "metrics": {
+          "revenue": { "label": "Revenue", "value": "Rp 74.85 Bn", "change": "+3.10%" },
+          "netProfit": { "label": "Net Profit", "value": "Rp 9.22 Bn", "change": "+30.30%" },
+          "currentRatio": { "label": "Current Ratio", "value": "4.15x", "change": "+0.06" },
+          "debtToEquity": { "label": "Debt-to-Equity", "value": "0.84x", "change": "-0.04" }
+        },
         "problem": "Assessing the financial health of a giant FMCG emiten like PT Indofood CBP Tbk from raw financial statement spreadsheets is often slow and cumbersome. Management required instant visibility to track the impact of rising Cost of Goods Sold (COGS) on net margins and compare multi-year debt leverage vs equity structures.",
         "solution": "Integrated 3-year balance sheets and income statements (2023–2025) into a unified Power BI data model. Built custom DAX measures for profitability (GPM, NPM), liquidity (Current Ratio), and leverage (DER, DAR) while designing an interactive layout featuring asset/liability breakdowns.",
-        "impact": "Delivered instant visibility showing that net profit grew significantly by ▲ 30.3% in 2025 to Rp9.22M due to operating margin efficiency (NPM rose to 12.3%), backed by an exceptionally strong liquidity position (Current Ratio of 4.15x) and a healthy debt leverage (DER) of 0.84x.",
+        "impact": "Delivered instant visibility showing that net profit grew significantly by ▲ 30.3% in 2025 to Rp 9.22 Bn due to operating margin efficiency (NPM rose to 12.3%), backed by an exceptionally strong liquidity position (Current Ratio of 4.15x) and a healthy debt leverage (DER) of 0.84x.",
         "steps": [
           "Extracting annual balance sheets and income statements of PT Indofood CBP Tbk (2023–2025) from the IDX.",
           "Performing data cleaning and nominal unit transformations (removing raw decimal figures) using Power Query.",
@@ -240,50 +253,24 @@
           "Designing the interactive dashboard layout in Power BI Desktop featuring liquidity, solvency, and asset breakdowns."
         ]
       },
-      "financial_automation_wip": {
-        "title": "Financial Statement Data Entry & Validation Automation",
-        "description": "Development of automated Python & Power Query pipelines to bulk clean, validate, and process financial statement data with 100% precision."
-      },
-      "data_cleaning": {
-        "title": "Automated Financial Data Cleansing & Audit Pipeline",
-        "description": "Designed an automated data auditing and cleaning pipeline using Power Query in Microsoft Excel to instantly process and standardize raw transaction data.",
-        "problem": "Raw transactional data exported from legacy banking and accounting systems is frequently corrupted with trailing whitespace, duplicate records, incorrect formats, and misaligned cell structures.",
-        "solution": "Designed a robust, automated data auditing template in Microsoft Excel using Power Query. Created automatic data validation routines to isolate anomalies, correct text cases, and align dates without manual editing.",
-        "impact": "Minimized data preparation errors, eliminated manual checking, and prepared 100% clean datasets for reporting and analytics.",
+      "budget_vs_actual": {
+        "title": "Budget vs Actual Monitoring Dashboard",
+        "description": "Built an interactive Budget vs Actual monitoring system using Microsoft Excel, Power Query, and Power BI to track expenditure performance by division, month, and cost category while detecting over-budget risks early.",
+        "metrics": {
+          "totalBudget": { "label": "Total Budget", "value": "Rp 2.15 Bn", "change": "FY 2026" },
+          "totalActual": { "label": "Total Actual", "value": "Rp 1.75 Bn", "change": "81.45% Actual" },
+          "budgetUtilization": { "label": "Budget Utilization", "value": "81.45%", "change": "Normal (<85%)" },
+          "remainingBudget": { "label": "Remaining Budget", "value": "Rp 399.3 M", "change": "Maintained" }
+        },
+        "problem": "Many budget monitoring workflows still rely on manual spreadsheets requiring repetitive consolidation and checking. This makes it difficult for finance teams to monitor actual spending against budget, identify divisions nearing threshold limits, and prepare variance analysis periodically.",
+        "solution": "Constructed a centralized Star Schema data model in Power BI integrating FactActual, FactBudget, DimMonth, DimDivision, and DimCategory. Calculated dynamic financial measures using DAX (Total Budget, Actual, Variance, Utilization, Remaining Budget) and implemented an Early Warning System with status thresholds (<85% Normal, 85%–<100% Warning, ≥100% Over Budget).",
+        "impact": "Reduced dependency on manual spreadsheet consolidation and provided a dynamic Budget vs Actual reporting solution in Power BI. Delivered interactive drill-down analysis across division, month, and cost category to monitor over-budget risks in real-time.",
         "steps": [
-          "Importing unstructured raw financial transaction datasets from legacy accounting databases.",
-          "Identifying duplicates, extra spacing, corrupted characters, and entry anomalies using Power Query.",
-          "Applying TRIM, CLEAN, and custom column splits to clean vendor names and transaction account codes.",
-          "Standardizing date formatting, currency values, and handling missing rows automatically.",
-          "Saving the pipeline as an audit template that automatically cleans new monthly transaction sheets instantly."
-        ]
-      },
-      "budgeting_tool": {
-        "title": "Automated Budget Tracking & Forecasting",
-        "description": "Developed a custom budgeting and cash flow forecasting tool in Google Sheets using structured logical formulas and automated alert scripts.",
-        "problem": "Traditional budgeting spreadsheets require manual entry for forecasting and lack proactive warnings for budget overruns, increasing the risk of cash shortages.",
-        "solution": "Developed a custom Google Sheets forecasting model using Excel VBA/Google Apps Script. Embedded conditional formulas to trigger alerts when department expenditures exceeded 85% of allocated funds.",
-        "impact": "Enabled real-time budget tracking, resulting in fewer budget overruns and more accurate forecasting of upcoming monthly runway.",
-        "steps": [
-          "Mapping monthly budget requirements and operational cost structures for each company division.",
-          "Building a centralized input sheet with strict data validation criteria in Google Sheets / Microsoft Excel.",
-          "Setting up structured formulas (INDEX-MATCH, SUMIFS, conditional logic) for real-time expenditure aggregation.",
-          "Developing automation scripts (Google Apps Script / VBA) for month-end freeze and auto-sync features.",
-          "Installing conditional formatting rules as early-warning indicators when spending exceeds 85% of threshold."
-        ]
-      },
-      "financial_analysis_simulation": {
-        "title": "Simulation: Financial Statement Analysis [Company Name]",
-        "description": "[Replace This Text] Brief project description. Example: Built an interactive financial statement analysis dashboard using Excel & Power BI to monitor business performance periodically.",
-        "problem": "[Replace This Text] The business problem faced. Example: Financial statement data is scattered across separate Excel sheets, making it slow for management to see monthly profitability trends.",
-        "solution": "[Replace This Text] The solution you created. Example: Integrated Excel data using Power Query, designed a star schema data model, and calculated financial ratios using DAX.",
-        "impact": "[Replace This Text] The tangible outcome of your project. Example: Automatic monthly reporting saved 80% of manual effort and provided instant profit margin trend visibility.",
-        "steps": [
-          "[Step 1: Data Collection] Download official financial statement spreadsheet files from IDX for your chosen company (e.g. Kalbe Farma, Indofood).",
-          "[Step 2: ETL & Cleaning] Load data into Excel/Power Query to clean empty columns, filter unnecessary rows, and format dates.",
-          "[Step 3: Data Modeling] Establish relationships between Balance Sheet and Income Statement fact tables with a dimension Calendar table in Power BI.",
-          "[Step 4: Financial Ratios] Write custom DAX measures for Net Profit Margin, Return on Equity, Return on Assets, and Debt-to-Equity to analyze health.",
-          "[Step 5: Visual Design] Create interactive charts for profit trends, assets breakdown, and ratio comparisons on the Power BI dashboard."
+          "Data Structure Preparation: Compiled 2026 budget and actual transaction datasets covering 5 divisions (Operations, HR, Marketing, IT, Administration) with granular transaction logs and monthly budget allocations.",
+          "Data Cleaning & Validation: Performed data auditing in Microsoft Excel & Power Query including data type validation, division/category standardization, duplicate removal, and month alignment for Power BI.",
+          "Data Modeling (Star Schema): Designed a Star Schema data model in Power BI connecting fact tables (FactActual, FactBudget) and dimension tables (DimMonth, DimDivision, DimCategory) for dynamic filtering.",
+          "DAX & Budget Monitoring: Developed DAX measures for Total Budget, Total Actual, Variance, Budget Utilization, Remaining Budget, and Budget Status with color-coded alert thresholds (<85% Normal, 85%–<100% Warning, ≥100% Over Budget).",
+          "Dashboard Development: Built an interactive Power BI dashboard featuring KPI Cards, Division Breakdown, Monthly Trend, Utilization Bars, Early Warning Table, and interactive Slicers (Month, Division, Cost Category)."
         ]
       }
     }

@@ -139,6 +139,13 @@
     "grossProfit": "Laba Kotor",
     "totalAssets": "Total Aset",
     "totalEquity": "Total Ekuitas",
+    "budgetTableTitle": "Rekapitulasi Anggaran per Divisi",
+    "department": "Divisi",
+    "budget": "Anggaran",
+    "actual": "Realisasi",
+    "variance": "Varians",
+    "absorption": "Serapan Status",
+    "budgetNote": "*Catatan: Seluruh data disimulasikan berdasarkan dataset transaksi operasional 2026 untuk keperluan studi kasus portofolio.",
     "cleansingNote": "*Catatan: Seluruh data di atas disimulasikan berdasarkan log bulanan pemrosesan data transaksi.",
     "financialNote": "*Catatan: Seluruh nilai mata uang Rupiah di atas disajikan dalam Jutaan Rupiah (kecuali DER & NPM)"
   },
@@ -229,9 +236,31 @@
       "financial_dashboard": {
         "title": "Dasbor Kinerja Keuangan PT Indofood CBP Tbk",
         "description": "Dasbor analisis keuangan PT Indofood CBP Tbk (2023–2025) menggunakan Power BI untuk memantau tren profitabilitas, likuiditas, dan leverage secara dinamis.",
+        "metrics": {
+          "revenue": {
+            "label": "Pendapatan",
+            "value": "Rp 74,85 Miliar",
+            "change": "+3,10%"
+          },
+          "netProfit": {
+            "label": "Laba Bersih",
+            "value": "Rp 9,22 Miliar",
+            "change": "+30,30%"
+          },
+          "currentRatio": {
+            "label": "Rasio Lancar",
+            "value": "4,15x",
+            "change": "+0,06"
+          },
+          "debtToEquity": {
+            "label": "Rasio Utang/Ekuitas",
+            "value": "0,84x",
+            "change": "-0,04"
+          }
+        },
         "problem": "Menilai kinerja keuangan emiten FMCG raksasa seperti PT Indofood CBP Tbk dari spreadsheet laporan keuangan mentah seringkali membutuhkan waktu lama. Manajemen membutuhkan visibilitas cepat untuk mendeteksi dampak kenaikan beban pokok penjualan (COGS) terhadap margin laba bersih, serta tren perbandingan struktur liabilitas vs ekuitas.",
         "solution": "Mengintegrasikan neraca dan laporan laba rugi 3 tahun (2023–2025) ke dalam model data Power BI. Menulis kalkulasi DAX kustom untuk melacak profitabilitas (GPM, NPM), likuiditas (Current Ratio), dan leverage (DER, DAR) serta mendesain dasbor interaktif dengan visualisasi tren aset dan liabilitas.",
-        "impact": "Menyajikan wawasan instan bahwa laba bersih tumbuh pesat sebesar ▲ 30.3% di tahun 2025 menjadi Rp9.22M berkat peningkatan efisiensi margin operasional (NPM naik ke 12.3%), dengan rasio likuiditas sangat kuat di angka 4.15x dan debt leverage (DER) yang sehat sebesar 0.84x.",
+        "impact": "Menyajikan wawasan instan bahwa laba bersih tumbuh pesat sebesar ▲ 30,3% di tahun 2025 menjadi Rp 9,22 Miliar berkat peningkatan efisiensi margin operasional (NPM naik ke 12,3%), dengan rasio likuiditas sangat kuat di angka 4,15x dan debt leverage (DER) yang sehat sebesar 0,84x.",
         "steps": [
           "Ekstraksi data laporan posisi keuangan (neraca) dan laporan laba rugi tahunan PT Indofood CBP Tbk (2023–2025) dari BEI.",
           "Melakukan pembersihan dan transformasi data nominal (menghapus format desimal mentah) menggunakan Power Query.",
@@ -240,50 +269,40 @@
           "Mendesain kanvas dasbor interaktif di Power BI Desktop dengan visualisasi tren likuiditas, solvabilitas, dan diagram struktur aset."
         ]
       },
-      "financial_automation_wip": {
-        "title": "Sistem Otomasi Entri Data & Validasi Laporan Keuangan",
-        "description": "Pengembangan skrip otomatisasi Python & Power Query untuk pembersihan, validasi, dan pengolahan data transaksi keuangan secara masif dengan presisi 100%."
-      },
-      "data_cleaning": {
-        "title": "Otomasi Pembersihan & Audit Data Keuangan",
-        "description": "Merancang alur pembersihan data otomatis menggunakan Power Query di Microsoft Excel untuk memproses dan menstandarisasi data transaksi secara instan.",
-        "problem": "Data transaksi mentah yang diekspor dari sistem akuntansi lama seringkali kotor dengan spasi berlebih, data ganda, format tanggal tidak konsisten, dan struktur sel yang berantakan.",
-        "solution": "Merancang template audit data otomatis di Microsoft Excel dengan Power Query. Membuat rutinitas validasi data untuk memisahkan anomali, merapikan teks, dan menyelaraskan tanggal secara otomatis tanpa intervensi manual.",
-        "impact": "Meminimalisir kesalahan persiapan data, meniadakan proses pemeriksaan manual, dan menghasilkan dataset bersih yang siap pakai 100% untuk laporan keuangan.",
+      "budget_vs_actual": {
+        "title": "Dasbor Monitoring Anggaran vs Realisasi",
+        "description": "Membangun sistem monitoring Budget vs Actual interaktif berbasis Microsoft Excel, Power Query, dan Power BI untuk memantau kinerja anggaran berdasarkan divisi, bulan, dan kategori biaya serta mengidentifikasi risiko over-budget secara dini.",
+        "metrics": {
+          "totalBudget": {
+            "label": "Total Anggaran",
+            "value": "Rp 2,15 Miliar",
+            "change": "FY 2026"
+          },
+          "totalActual": {
+            "label": "Total Realisasi",
+            "value": "Rp 1,75 Miliar",
+            "change": "81,45% Realisasi"
+          },
+          "budgetUtilization": {
+            "label": "Serapan Anggaran",
+            "value": "81,45%",
+            "change": "Normal (<85%)"
+          },
+          "remainingBudget": {
+            "label": "Sisa Anggaran",
+            "value": "Rp 399,3 Jt",
+            "change": "Terjaga"
+          }
+        },
+        "problem": "Banyak proses monitoring anggaran masih mengandalkan spreadsheet manual yang memerlukan rekap dan pengecekan secara berulang. Kondisi ini menyulitkan tim keuangan dalam memantau realisasi terhadap anggaran, mengidentifikasi divisi yang mendekati batas anggaran, serta menyiapkan analisis varians secara berkala.",
+        "solution": "Membangun model data terpusat (Star Schema) di Power BI yang mengintegrasikan FactActual, FactBudget, DimMonth, DimDivision, dan DimCategory. Menghitung indikator keuangan secara dinamis dengan DAX (Total Budget, Actual, Variance, Utilization, Remaining Budget) serta menerapkan indikator peringatan dini (Early Warning System dengan threshold <85% Normal, 85%–<100% Warning, ≥100% Over Budget).",
+        "impact": "Mengurangi ketergantungan pada proses rekap manual dan menyediakan laporan Budget vs Actual yang dapat diperbarui secara dinamis melalui Power BI. Menyajikan analisis drill-down per divisi, bulan, dan kategori biaya serta mendeteksi divisi yang berisiko over-budget secara real-time.",
         "steps": [
-          "Mengimpor dataset transaksi keuangan mentah yang tidak terstruktur dari sistem database akuntansi lama.",
-          "Mengidentifikasi baris ganda, spasi berlebih, karakter aneh, dan anomali entri menggunakan Power Query.",
-          "Menerapkan fungsi TRIM, CLEAN, dan pemisahan kolom dinamis untuk merapikan nama vendor serta kode akun transaksi.",
-          "Melakukan standardisasi format penanggalan, nilai numerik mata uang, serta menangani baris kosong secara otomatis.",
-          "Menyimpan alur pembersihan sebagai template audit yang otomatis memproses file transaksi baru di masa depan secara instan."
-        ]
-      },
-      "budgeting_tool": {
-        "title": "Alat Pemantauan & Peramalan Anggaran",
-        "description": "Mengembangkan alat otomatisasi penganggaran di Google Sheets menggunakan formula logika terstruktur dan script peringatan dini untuk memantau pengeluaran operasional.",
-        "problem": "Spreadsheet anggaran tradisional memerlukan input manual untuk perkiraan masa depan dan tidak memiliki sistem peringatan dini ketika pengeluaran melebihi batas.",
-        "solution": "Mengembangkan model penganggaran Google Sheets dengan formula logika terstruktur dan script otomatisasi. Memasang formula bersyarat untuk memicu peringatan visual saat pengeluaran divisi menyentuh 85% dari pagu anggaran.",
-        "impact": "Memungkinkan pemantauan anggaran secara real-time, menekan potensi kebocoran anggaran, dan menghasilkan perkiraan arus kas bulanan yang lebih akurat.",
-        "steps": [
-          "Memetakan kebutuhan anggaran bulanan dan struktur biaya operasional untuk masing-masing divisi perusahaan.",
-          "Membangun lembar input terpusat dengan validasi data ketat menggunakan Google Sheets / Microsoft Excel.",
-          "Menyusun formula logika terstruktur (INDEX-MATCH, SUMIFS, conditional logic) untuk agregasi pengeluaran secara real-time.",
-          "Membuat skrip otomatisasi (Google Apps Script / VBA) untuk mengunci anggaran akhir bulan dan sinkronisasi otomatis.",
-          "Memasang aturan pemformatan bersyarat (conditional formatting) sebagai alarm peringatan dini jika pengeluaran menyentuh batas 85%."
-        ]
-      },
-      "financial_analysis_simulation": {
-        "title": "Simulasi: Analisis Laporan Keuangan [Nama Perusahaan]",
-        "description": "[Ganti Teks Ini] Deskripsi singkat proyek. Contoh: Membangun dasbor analisis laporan keuangan interaktif menggunakan Excel & Power BI untuk memantau performa bisnis secara berkala.",
-        "problem": "[Ganti Teks Ini] Masalah yang dihadapi perusahaan. Contoh: Data laporan keuangan masih tersebar di beberapa file Excel terpisah, sehingga manajemen lambat dalam melihat tren profitabilitas bulanan.",
-        "solution": "[Ganti Teks Ini] Solusi yang Anda buat. Contoh: Mengintegrasikan seluruh data Excel menggunakan Power Query, membangun skema model data bintang, dan menghitung metrik rasio keuangan menggunakan DAX.",
-        "impact": "[Ganti Teks Ini] Dampak nyata hasil proyek Anda. Contoh: Pembuatan laporan bulanan otomatis menghemat 80% waktu pengerjaan manual dan menyajikan visualisasi tren margin laba secara instan.",
-        "steps": [
-          "[Langkah 1: Pengumpulan Data] Unduh spreadsheet laporan keuangan tahunan resmi dari IDX untuk perusahaan pilihan Anda (misal: Kalbe Farma, Indofood, dll).",
-          "[Langkah 2: ETL & Cleaning] Masukkan data ke Excel/Power Query untuk membersihkan kolom kosong, menyaring baris tidak perlu, dan menyelaraskan penanggalan.",
-          "[Langkah 3: Pemodelan Data] Hubungkan tabel data laporan laba rugi dan neraca dengan tabel kalender dimensi waktu di Power BI.",
-          "[Langkah 4: Rumus Finansial] Tulis formula DAX kustom untuk menghitung NPM, ROE, ROA, dan DER guna melihat rasio kesehatan keuangan.",
-          "[Langkah 5: Desain Visual] Susun visualisasi grafik laba, aset, dan tren rasio ke dalam kanvas dasbor Power BI yang interaktif."
+          "Menyiapkan Struktur Data: Menyusun dataset anggaran dan transaksi aktual 2026 berdasarkan 5 divisi (Operasional, SDM, Marketing, IT, Administrasi) dengan detail transaksi individual dan alokasi anggaran bulanan.",
+          "Data Cleaning & Validation: Melakukan pemeriksaan dan penyesuaian data menggunakan Microsoft Excel & Power Query, meliputi validasi tipe data, standardisasi nama divisi/kategori, eliminasi duplikat, dan penyesuaian struktur bulan.",
+          "Data Modeling (Star Schema): Membangun model data di Power BI dengan pendekatan Star Schema yang menghubungkan tabel fakta (FactActual, FactBudget) dan tabel dimensi (DimMonth, DimDivision, DimCategory).",
+          "DAX & Budget Monitoring: Menulis formula measure DAX untuk Total Budget, Total Actual, Variance, Budget Utilization, Remaining Budget, dan Budget Status dengan indikator status serapan (<85% Normal, 85%–<100% Warning, ≥100% Over Budget).",
+          "Dashboard Development: Membangun dashboard interaktif di Power BI mencakup KPI Cards, Budget vs Actual per Division, Monthly Trend, Utilization per Division, Early Warning Table, serta Slicer interaktif (Month, Division, Cost Category)."
         ]
       }
     }
@@ -322,26 +341,4 @@
     "ensurePdf": "Pastikan file <codeRef>public/assets/resume.pdf</codeRef> ada dalam proyek Anda.",
     "openNewTab": "Buka di Tab Baru"
   }
-}   "directTelegram": "Chat Telegram",
-"directInstagram": "Profil Instagram",
-"successTitle": "Pesan Terkirim!",
-"successDesc": "Terima kasih telah menghubungi saya. Saya akan segera membalas pesan Anda.",
-"sendAnother": "Kirim pesan lain",
-"nameLabel": "Nama",
-"namePlaceholder": "Nama Anda",
-"emailLabel": "Email",
-"emailPlaceholder": "email@contoh.com",
-"messageLabel": "Pesan",
-"messagePlaceholder": "Ceritakan tentang proyek Anda atau sekadar menyapa...",
-"sending": "Mengirim...",
-"sendButton": "Kirim Pesan"
-},
-"resume": {
-"title": "Resume Saya",
-"downloadPdf": "Unduh PDF",
-"downloadResume": "Unduh Resume",
-"previewNotAvailable": "Pratinjau tidak tersedia (File mungkin hilang)",
-"ensurePdf": "Pastikan file <codeRef>public/assets/resume.pdf</codeRef> ada dalam proyek Anda.",
-"openNewTab": "Buka di Tab Baru"
-}
 }

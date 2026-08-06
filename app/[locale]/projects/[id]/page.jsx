@@ -25,14 +25,22 @@ import {
 } from "lucide-react";
 import Section from "@/components/ui/Section";
 
+import {
+  ExcelIcon,
+  PowerBIIcon,
+  PowerQueryIcon,
+  PythonIcon,
+  GoogleSheetsIcon,
+} from "@/components/icons/TechIcons";
+
 const techIcons = {
-  "Microsoft Excel": { icon: FileSpreadsheet, color: "text-green-500" },
-  "Power BI": { icon: BarChart3, color: "text-yellow-500" },
-  "Google Sheets": { icon: FileSpreadsheet, color: "text-green-400" },
-  "Power Query": { icon: Database, color: "text-cyan-400" },
-  "Excel VBA": { icon: FileSpreadsheet, color: "text-green-600" },
-  "VBA Macros": { icon: FileSpreadsheet, color: "text-green-600" },
-  "Python": { icon: Code2, color: "text-amber-400" },
+  "Microsoft Excel": { icon: ExcelIcon },
+  "Power BI": { icon: PowerBIIcon },
+  "Google Sheets": { icon: GoogleSheetsIcon },
+  "Power Query": { icon: PowerQueryIcon },
+  "Excel VBA": { icon: ExcelIcon },
+  "VBA Macros": { icon: ExcelIcon },
+  "Python": { icon: PythonIcon },
   "Financial Statement Analysis": { icon: TrendingUp, color: "text-purple-400" },
   "Analisis Laporan Keuangan": { icon: TrendingUp, color: "text-purple-400" },
   "DAX & Data Modeling": { icon: LineChart, color: "text-sky-400" },
@@ -86,6 +94,7 @@ export default function ProjectDetailPage() {
   const financialStatement = project.financialStatement || [];
   const cleansingRules = project.cleansingRules || [];
   const cleansingStats = project.cleansingStats || [];
+  const budgetTable = project.budgetTable || [];
 
   return (
     <main className="min-h-screen pt-24 md:pt-32 pb-20 px-6 relative overflow-hidden">
@@ -113,7 +122,7 @@ export default function ProjectDetailPage() {
           <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight mb-4">
             {title}
           </h1>
-          <p className="text-zinc-400 text-lg md:text-xl max-w-3xl leading-relaxed">
+          <p className="text-zinc-400 text-lg md:text-xl leading-relaxed">
             {description}
           </p>
         </div>
@@ -141,22 +150,10 @@ export default function ProjectDetailPage() {
         {metrics.length > 0 && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-14">
             {metrics.map((metric, idx) => {
-              // Localize labels for Indonesian
-              let displayLabel = metric.label;
-              if (locale === "id") {
-                const labelsMap = {
-                  "Revenue": "Pendapatan",
-                  "Net Profit": "Laba Bersih",
-                  "Current Ratio": "Rasio Lancar",
-                  "Debt-to-Equity": "Rasio Utang/Ekuitas (DER)",
-                };
-                displayLabel = labelsMap[metric.label] || metric.label;
-              }
-
-              // Localize values (Million M to Million Jt for ID and change decimal dots to commas)
-              const displayValue = locale === "id"
-                ? metric.value.replace(/\bM\b/g, "Jt").replace(/\./g, ",")
-                : metric.value;
+              const metricKey = metric.key;
+              const displayLabel = metricKey ? t(`items.${project.id}.metrics.${metricKey}.label`) : metric.label;
+              const displayValue = metricKey ? t(`items.${project.id}.metrics.${metricKey}.value`) : metric.value;
+              const displayChange = metricKey ? t(`items.${project.id}.metrics.${metricKey}.change`) : metric.change;
 
               return (
                 <div
@@ -171,8 +168,7 @@ export default function ProjectDetailPage() {
                   </p>
                   <div className={`inline-flex items-center gap-1 text-xs font-bold ${metric.up ? 'text-emerald-400' : 'text-red-400'}`}>
                     {metric.up ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
-                    <span>{metric.change.replace(/\./g, ",")}</span>
-                    <span className="text-zinc-600 font-medium ml-0.5">YoY</span>
+                    <span>{displayChange}</span>
                   </div>
                 </div>
               );
@@ -223,7 +219,7 @@ export default function ProjectDetailPage() {
               </div>
             )}
 
-            {/* Financial Ratios or Data Validation Rules Table */}
+            {/* Financial Ratios / Data Validation Rules / Budget Table */}
             {project.id === 'data_cleaning' ? (
               cleansingRules.length > 0 && (
                 <div className="space-y-4">
@@ -256,6 +252,51 @@ export default function ProjectDetailPage() {
                       </tbody>
                     </table>
                   </div>
+                </div>
+              )
+            ) : project.id === 'budget_vs_actual' ? (
+              budgetTable.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
+                    {tDetail("budgetTableTitle")}
+                  </h2>
+                  <div className="overflow-x-auto rounded-2xl border border-white/10 shadow-xl">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-white/[0.04]">
+                          <th className="text-left text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5 pl-5">{tDetail("department")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">{tDetail("budget")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">{tDetail("actual")}</th>
+                          <th className="text-right text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5">{tDetail("variance")}</th>
+                          <th className="text-center text-xs font-bold uppercase tracking-wider text-zinc-400 px-4 md:px-5 py-3.5 pr-5">{tDetail("absorption")}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/5">
+                        {budgetTable.map((row, idx) => (
+                          <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
+                            <td className="px-4 md:px-5 py-3.5 pl-5 text-white font-semibold">{row.dept}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.budget}</td>
+                            <td className="px-4 md:px-5 py-3.5 text-right text-zinc-300 font-mono text-xs">{row.actual}</td>
+                            <td className={`px-4 md:px-5 py-3.5 text-right font-mono text-xs font-bold ${row.status === 'over' ? 'text-red-400' : row.status === 'warning' ? 'text-amber-400' : 'text-emerald-400'}`}>{row.variance}</td>
+                            <td className="px-4 md:px-5 py-3.5 pr-5 text-center">
+                              <span className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${row.status === 'over' || parseFloat(row.pct) >= 100
+                                ? 'bg-red-500/10 text-red-400 border border-red-500/20'
+                                : row.status === 'warning' || parseFloat(row.pct) >= 85
+                                  ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
+                                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
+                                }`}>
+                                {(row.status === 'over' || parseFloat(row.pct) >= 100) && <TrendingUp className="w-3 h-3" />}
+                                {row.pct}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-[11px] text-zinc-500 font-medium italic mt-2.5">
+                    {tDetail("budgetNote")}
+                  </p>
                 </div>
               )
             ) : (
@@ -304,7 +345,7 @@ export default function ProjectDetailPage() {
               )
             )}
 
-            {/* Detail Financial Statement or Data Cleansing Stats Table */}
+            {/* Monthly Stats / Financial Statement (only for data_cleaning & financial_dashboard) */}
             {project.id === 'data_cleaning' ? (
               cleansingStats.length > 0 && (
                 <div className="space-y-4">
@@ -340,7 +381,7 @@ export default function ProjectDetailPage() {
                   </p>
                 </div>
               )
-            ) : (
+            ) : project.id !== 'budget_vs_actual' ? (
               financialStatement.length > 0 && (
                 <div className="space-y-4">
                   <h2 className="text-lg font-black uppercase tracking-[0.2em] text-white border-b border-white/5 pb-2">
@@ -381,7 +422,7 @@ export default function ProjectDetailPage() {
                   </p>
                 </div>
               )
-            )}
+            ) : null}
 
             {/* Solution & Implementation */}
             {solution && (

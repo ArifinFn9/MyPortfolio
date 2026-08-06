@@ -5,17 +5,26 @@ import { Link, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Card from "@/components/ui/Card";
-import { Github, Globe, ArrowUpRight, BarChart3, FileSpreadsheet, Database, Code2, Clock, TrendingUp, LineChart, PieChart } from "lucide-react";
+import { Github, Globe, ArrowUpRight, Clock, TrendingUp, LineChart, PieChart } from "lucide-react";
 import { motion } from "framer-motion";
+import {
+  ExcelIcon,
+  PowerBIIcon,
+  PowerQueryIcon,
+  PythonIcon,
+  GoogleSheetsIcon,
+} from "@/components/icons/TechIcons";
 
 const techIcons = {
-  "Microsoft Excel": { icon: FileSpreadsheet, color: "text-green-500" },
-  "Power BI": { icon: BarChart3, color: "text-yellow-500" },
-  "Google Sheets": { icon: FileSpreadsheet, color: "text-green-400" },
-  "Power Query": { icon: Database, color: "text-cyan-400" },
-  "Excel VBA": { icon: FileSpreadsheet, color: "text-green-600" },
-  "VBA Macros": { icon: FileSpreadsheet, color: "text-green-600" },
-  "Python": { icon: Code2, color: "text-amber-400" },
+  "Microsoft Excel": { icon: ExcelIcon },
+  "Power BI": { icon: PowerBIIcon },
+  "Google Sheets": { icon: GoogleSheetsIcon },
+  "Power Query": { icon: PowerQueryIcon },
+  "Excel VBA": { icon: ExcelIcon },
+  "VBA Macros": { icon: ExcelIcon },
+  "Python": { icon: PythonIcon },
+  "SUMIFS Formula": { icon: ExcelIcon },
+  "Conditional Formatting": { icon: ExcelIcon },
   "Financial Statement Analysis": { icon: TrendingUp, color: "text-purple-400" },
   "Analisis Laporan Keuangan": { icon: TrendingUp, color: "text-purple-400" },
   "DAX & Data Modeling": { icon: LineChart, color: "text-sky-400" },

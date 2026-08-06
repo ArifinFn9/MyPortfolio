@@ -11,10 +11,10 @@ export const projects = [
     aspectRatio: 'aspect-[16/11]',
     // KPI metrics displayed as highlight cards
     metrics: [
-      { label: 'Revenue', value: 'Rp 74.85 M', change: '+3.10%', up: true },
-      { label: 'Net Profit', value: 'Rp 9.22 M', change: '+30.30%', up: true },
-      { label: 'Current Ratio', value: '4.15x', change: '+0.06', up: true },
-      { label: 'Debt-to-Equity', value: '0.84x', change: '-0.04', up: true },
+      { key: 'revenue', up: true, isYoY: true },
+      { key: 'netProfit', up: true, isYoY: true },
+      { key: 'currentRatio', up: true, isYoY: true },
+      { key: 'debtToEquity', up: true, isYoY: true },
     ],
     // Financial ratios table data covering 3 years
     ratios: [
@@ -33,46 +33,30 @@ export const projects = [
   },
 
   {
-    id: 'data_cleaning',
-    tech: ['Microsoft Excel', 'Power Query', 'Python'],
-    githubUrl: 'https://github.com/arifinfn9',
+    id: 'budget_vs_actual',
+    tech: ['Microsoft Excel', 'Power Query', 'Power BI', 'DAX & Data Modeling'],
+    githubUrl: 'https://github.com/arifinfn9/dashboard-budget-vs-actual',
     liveUrl: '',
-    image: '/assets/project_wip.png',
-    hasDetails: false,
-    isWip: true,
+    image: '/assets/project_2.png',
+    hasDetails: true,
+    isWip: false,
     period: '2026',
-    // KPI metrics for Project 2
+    imageFit: 'cover',
+    aspectRatio: 'aspect-[16/11]',
+    // KPI metric summary cards based on Power BI 2026 Dashboard
     metrics: [
-      { label: 'Total Records', value: '124,500+', change: '+15.2%', up: true },
-      { label: 'Time Saved', value: '95%', change: '-3.8h', up: true },
-      { label: 'Accuracy Rate', value: '100.00%', change: '+1.2%', up: true },
-      { label: 'Anomalies Isolated', value: '1,842', change: '-420', up: true },
+      { key: 'totalBudget', up: true, isYoY: false },
+      { key: 'totalActual', up: true, isYoY: false },
+      { key: 'budgetUtilization', up: true, isYoY: false },
+      { key: 'remainingBudget', up: true, isYoY: false },
     ],
-    // Validation & Cleansing Rules mapping
-    cleansingRules: [
-      { field: 'Transaction Date', issue: 'Mixed US/UK formats (DD-MM-YYYY vs MM/DD/YYYY)', transformation: 'DateTime.FromText with locale settings' },
-      { field: 'Vendor Name', issue: 'Trailing spaces, duplicates, inconsistent capitalization', transformation: 'Text.Trim & Text.Proper casing standardization' },
-      { field: 'Account Code', issue: 'Missing codes for operational ledger transactions', transformation: 'Table.NestedJoin lookup with Chart of Accounts' },
-      { field: 'Amount', issue: 'Text format containing currency symbols (Rp, $, commas)', transformation: 'Text.Select to isolate numbers and cast to Decimal' },
-    ],
-    // Monthly volume stats
-    cleansingStats: [
-      { month: 'Jan 2025', rawRows: '32,450', duplicates: '412', errors: '280', cleanedRows: '31,758' },
-      { month: 'Feb 2025', rawRows: '28,900', duplicates: '350', errors: '210', cleanedRows: '28,340' },
-      { month: 'Mar 2025', rawRows: '35,120', duplicates: '580', errors: '340', cleanedRows: '34,200' },
-      { month: 'Apr 2025', rawRows: '31,800', duplicates: '498', errors: '198', cleanedRows: '31,104' },
+    // Departmental budget vs actual breakdown from Master Excel Dataset 2026 (Sorted A-Z)
+    budgetTable: [
+      { dept: 'Administrasi', budget: 'Rp 212,000,000', actual: 'Rp 150,920,000', variance: 'Rp 61,080,000', pct: '71.19%', status: 'normal' },
+      { dept: 'IT & Sistem', budget: 'Rp 601,000,000', actual: 'Rp 545,100,000', variance: 'Rp 55,900,000', pct: '90.70%', status: 'warning' },
+      { dept: 'Marketing', budget: 'Rp 662,000,000', actual: 'Rp 567,240,000', variance: 'Rp 94,760,000', pct: '85.69%', status: 'warning' },
+      { dept: 'Operasional', budget: 'Rp 429,000,000', actual: 'Rp 326,880,000', variance: 'Rp 102,120,000', pct: '76.20%', status: 'normal' },
+      { dept: 'SDM & HRD', budget: 'Rp 249,000,000', actual: 'Rp 163,560,000', variance: 'Rp 85,440,000', pct: '65.69%', status: 'normal' },
     ],
   },
-
-
-  /*
-{
-  id: 'budgeting_tool',
-  tech: ['Google Sheets', 'Excel VBA'],
-  githubUrl: 'https://github.com/arifinfn9',
-  liveUrl: '',
-  image: '/assets/project3.png',
-  hasDetails: false,
-},
-*/
 ];
