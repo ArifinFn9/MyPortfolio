@@ -4,7 +4,7 @@ export const projects = [
     tech: ['Microsoft Excel', 'Power BI', 'Financial Statement Analysis', 'DAX & Data Modeling', 'Financial Ratios'],
     githubUrl: 'https://github.com/arifinfn9/financial-statement-analysis',
     liveUrl: '',
-    image: '/assets/project_1.png',
+    image: '/assets/project_1.webp',
     hasDetails: true,
     period: '2023 - 2025',
     imageFit: 'cover',
@@ -34,10 +34,10 @@ export const projects = [
 
   {
     id: 'budget_vs_actual',
-    tech: ['Microsoft Excel', 'Power Query', 'Power BI', 'DAX & Data Modeling'],
+    tech: ['Microsoft Excel', 'Power Query', 'Power BI', 'DAX & Data Modeling', 'Budgeting & Control'],
     githubUrl: 'https://github.com/arifinfn9/dashboard-budget-vs-actual',
     liveUrl: '',
-    image: '/assets/project_2.png',
+    image: '/assets/project_2.webp',
     hasDetails: true,
     isWip: false,
     period: '2026',

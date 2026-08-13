@@ -14,11 +14,13 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 const manrope = Manrope({
   variable: '--font-manrope',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 export async function generateMetadata({ params }) {
@@ -42,7 +44,7 @@ export async function generateMetadata({ params }) {
       siteName: meta.siteName,
       images: [
         {
-          url: '/opengraph-image',
+          url: 'https://njenz.vercel.app/opengraph-image',
           width: 1200,
           height: 630,
           alt: meta.ogTitle,
@@ -53,7 +55,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       title: meta.ogTitle,
       description: meta.ogDescription,
-      images: ['/opengraph-image'],
+      images: ['https://njenz.vercel.app/opengraph-image'],
     },
   };
 }

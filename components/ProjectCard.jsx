@@ -1,5 +1,6 @@
 "use client";
 
+import React, { memo } from "react";
 import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/i18n/routing";
 import { useParams } from "next/navigation";
@@ -30,6 +31,7 @@ const techIcons = {
   "DAX & Data Modeling": { icon: LineChart, color: "text-sky-400" },
   "Financial Ratios": { icon: PieChart, color: "text-emerald-400" },
   "Rasio Keuangan": { icon: PieChart, color: "text-emerald-400" },
+  "Budgeting & Control": { icon: PieChart, color: "text-amber-400" },
 };
 
 const cardAccents = [
@@ -41,7 +43,7 @@ const cardAccents = [
   "from-rose-400/25 via-pink-400/10 to-transparent",
 ];
 
-export default function ProjectCard({ project, index = 0 }) {
+function ProjectCard({ project, index = 0 }) {
   const t = useTranslations("projects");
   const router = useRouter();
   const params = useParams();
@@ -56,18 +58,22 @@ export default function ProjectCard({ project, index = 0 }) {
 
   const handleCardClick = () => {
     if (isClickable) {
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("home_scroll_pos", window.scrollY.toString());
+      }
       router.push(`/projects/${project.id}`);
     }
   };
 
   return (
     <Card
+      hover={true}
       onClick={handleCardClick}
-      className={`group relative h-full w-full overflow-hidden rounded-[1.75rem] p-0 shadow-2xl transition-colors duration-500 ${isWip
+      className={`group relative h-full w-full overflow-hidden rounded-[1.75rem] p-0 shadow-xl transition-all duration-300 ease-out ${isWip
         ? "border-amber-500/30 hover:border-amber-500/50 shadow-amber-950/20 cursor-default"
         : isClickable
-          ? "cursor-pointer shadow-black/20"
-          : "cursor-default shadow-black/20"
+          ? "cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)]"
+          : "cursor-default"
         }`}
     >
       <div className={`pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b ${accent} opacity-80`} />
@@ -80,7 +86,7 @@ export default function ProjectCard({ project, index = 0 }) {
               alt={title}
               fill
               sizes="(max-w-768px) 100vw, 33vw"
-              className={`object-cover object-top scale-[1.000] [backface-visibility:hidden] will-change-transform transition-transform duration-700 ${isWip ? "opacity-75 grayscale-[20%]" : "group-hover:scale-100"
+              className={`object-cover object-top scale-[1.000] [backface-visibility:hidden] will-change-transform transition-transform duration-500 ease-out ${isWip ? "opacity-75 grayscale-[20%]" : "group-hover:scale-[1]"
                 }`}
               loading="lazy"
             />
@@ -93,7 +99,7 @@ export default function ProjectCard({ project, index = 0 }) {
           {/* Absolute bottom border overlay to prevent sub-pixel hover blinking */}
           <div className="absolute inset-x-0 bottom-0 h-[1px] bg-white/10 z-20 pointer-events-none" />
 
-          <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+          <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-semibold text-white backdrop-blur transition-colors duration-300 group-hover:border-white/30">
             #{projectNumber}
           </div>
 
@@ -112,7 +118,7 @@ export default function ProjectCard({ project, index = 0 }) {
         {/* Bagian 2 (Snap Top): Judul, Deskripsi, dan Teknologi */}
         <div className="flex flex-1 flex-col p-5 md:p-6 pb-4">
           <div className="mb-3">
-            <h3 className="mb-2 text-lg md:text-xl font-bold text-white transition-colors group-hover:text-zinc-200">
+            <h3 className="mb-2 text-lg md:text-xl font-bold text-zinc-200 transition-colors duration-300 group-hover:text-white">
               {title}
             </h3>
             <p className="line-clamp-3 text-sm text-zinc-400 leading-relaxed font-normal">
@@ -215,3 +221,5 @@ export default function ProjectCard({ project, index = 0 }) {
     </Card>
   );
 }
+
+export default memo(ProjectCard);

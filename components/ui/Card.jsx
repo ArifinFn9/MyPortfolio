@@ -1,38 +1,51 @@
-"use client";
-
-import React from "react";
+import React, { memo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { revealVariants, getRevealTransition, revealViewport } from "@/lib/motion";
 
-export const Card = ({
+export const Card = memo(({
   children,
   className,
-  glow = true,
-  hover = true,
+  glow = false,
+  hover = false,
   hoverBorderColor,
+  initial,
+  whileInView,
+  transition,
+  viewport,
+  reveal = false,
   ...props
 }) => {
+  // If reveal prop is true, or if initial/whileInView props are provided, use them.
+  // Otherwise, render cleanly without double-nested motion loops.
+  const motionProps = reveal
+    ? {
+        initial: initial ?? revealVariants.initial,
+        whileInView: whileInView ?? revealVariants.whileInView,
+        transition: transition ?? getRevealTransition(),
+        viewport: viewport ?? revealViewport,
+      }
+    : {
+        ...(initial && { initial }),
+        ...(whileInView && { whileInView }),
+        ...(transition && { transition }),
+        ...(viewport && { viewport }),
+      };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true }}
-      whileHover={hover ? { y: -6, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } } : undefined}
+      {...motionProps}
       className={cn(
-        "glass-card backdrop-blur-[var(--card-blur)] rounded-2xl p-6 relative overflow-hidden group transition-all duration-300 shadow-lg border border-[var(--card-border)] hover:border-[var(--card-hover-border,rgba(255,255,255,0.3))]",
-        hover && "hover:shadow-xl hover:shadow-black/40",
+        "glass-card rounded-2xl p-6 relative overflow-hidden group transition-all [transition-duration:var(--card-hover-duration,200ms)] shadow-md border border-[var(--card-border)]",
+        hover && "hover:border-[var(--card-hover-border,rgba(255,255,255,0.3))]",
         hoverBorderColor,
         className
       )}
       {...props}
     >
-      {glow && (
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      )}
       <div className="relative z-10">{children}</div>
     </motion.div>
   );
-};
+});
 
 export default Card;

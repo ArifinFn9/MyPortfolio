@@ -28,7 +28,7 @@
   },
   "hero": {
     "available": "Open for Opportunities",
-    "title": "Analyzing Financial and <gradient>Administrative Data</gradient> <br></br>",
+    "title": "<accent>Analyzing Financial and Administrative Data</accent>",
     "desc": "Finance Management graduate from Muhammadiyah University of Surakarta. Passionate about financial analysis, database cleaning, and administrative accuracy.",
     "viewWork": "View Projects",
     "resume": "Resume",
@@ -50,7 +50,7 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Muhammad Arifin <gradient>Fadhil Nugroho</gradient>",
+    "subtitle": "Muhammad <accent>Arifin</accent> Fadhil Nugroho",
     "viewResume": "View CV / Resume",
     "desc": "Hi! I'm <name>Arifin</name>, a Finance Management graduate from Muhammadiyah University of Surakarta. I have hands-on internship experience in data entry and administrative operations at Bank Syariah Indonesia (BSI), where I processed customer records with high accuracy and confidentiality.",
     "pageDesc": "I am a Finance Management graduate focused on financial data analysis, administrative operations, and database management. I ensure high precision in every ledger, report, and entry.",
@@ -87,7 +87,9 @@
       "softSkills": "Interpersonal & Management Skills"
     },
     "items": {
-      "financialReporting": "Financial Reporting",
+      "dataVisualization": "Data Visualization",
+      "financialReporting": "Financial Statements",
+      "budgetingControl": "Budgeting & Control",
       "problemSolving": "Problem Solving",
       "adaptability": "Adaptability",
       "timeManagement": "Time Management",
@@ -237,10 +239,26 @@
         "title": "PT Indofood CBP Tbk Financial Performance Dashboard",
         "description": "A Power BI financial performance dashboard of PT Indofood CBP Tbk (2023–2025) to monitor profitability, liquidity, and leverage trends.",
         "metrics": {
-          "revenue": { "label": "Revenue", "value": "Rp 74.85 Bn", "change": "+3.10%" },
-          "netProfit": { "label": "Net Profit", "value": "Rp 9.22 Bn", "change": "+30.30%" },
-          "currentRatio": { "label": "Current Ratio", "value": "4.15x", "change": "+0.06" },
-          "debtToEquity": { "label": "Debt-to-Equity", "value": "0.84x", "change": "-0.04" }
+          "revenue": {
+            "label": "Revenue",
+            "value": "Rp 74.85 Bn",
+            "change": "+3.10%"
+          },
+          "netProfit": {
+            "label": "Net Profit",
+            "value": "Rp 9.22 Bn",
+            "change": "+30.30%"
+          },
+          "currentRatio": {
+            "label": "Current Ratio",
+            "value": "4.15x",
+            "change": "+0.06"
+          },
+          "debtToEquity": {
+            "label": "Debt-to-Equity",
+            "value": "0.84x",
+            "change": "-0.04"
+          }
         },
         "problem": "Assessing the financial health of a giant FMCG emiten like PT Indofood CBP Tbk from raw financial statement spreadsheets is often slow and cumbersome. Management required instant visibility to track the impact of rising Cost of Goods Sold (COGS) on net margins and compare multi-year debt leverage vs equity structures.",
         "solution": "Integrated 3-year balance sheets and income statements (2023–2025) into a unified Power BI data model. Built custom DAX measures for profitability (GPM, NPM), liquidity (Current Ratio), and leverage (DER, DAR) while designing an interactive layout featuring asset/liability breakdowns.",
@@ -257,10 +275,26 @@
         "title": "Budget vs Actual Monitoring Dashboard",
         "description": "Built an interactive Budget vs Actual monitoring system using Microsoft Excel, Power Query, and Power BI to track expenditure performance by division, month, and cost category while detecting over-budget risks early.",
         "metrics": {
-          "totalBudget": { "label": "Total Budget", "value": "Rp 2.15 Bn", "change": "FY 2026" },
-          "totalActual": { "label": "Total Actual", "value": "Rp 1.75 Bn", "change": "81.45% Actual" },
-          "budgetUtilization": { "label": "Budget Utilization", "value": "81.45%", "change": "Normal (<85%)" },
-          "remainingBudget": { "label": "Remaining Budget", "value": "Rp 399.3 M", "change": "Maintained" }
+          "totalBudget": {
+            "label": "Total Budget",
+            "value": "Rp 2.15 Bn",
+            "change": "FY 2026"
+          },
+          "totalActual": {
+            "label": "Total Actual",
+            "value": "Rp 1.75 Bn",
+            "change": "81.45% Actual"
+          },
+          "budgetUtilization": {
+            "label": "Budget Utilization",
+            "value": "81.45%",
+            "change": "Normal (<85%)"
+          },
+          "remainingBudget": {
+            "label": "Remaining Budget",
+            "value": "Rp 399.3 M",
+            "change": "Maintained"
+          }
         },
         "problem": "Many budget monitoring workflows still rely on manual spreadsheets requiring repetitive consolidation and checking. This makes it difficult for finance teams to monitor actual spending against budget, identify divisions nearing threshold limits, and prepare variance analysis periodically.",
         "solution": "Constructed a centralized Star Schema data model in Power BI integrating FactActual, FactBudget, DimMonth, DimDivision, and DimCategory. Calculated dynamic financial measures using DAX (Total Budget, Actual, Variance, Utilization, Remaining Budget) and implemented an Early Warning System with status thresholds (<85% Normal, 85%–<100% Warning, ≥100% Over Budget).",

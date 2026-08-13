@@ -28,7 +28,7 @@
   },
   "hero": {
     "available": "Terbuka untuk Peluang Kerja",
-    "title": "Menganalisis Data Keuangan dan <gradient>Administrasi</gradient> <br></br>",
+    "title": "<accent>Menganalisis Data Keuangan dan Administrasi</accent>",
     "desc": "Lulusan Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Bersemangat dalam analisis data keuangan, pembersihan database, dan keakuratan data administrasi.",
     "viewWork": "Lihat Proyek",
     "resume": "Resume",
@@ -50,7 +50,7 @@
   },
   "about": {
     "title": "Tentang Saya",
-    "subtitle": "Muhammad Arifin <gradient>Fadhil Nugroho</gradient>",
+    "subtitle": "Muhammad <accent>Arifin</accent> Fadhil Nugroho",
     "viewResume": "Lihat CV / Resume",
     "desc": "Halo! Saya <name>Arifin</name>, seorang lulusan S1 Manajemen Konsentrasi Manajemen Keuangan dari Universitas Muhammadiyah Surakarta. Saya memiliki pengalaman magang di Bank Syariah Indonesia (BSI) pada bagian data entry dan administrasi data nasabah, di mana saya terbiasa mengelola data nasabah dengan akurasi tinggi dan menjaga kerahasiaan dokumen.",
     "pageDesc": "Saya adalah lulusan Manajemen Keuangan yang fokus pada analisis data keuangan, operasional administrasi, dan pengelolaan database. Saya memastikan tingkat presisi tinggi di setiap laporan dan pencatatan.",
@@ -87,7 +87,9 @@
       "softSkills": "Keahlian Interpersonal & Manajemen"
     },
     "items": {
+      "dataVisualization": "Visualisasi Data",
       "financialReporting": "Laporan Keuangan",
+      "budgetingControl": "Budgeting & Control",
       "problemSolving": "Pemecahan Masalah",
       "adaptability": "Adaptabilitas",
       "timeManagement": "Manajemen Waktu",

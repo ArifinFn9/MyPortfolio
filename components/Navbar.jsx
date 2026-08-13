@@ -11,8 +11,6 @@ import {
   Briefcase,
   Layout,
   Mail,
-  Globe,
-  ArrowUpRight,
   Download,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -71,7 +69,10 @@ export default function Navbar() {
       setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    // Immediately run handleScroll on mount to sync active indicator on page load/refresh
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -108,6 +109,12 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Top Soft Ambient Vignette Mask (Desktop h-32, Mobile h-16) */}
+      <div className="fixed top-0 inset-x-0 h-16 md:h-32 bg-gradient-to-b from-[#09090b] md:via-[#09090b]/80 to-transparent pointer-events-none z-40" />
+
+      {/* Bottom Soft Ambient Vignette Mask (Mobile h-32, Desktop h-16) */}
+      <div className="fixed bottom-0 inset-x-0 h-32 md:h-16 bg-gradient-to-t from-[#09090b] md:via-[#09090b]/30 via-[#09090b]/80 to-transparent pointer-events-none z-40" />
+
       {/* Mobile Floating Bottom Navigation and Language Control Center */}
       <div
         key={`mobile-controls-${locale}`}
@@ -158,13 +165,29 @@ export default function Navbar() {
         className="hidden md:flex fixed top-6 inset-x-0 justify-center z-50 pointer-events-none select-none"
       >
         <div className="pointer-events-auto flex items-center gap-3.5 p-2 pr-4 rounded-full glass-nav backdrop-blur-[var(--nav-blur)] shadow-2xl">
-          {/* Logo Badge (AIZ style, MA for Muhammad Arifin) */}
+          {/* Logo Badge (MA + Dynamic Name Expand on Home) */}
           <Link
             href="/"
             onClick={(e) => handleNavLinkClick(e, "#home")}
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-white/10 text-white font-black text-[10px] tracking-wider hover:border-white/20 transition-colors shrink-0"
+            className="flex items-center p-1 rounded-full bg-zinc-950 border border-white/10 hover:border-white/20 transition-all duration-300 group shrink-0 overflow-hidden"
           >
-            MA
+            <div className="flex items-center justify-center w-7 h-7 rounded-full bg-white/10 text-white font-black text-[10px] tracking-wider group-hover:bg-white/20 transition-colors shrink-0">
+              MA
+            </div>
+
+            <AnimatePresence initial={false}>
+              {activeSection === "home" && (
+                <motion.span
+                  initial={{ opacity: 0, maxWidth: 0, paddingLeft: 0, paddingRight: 0 }}
+                  animate={{ opacity: 1, maxWidth: "120px", paddingLeft: 8, paddingRight: 8 }}
+                  exit={{ opacity: 0, maxWidth: 0, paddingLeft: 0, paddingRight: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden whitespace-nowrap text-xs font-bold text-white tracking-wide block origin-left"
+                >
+                  M. Arifin
+                </motion.span>
+              )}
+            </AnimatePresence>
           </Link>
 
           {/* Divider */}

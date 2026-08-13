@@ -38,6 +38,11 @@ const nextConfig = {
   /* config options here */
   allowedDevOrigins: getLocalDevOrigins(),
   devIndicators: false,
+  compress: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+  },
 };
 
 export default withNextIntl(nextConfig);

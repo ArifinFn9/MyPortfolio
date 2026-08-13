@@ -11,6 +11,8 @@ import SectionHeader from "@/components/ui/SectionHeader";
 
 const experiencesKeys = ["revou", "udemy", "bsi", "myskill"];
 
+import { revealVariants, getRevealTransition, revealViewport } from "@/lib/motion";
+
 export default function ExperienceSection() {
   const t = useTranslations("experience");
   const { openPreview } = usePreview();
@@ -58,17 +60,18 @@ export default function ExperienceSection() {
           const tasks = t.raw(`items.${key}.tasks`);
 
           return (
-            <div key={key} className="relative pl-8 md:pl-12 group/timeline">
+            <motion.div
+              key={key}
+              initial={revealVariants.initial}
+              whileInView={revealVariants.whileInView}
+              transition={getRevealTransition(index * 0.08)}
+              viewport={revealViewport}
+              className="relative pl-8 md:pl-12 group/timeline"
+            >
               {/* Timeline Dot */}
-              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white/30 scale-90 transition-all duration-300 timeline-dot" />
+              <div className="absolute -left-[6px] top-0 w-3 h-3 rounded-full bg-white/20 border-2 border-zinc-950 transition-all duration-300 timeline-dot group-hover/timeline:bg-white group-hover/timeline:scale-125 group-hover/timeline:shadow-[0_0_14px_rgba(255,255,255,0.7)] z-20" />
 
-              <Card
-                className="p-6 md:p-8 transition-all duration-300 hover:border-white/20 group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
+              <Card className="!p-6 md:!p-8 rounded-2xl group transition-all duration-300">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-2">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 shrink-0 flex items-center justify-center overflow-hidden p-1.5">
@@ -79,11 +82,11 @@ export default function ExperienceSection() {
                             : key === 'udemy'
                               ? '/assets/logo_udemy.svg'
                               : key === 'revou'
-                                ? '/assets/logo_revou.png'
+                                ? '/assets/logo_revou.webp'
                                 : '/assets/logo_myskill.svg'
                         }
                         alt={company}
-                        className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                        className="w-full h-full object-contain filter-none opacity-100 md:opacity-85 md:grayscale-[20%] md:group-hover:opacity-100 md:group-hover:grayscale-0 md:group-hover:scale-105 transition-all duration-300"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextSibling.style.display = 'block';
@@ -127,35 +130,11 @@ export default function ExperienceSection() {
                   </div>
                 )}
               </Card>
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
-      {/* Freelance CTA */}
-      <Card className="mt-16 p-8 md:p-10 text-center">
-
-        <div className="relative z-10">
-          <div className="flex justify-center mb-4">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-            </span>
-          </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            {t("cta.title")}
-          </h3>
-          <p className="text-zinc-400 max-w-xl mx-auto mb-6 leading-relaxed">
-            {t("cta.desc")}
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold shadow-md hover:bg-gray-200 transition-all active:scale-95 duration-150"
-          >
-            {t("cta.button")}
-          </a>
-        </div>
-      </Card>
     </Section>
   );
 }

@@ -19,6 +19,7 @@ export function PreviewProvider({ children }) {
   const locale = useLocale();
 
   const containerRef = useRef(null);
+  const isPushedRef = useRef(false);
   const [scale, setScale] = useState(1);
   const [containerHeight, setContainerHeight] = useState("100%");
 
@@ -29,11 +30,39 @@ export function PreviewProvider({ children }) {
     setMetaYear(year);
     setIsCv(isCv);
     setIsOpen(true);
+
+    // Push dummy state to browser history stack so Back button closes modal
+    if (typeof window !== "undefined" && !isPushedRef.current) {
+      window.history.pushState({ modalOpen: true }, "");
+      isPushedRef.current = true;
+    }
   };
 
   const closePreview = () => {
     setIsOpen(false);
+    // If opened via pushState and closed manually (X/backdrop), pop history state
+    if (typeof window !== "undefined" && isPushedRef.current) {
+      isPushedRef.current = false;
+      if (window.history.state?.modalOpen) {
+        window.history.back();
+      }
+    }
   };
+
+  // Listen to browser & mobile device Back button (popstate event)
+  useEffect(() => {
+    const handlePopState = () => {
+      if (isOpen) {
+        isPushedRef.current = false;
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [isOpen]);
 
   // Detect mobile screen width on client side
   useEffect(() => {
@@ -96,6 +125,37 @@ export function PreviewProvider({ children }) {
       window.removeEventListener("resize", handleResize);
     };
   }, [isOpen, url, isPdf]);
+
+  const handleDownload = (e) => {
+    e.stopPropagation();
+    if (isPdf) return;
+
+    e.preventDefault();
+    const fileName = `${(title || "Sertifikat").replace(/[^a-zA-Z0-9_\-\s]/g, "").replace(/\s+/g, "_")}.png`;
+
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = url;
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob((blob) => {
+        if (!blob) return;
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = fileName;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 2000);
+      }, "image/png");
+    };
+  };
 
   return (
     <PreviewContext.Provider value={{ openPreview, closePreview }}>
@@ -185,23 +245,25 @@ export function PreviewProvider({ children }) {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
                   <button
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       closePreview();
                     }}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 text-white font-semibold text-sm active:scale-95 transition-all cursor-pointer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-white/10 hover:border-white/20 hover:bg-white/5 text-white font-semibold text-sm active:scale-95 transition-all cursor-pointer"
                   >
+                    <X className="w-4 h-4 text-zinc-400" />
                     <span>{t("close")}</span>
                   </button>
                   <a
                     href={url}
-                    download
+                    onClick={handleDownload}
+                    download={isPdf ? true : `${(title || "Sertifikat").replace(/[^a-zA-Z0-9_\-\s]/g, "").replace(/\s+/g, "_")}.png`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all cursor-pointer shadow-md"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 active:scale-95 transition-all cursor-pointer shadow-md"
                   >
                     <Download className="w-4 h-4" />
                     <span>{t("download")}</span>

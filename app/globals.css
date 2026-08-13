@@ -4,25 +4,61 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-6px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(6px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
+  /* ==========================================================================
+     CENTRAL CINEMATIC REVEAL BLUR TOKENS (Pengaturan Blur Animasi Muncul)
+     ========================================================================== */
+  --reveal-blur-amount: 8px;
+  /* Tingkat keburaman awal saat elemen pertama kali muncul (e.g. 6px, 8px, 12px) */
+  --reveal-duration: 0.5s;
+  /* Durasi animasi muncul (e.g. 0.4s, 0.5s, 0.6s) */
+
   /* ==========================================================================
      CENTRAL CARD DESIGN TOKENS (Pengaturan Terpusat untuk Seluruh Kartu Utama)
      ========================================================================== */
   --card-bg: rgba(7, 7, 8, 0.7);
   /* Background terpusat kartu (80% opacity agar transparan & ngeblur) */
-  --card-blur: 1px;
+  --card-blur: 0px;
   /* Blur terpusat kartu utama (e.g. 4px, 8px, 12px, 16px) */
   --card-border: rgba(255, 255, 255, 0.1);
   /* Garis tepi terpusat kartu utama */
   --card-hover-border: rgba(255, 255, 255, 0.3);
   /* Garis tepi menyala terpusat kartu utama saat hover */
-  --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --card-hover-duration: 200ms;
+  /* Durasi transisi hover terpusat kartu utama (e.g. 150ms, 200ms, 300ms) */
+  --card-shadow: none;
   /* Bayangan terpusat */
 
   /* ==========================================================================
      CENTRAL MINI SKILL CARD TOKENS (Pengaturan Terpusat Kartu Skill Mini)
      ========================================================================== */
-  --mini-card-bg: rgba(255, 255, 255, 0.02);
+  --mini-card-bg: rgba(255, 255, 255, 0.01);
   /* Background kartu mini */
   --mini-card-hover-bg: rgba(255, 255, 255, 0.1);
   /* Background kartu mini saat hover */
@@ -30,18 +66,34 @@
   /* Border kartu mini */
   --mini-card-hover-border: rgba(255, 255, 255, 0.3);
   /* Border kartu mini saat hover */
+  --mini-card-hover-duration: 200ms;
+  /* Durasi transisi hover terpusat kartu mini */
   --mini-card-blur: 0px;
   /* Blur kartu mini  */
 
   /* ==========================================================================
      CENTRAL NAVBAR DESIGN TOKENS (Pengaturan Terpusat Navbar & Capsule)
      ========================================================================== */
-  --nav-bg: rgba(7, 7, 8, 0.9);
-  /* Background terpusat Navbar (85% opacity agar transparan & ngeblur) */
-  --nav-blur: 4px;
-  /* Blur terpusat Navbar (e.g. 4px, 8px, 12px, 16px) */
+  --nav-bg: rgba(7, 7, 8, 0.3);
+  /* Background terpusat Navbar (75% opacity agar transparan & ngeblur) */
+  --nav-blur: 8px;
+  /* Blur terpusat Navbar kaca (16px frosted glass) */
   --nav-border: rgba(255, 255, 255, 0.1);
   /* Garis tepi terpusat Navbar  */
+
+  /* ==========================================================================
+     CENTRAL SECTION BACKGROUND TOKENS (Berbasis Theme Palette #09090b)
+     ========================================================================== */
+  --section-about-bg: #0d0d10;
+  /* Background Seksi About (Grafiti Gelap dari #09090b) */
+  --section-skills-bg: #121216;
+  /* Background Seksi Skills (Dark Zinc dari #09090b) */
+  --section-experience-bg: #0e0e11;
+  /* Background Seksi Experience (Charcoal Slate dari #09090b) */
+  --section-projects-bg: #141419;
+  /* Background Seksi Projects (Industrial Platinum dari #09090b) */
+  --section-contact-bg: #101014;
+  /* Background Seksi Contact (Graphite Finish dari #09090b) */
 
   /* Monochrome / Industrial Theme Palette */
   --background: #09090b;
@@ -95,34 +147,37 @@ body {
 
   /* Class Terpusat Seluruh Kartu Utama */
   .glass-card {
-    background-color: var(--card-bg, rgba(7, 7, 8, 0.8));
-    backdrop-filter: blur(var(--card-blur, 8px));
-    -webkit-backdrop-filter: blur(var(--card-blur, 8px));
+    background-color: var(--card-bg, rgba(12, 12, 15, 0.92));
     border: 1px solid var(--card-border, rgba(255, 255, 255, 0.1));
     box-shadow: var(--card-shadow, 0 20px 25px -5px rgba(0, 0, 0, 0.5));
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style;
   }
 
   /* Class Terpusat Kartu Skill Mini (Pill) */
   .glass-mini-card {
-    background-color: var(--mini-card-bg, rgba(255, 255, 255, 0.05));
-    backdrop-filter: blur(var(--mini-card-blur, 0px));
-    -webkit-backdrop-filter: blur(var(--mini-card-blur, 0px));
+    background-color: var(--mini-card-bg, rgba(255, 255, 255, 0.03));
     border: 1px solid var(--mini-card-border, rgba(255, 255, 255, 0.1));
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    transform: translateZ(0);
   }
 
   .glass-mini-card:hover {
-    background-color: var(--mini-card-hover-bg, rgba(255, 255, 255, 0.1));
+    background-color: var(--mini-card-hover-bg, rgba(255, 255, 255, 0.08));
     border-color: var(--mini-card-hover-border, rgba(255, 255, 255, 0.3));
   }
 
   /* Class Terpusat Navbar (Pengaturan Blur & Background Nav) */
   .glass-nav {
-    background-color: var(--nav-bg, rgba(7, 7, 8, 0.85));
-    backdrop-filter: blur(var(--nav-blur, 8px));
-    -webkit-backdrop-filter: blur(var(--nav-blur, 8px));
+    background-color: var(--nav-bg, rgba(9, 9, 11, 0.88));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--nav-border, rgba(255, 255, 255, 0.1));
+    transform: translateZ(0);
+    will-change: transform;
   }
+
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-400 to-gray-500;

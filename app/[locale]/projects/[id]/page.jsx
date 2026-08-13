@@ -98,13 +98,13 @@ export default function ProjectDetailPage() {
 
   return (
     <main className="min-h-screen pt-24 md:pt-32 pb-20 px-6 relative overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 transform -translate-x-1/2 left-1/2 w-[1000px] h-[500px] bg-white/5 rounded-full blur-[100px] -z-10" />
-
       <Section className="max-w-6xl mx-auto">
         <button
           onClick={(e) => {
             e.preventDefault();
+            if (typeof window !== "undefined") {
+              document.documentElement.style.scrollBehavior = "auto";
+            }
             if (typeof window !== "undefined" && window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
               router.back();
             } else {

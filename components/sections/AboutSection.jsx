@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Section from "@/components/ui/Section";
 import Card from "@/components/ui/Card";
 import { User, Globe, GraduationCap, CheckCircle2, FileText, MapPin, Mail, Briefcase } from "lucide-react";
@@ -12,28 +13,26 @@ import {
   SiLinkedin,
   SiInstagram,
   SiTelegram,
-  SiYoutube,
 } from "react-icons/si";
 
 // Formatters declared outside component to prevent re-creation during render (resolves SonarQube S6478)
-const renderGradient = (chunks) => (
-  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-100 via-gray-400 to-gray-600">
+const renderAccent = (chunks) => (
+  <span className="text-zinc-400">
     {chunks}
   </span>
 );
 
 const renderName = (chunks) => (
-  <span className="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300 mx-1 shadow-sm">
+  <span className="inline-block px-2 bg-white/10 text-white font-bold rounded-lg border border-white/10 -rotate-2 hover:rotate-0 transition-transform duration-300 mx-1 shadow-sm">
     {chunks}
   </span>
 );
 
-const renderHighlight = (chunks) => (
-  <span className="text-white font-semibold mr-1.5">{chunks}</span>
-);
+import { revealVariants, getRevealTransition, revealViewport } from "@/lib/motion";
 
 export default function AboutSection() {
   const t = useTranslations("about");
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <Section id="about" className="scroll-mt-4 py-12 md:py-20 px-6 max-w-6xl mx-auto">
@@ -41,37 +40,84 @@ export default function AboutSection() {
       <div className="flex flex-col md:flex-row items-center gap-12 mb-20">
         {/* Photo Column - Enhanced Animation */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition()}
+          viewport={revealViewport}
           className="relative shrink-0"
         >
-          <div className="relative w-64 h-96 md:w-80 md:h-[480px] group">
-            {/* Animated Border/Glow - Monochrome */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-zinc-900/50 to-white/5 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-lg group-hover:opacity-60 transition-opacity duration-500 animate-pulse-slow" />
-            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-[#101012] to-black rounded-[2rem] -rotate-3 border border-white/10" />
+          <div className="relative w-64 h-96 md:w-80 md:h-[480px] group [perspective:1000px]">
+            {/* Pure Circular Soft Halo Ambient Glow (Behind all layers) */}
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square rounded-full -z-20 opacity-70 group-hover:opacity-95 transition-opacity duration-700 pointer-events-none"
+              style={{
+                background: "radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 45%, transparent 70%)"
+              }}
+            />
 
-            {/* Image Container */}
-            <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10 bg-gradient-to-b from-zinc-800 via-zinc-950 to-black">
-              <Image
-                src="/assets/me.png"
-                alt="Muhammad Arifin"
-                fill
-                sizes="(max-width: 768px) 512px, 640px"
-                priority
-                className="object-cover transition-transform duration-700 group-hover:scale-120 scale-105"
-                style={{
-                  objectPosition: "center 38%",
-                }}
-              />
+            {/* 2 Cool Rotated Monochrome 3D Stacked Card Layers */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-zinc-900/50 to-white/5 rounded-[2rem] -rotate-6 scale-105 opacity-40 blur-sm group-hover:opacity-60 transition-opacity duration-500 animate-pulse-slow -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800 via-[#101012] to-black rounded-[2rem] -rotate-4 border border-white/10 -z-5" />
 
-            </div>
-
-            {/* Decorative Elements */}
+            {/* Image Container with 3D Flip Motion */}
             <motion.div
-              animate={{ y: [-10, 10, -10] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              onClick={() => setIsFlipped(!isFlipped)}
+              animate={{ rotateY: isFlipped ? 180 : 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full h-full rounded-[1.8rem] overflow-hidden border-2 border-white/20 shadow-2xl z-10 bg-gradient-to-b from-zinc-800 via-zinc-950 to-black cursor-pointer group/flip [transform-style:preserve-3d]"
+            >
+              {/* FRONT SIDE */}
+              <div
+                className="absolute inset-0 w-full h-full"
+                style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+              >
+                <Image
+                  src="/assets/me.webp"
+                  alt="Muhammad Arifin Fadhil Nugroho"
+                  fill
+                  sizes="(max-width: 768px) 512px, 640px"
+                  priority
+                  className="object-cover transition-transform duration-700 group-hover/flip:scale-110 scale-105"
+                  style={{
+                    objectPosition: "center 38%",
+                  }}
+                />
+              </div>
+
+              {/* BACK SIDE (MIRROR PHOTO EFFECT) */}
+              <div
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                }}
+              >
+                <Image
+                  src="/assets/me.webp"
+                  alt="Muhammad Arifin Fadhil Nugroho Backside"
+                  fill
+                  sizes="(max-width: 768px) 512px, 640px"
+                  priority
+                  className="object-cover transition-transform duration-700 group-hover/flip:scale-110 scale-105 -scale-x-1"
+                  style={{
+                    objectPosition: "center 38%",
+                  }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Decorative Floating Elements (Asynchronous Organic Zero-Gravity Drift) */}
+            <motion.div
+              animate={{
+                y: [-8, 10, -8],
+                rotate: [-4, 4, -4],
+              }}
+              transition={{
+                duration: 4.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
               className="absolute -right-6 top-10 z-20"
             >
               <div className="p-3 rounded-xl glass-card hover:border-white/30 hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-300 cursor-default shadow-xl">
@@ -80,12 +126,15 @@ export default function AboutSection() {
             </motion.div>
 
             <motion.div
-              animate={{ y: [10, -10, 10] }}
+              animate={{
+                y: [10, -8, 10],
+                rotate: [4, -4, 4],
+              }}
               transition={{
-                duration: 5,
+                duration: 6.2,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1,
+                delay: 1.8,
               }}
               className="absolute -left-6 bottom-10 z-20"
             >
@@ -96,12 +145,12 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* Text Content */}
+        {/* Text Content - Single Cohesive Reveal */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition(0.1)}
+          viewport={revealViewport}
           className="text-center md:text-left flex-1"
         >
           <div className="mb-2 text-gray-400 font-mono text-sm tracking-wider uppercase">
@@ -109,7 +158,7 @@ export default function AboutSection() {
           </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
             {t.rich("subtitle", {
-              gradient: renderGradient
+              accent: renderAccent
             })}
           </h2>
 
@@ -142,15 +191,16 @@ export default function AboutSection() {
             </span>
           </div>
 
-          {/* Social Links & CV Button */}
+          {/* Social Links & CV Button Row */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 justify-center md:justify-start">
             <motion.a
               href={socials.resume}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-all duration-150 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
+              transition={{ duration: 0, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black font-semibold text-sm hover:bg-gray-100 hover:shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all duration-300 shadow-lg shrink-0 w-full justify-center md:w-auto cursor-pointer shimmer-btn-light"
             >
               <FileText className="w-4 h-4" />
               <span>{t("viewResume")}</span>
@@ -189,15 +239,18 @@ export default function AboutSection() {
                   hoverClass: "hover:bg-sky-500/10 hover:text-sky-400 hover:border-sky-500/20",
                 },
               ].map((social) => (
-                <a
+                <motion.a
                   key={social.key}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 transition-all duration-150 hover:-translate-y-0.5 active:scale-90 shadow-md ${social.hoverClass}`}
+                  whileHover={{ y: -3, scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ duration: 0, ease: [0.16, 1, 0.3, 1] }}
+                  className={`p-3 rounded-xl bg-white/5 border border-white/10 text-gray-400 transition-all duration-150 shadow-md ${social.hoverClass}`}
                 >
                   <social.icon className="w-5 h-5" />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -207,13 +260,13 @@ export default function AboutSection() {
       {/* Cards Section */}
       <div className="grid md:grid-cols-2 gap-6 mb-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition(0.2)}
+          viewport={revealViewport}
           className="h-full"
         >
-          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
+          <Card className="p-8 h-full transition-colors group">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform shrink-0">
                 <User className="w-6 h-6" />
@@ -227,13 +280,13 @@ export default function AboutSection() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          viewport={{ once: true }}
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition(0.3)}
+          viewport={revealViewport}
           className="h-full"
         >
-          <Card className="p-8 h-full hover:border-white/20 transition-colors group">
+          <Card className="p-8 h-full transition-colors group">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:scale-110 transition-transform shrink-0">
                 <Globe className="w-6 h-6" />
@@ -247,13 +300,12 @@ export default function AboutSection() {
         </motion.div>
       </div>
 
-      {/* Education Section - Enhanced Layout */}
+      {/* Education Section - Enhanced Layout  */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4 }}
-        viewport={{ once: true }}
-        className="mb-16"
+        initial={revealVariants.initial}
+        whileInView={revealVariants.whileInView}
+        transition={getRevealTransition(0.4)}
+        viewport={revealViewport}
       >
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 flex items-center gap-3">
           <GraduationCap className="w-8 h-8 text-white" />
@@ -261,15 +313,15 @@ export default function AboutSection() {
         </h2>
 
         <div className="relative group p-[1px]">
-          <Card className="p-6 md:p-8 h-full hover:border-white/20 transition-colors duration-300">
-            {/* Header row: Logo, University, Degree, and Period */}
+          <Card className="p-6 md:p-8 h-full transition-colors group">
+            {/* Header row: Logo, University, Degree, and Period*/}
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br from-white/10 to-gray-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] shrink-0 overflow-hidden p-2">
                   <img
-                    src="/assets/logo_ums.png"
+                    src="/assets/logo_ums.webp"
                     alt="UMS Logo"
-                    className="w-full h-full object-contain filter grayscale contrast-125 opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    className="w-full h-full object-contain filter-none opacity-100 md:opacity-85 md:grayscale-[20%] md:group-hover:opacity-100 md:group-hover:grayscale-0 md:group-hover:scale-105 transition-all duration-300"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'block';

@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import { socials } from "@/data/socials";
 import { SiGithub, SiLinkedin, SiTelegram, SiInstagram } from "react-icons/si";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { revealVariants, getRevealTransition, revealViewport } from "@/lib/motion";
 
 export default function ContactSection() {
   const t = useTranslations("contact");
@@ -108,9 +109,15 @@ export default function ContactSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Left Column: Stacked Cards */}
-        <div className="lg:col-span-5 flex flex-col gap-6 w-full">
+        <motion.div
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition(0.1)}
+          viewport={revealViewport}
+          className="lg:col-span-5 flex flex-col gap-6 w-full"
+        >
           {/* Card 1: Connect With Me */}
-          <Card glow={false} hover={false} className="!p-6 md:!p-8 relative overflow-hidden flex-1 flex flex-col justify-between hover:border-white/30 transition-colors duration-300">
+          <Card glow={false} hover={false} className="!p-6 md:!p-8 relative overflow-hidden flex-1 flex flex-col justify-between transition-colors duration-300">
             <div>
               <div className="flex items-center gap-2.5 mb-1">
                 <MessageSquare className="w-5 h-5 text-white shrink-0" />
@@ -146,7 +153,7 @@ export default function ContactSection() {
           </Card>
 
           {/* Card 2: Prefer email? */}
-          <Card glow={false} hover={false} className="!p-6 relative overflow-hidden hover:border-white/30 transition-colors duration-300">
+          <Card glow={false} hover={false} className="!p-6 relative overflow-hidden transition-colors duration-300">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white shrink-0">
                 <Mail className="w-5 h-5" />
@@ -167,11 +174,17 @@ export default function ContactSection() {
               </div>
             </div>
           </Card>
-        </div>
+        </motion.div>
 
         {/* Right Column: Send a Message Form Card */}
-        <div className="lg:col-span-7 w-full flex">
-          <Card glow={false} hover={false} className="!p-6 md:!p-8 relative overflow-hidden w-full flex flex-col justify-between hover:border-white/30 transition-colors duration-300">
+        <motion.div
+          initial={revealVariants.initial}
+          whileInView={revealVariants.whileInView}
+          transition={getRevealTransition(0.2)}
+          viewport={revealViewport}
+          className="lg:col-span-7 w-full flex"
+        >
+          <Card glow={false} hover={false} className="!p-6 md:!p-8 relative overflow-hidden w-full flex flex-col justify-between  transition-colors duration-300">
             <div className="flex flex-col h-full justify-between">
               <div>
                 <div className="flex items-center gap-2.5 mb-1">
@@ -316,7 +329,7 @@ export default function ContactSection() {
               </AnimatePresence>
             </div>
           </Card>
-        </div>
+        </motion.div>
       </div>
     </Section>
   );
